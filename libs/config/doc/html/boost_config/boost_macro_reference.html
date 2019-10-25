@@ -3822,6 +3822,42 @@
 <tr>
 <td>
                 <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_NO_CXX17_HDR_OPTIONAL</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  The compiler does not support the header <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">optional</span><span class="special">&gt;</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_NO_CXX17_HDR_VARIANT</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  The compiler does not support the header <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">variant</span><span class="special">&gt;</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_NO_CXX17_HDR_STRING_VIEW</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  The compiler does not support the header <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">&gt;</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <code class="computeroutput"><span class="identifier">BOOST_NO_CXX17_STD_APPLY</span></code>
                 </p>
               </td>
@@ -3852,6 +3888,19 @@
 <td>
                 <p>
                   The compiler does not support SFINAE-friendly <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">iterator_traits</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_NO_CXX17_IF_CONSTEXPR</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  The compiler does not support <code class="computeroutput"><span class="keyword">if</span>
+                  <span class="keyword">constexpr</span></code>.
                 </p>
               </td>
 </tr>
@@ -4526,6 +4575,33 @@
                   Expands to <code class="computeroutput"><span class="identifier">__attribute__</span><span class="special">((</span><span class="identifier">unused</span><span class="special">))</span></code> when this is available - can
                   be used to disable compiler warnings relating to unused types or
                   variables.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_ATTRIBUTE_NODISCARD</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Expands to <code class="computeroutput"><span class="special">[[</span><span class="identifier">nodiscard</span><span class="special">]]</span></code> when this is available - can
+                  be used to create a warning when a type or variable is unused.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Expands to <code class="computeroutput"><span class="special">[[</span><span class="identifier">no_unique_address</span><span class="special">]]</span></code> when this is available - can
+                  be used to indicate that a non-static data member need not have
+                  a unique address (for example empty classes).
                 </p>
               </td>
 </tr>
@@ -6251,6 +6327,24 @@
 <dd><p>
                 Optional: when set the header will print out the name of the library
                 selected (useful for debugging).
+              </p></dd>
+<dt><span class="term"><code class="computeroutput"><span class="identifier">BOOST_AUTO_LINK_NOMANGLE</span></code></span></dt>
+<dd><p>
+                Optional: whan set specifies that we should link to BOOST_LIB_NAME.lib,
+                rather than a mangled-name version.
+              </p></dd>
+<dt><span class="term"><code class="computeroutput"><span class="identifier">BOOST_AUTO_LINK_TAGGED</span></code></span></dt>
+<dd><p>
+                Optional: Specifies that we link to libraries built with the --layout=tagged
+                option. This is essentially the same as the default name-mangled
+                version, but without the compiler name and version, or the Boost
+                version. Just the build options.
+              </p></dd>
+<dt><span class="term"><code class="computeroutput"><span class="identifier">BOOST_AUTO_LINK_SYSTEM</span></code></span></dt>
+<dd><p>
+                Optional: Specifies that we link to libraries built with the --layout=system
+                option. This is essentially the same as the non-name-mangled version,
+                but with the prefix to differentiate static and dll builds
               </p></dd>
 </dl>
 </div>
