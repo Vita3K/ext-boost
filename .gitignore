@@ -1,6 +1,19 @@
 b2
-# b2.exe
+b2.exe
+bin.v2
 bjam
-# bjam.exe
+bjam.exe
 bootstrap.log
+boost
+dist
 project-config.jam*
+stage
+stage_x64
+user-config.jam
+.settings
+.project
+.pydevproject
+
+*.exe
+*.pdb
+*.obj
