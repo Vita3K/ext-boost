@@ -28,32 +28,32 @@
 <span class="keyword">class</span> <a class="link" href="value_extractor.html" title="Class template value_extractor">value_extractor</a> <span class="special">:</span> <span class="keyword">private</span> <span class="identifier">FallbackPolicyT</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="value_extractor.html#boost.log.value_extractorconstruct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="value_extractor.html#idm45185966642064-bb"><span class="identifier">value_extractor</span></a><span class="special">(</span><a class="link" href="value_extractor.html" title="Class template value_extractor">value_extractor</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="keyword">explicit</span> <a class="link" href="value_extractor.html#idm45185966640096-bb"><span class="identifier">value_extractor</span></a><span class="special">(</span><span class="identifier">U</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="value_extractor.html#idm45933302999104-bb"><span class="identifier">value_extractor</span></a><span class="special">(</span><a class="link" href="value_extractor.html" title="Class template value_extractor">value_extractor</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="keyword">explicit</span> <a class="link" href="value_extractor.html#idm45933302997136-bb"><span class="identifier">value_extractor</span></a><span class="special">(</span><span class="identifier">U</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="value_extractor.html#idm45185966664832-bb">public member functions</a></span>
-  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45185966664272-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_value.html" title="Class attribute_value">attribute_value</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45185966660272-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45185966654784-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">record</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45185966649568-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">record_view</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">fallback_policy</span> <span class="keyword">const</span>  <span class="special">&amp;</span> <a class="link" href="value_extractor.html#idm45185966644352-bb"><span class="identifier">get_fallback_policy</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="comment">// <a class="link" href="value_extractor.html#idm45933303021872-bb">public member functions</a></span>
+  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45933303021312-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_value.html" title="Class attribute_value">attribute_value</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45933303017312-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45933303011824-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">record</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">result_type</span> <a class="link" href="value_extractor.html#idm45933303006608-bb"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">record_view</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">fallback_policy</span> <span class="keyword">const</span>  <span class="special">&amp;</span> <a class="link" href="value_extractor.html#idm45933303001392-bb"><span class="identifier">get_fallback_policy</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm46436917444048"></a><h2>Description</h2>
+<a name="idm45373016427952"></a><h2>Description</h2>
 <p>Attribute value extractor is a functional object that attempts to find and extract the stored attribute value from the attribute values view or a log record. The extracted value is returned from the extractor. </p>
 <div class="refsect2">
-<a name="idm46436917443152"></a><h3>
+<a name="idm45373016427056"></a><h3>
 <a name="boost.log.value_extractorconstruct-copy-destruct"></a><code class="computeroutput">value_extractor</code> 
         public
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a name="idm45185966642064-bb"></a><span class="identifier">value_extractor</span><span class="special">(</span><a class="link" href="value_extractor.html" title="Class template value_extractor">value_extractor</a> <span class="keyword">const</span> <span class="special">&amp;</span> that<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm45933302999104-bb"></a><span class="identifier">value_extractor</span><span class="special">(</span><a class="link" href="value_extractor.html" title="Class template value_extractor">value_extractor</a> <span class="keyword">const</span> <span class="special">&amp;</span> that<span class="special">)</span><span class="special">;</span></pre>
 <p>Default constructor</p>
 <p>Copy constructor </p>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="keyword">explicit</span> <a name="idm45185966640096-bb"></a><span class="identifier">value_extractor</span><span class="special">(</span><span class="identifier">U</span> <span class="keyword">const</span> <span class="special">&amp;</span> arg<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="keyword">explicit</span> <a name="idm45933302997136-bb"></a><span class="identifier">value_extractor</span><span class="special">(</span><span class="identifier">U</span> <span class="keyword">const</span> <span class="special">&amp;</span> arg<span class="special">)</span><span class="special">;</span></pre>
 <p>Constructor</p>
 <p>
 </p>
@@ -80,11 +80,11 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm46436917422048"></a><h3>
-<a name="idm45185966664832-bb"></a><code class="computeroutput">value_extractor</code> public member functions</h3>
+<a name="idm45373016406096"></a><h3>
+<a name="idm45933303021872-bb"></a><code class="computeroutput">value_extractor</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45185966664272-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_value.html" title="Class attribute_value">attribute_value</a> <span class="keyword">const</span> <span class="special">&amp;</span> attr<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45933303021312-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_value.html" title="Class attribute_value">attribute_value</a> <span class="keyword">const</span> <span class="special">&amp;</span> attr<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>Extraction operator. Attempts to acquire the stored value of one of the supported types. If extraction succeeds, the extracted value is returned.</p>
 <p>
 
@@ -116,7 +116,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45185966660272-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> 
+<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45933303017312-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> 
                        <a class="link" href="attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a> <span class="keyword">const</span> <span class="special">&amp;</span> attrs<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>Extraction operator. Looks for an attribute value with the specified name and tries to acquire the stored value of one of the supported types. If extraction succeeds, the extracted value is returned.</p>
 <p>
@@ -155,7 +155,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45185966654784-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> <span class="identifier">record</span> <span class="keyword">const</span> <span class="special">&amp;</span> rec<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45933303011824-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> <span class="identifier">record</span> <span class="keyword">const</span> <span class="special">&amp;</span> rec<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>Extraction operator. Looks for an attribute value with the specified name and tries to acquire the stored value of one of the supported types. If extraction succeeds, the extracted value is returned.</p>
 <p>
 
@@ -193,7 +193,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45185966649568-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> <span class="identifier">record_view</span> <span class="keyword">const</span> <span class="special">&amp;</span> rec<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="identifier">result_type</span> <a name="idm45933303006608-bb"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><a class="link" href="attribute_name.html" title="Class attribute_name">attribute_name</a> <span class="keyword">const</span> <span class="special">&amp;</span> name<span class="special">,</span> <span class="identifier">record_view</span> <span class="keyword">const</span> <span class="special">&amp;</span> rec<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>Extraction operator. Looks for an attribute value with the specified name and tries to acquire the stored value of one of the supported types. If extraction succeeds, the extracted value is returned.</p>
 <p>
 
@@ -231,7 +231,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">fallback_policy</span> <span class="keyword">const</span>  <span class="special">&amp;</span> <a name="idm45185966644352-bb"></a><span class="identifier">get_fallback_policy</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="identifier">fallback_policy</span> <span class="keyword">const</span>  <span class="special">&amp;</span> <a name="idm45933303001392-bb"></a><span class="identifier">get_fallback_policy</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
