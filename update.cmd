@@ -7,6 +7,7 @@ if exist %USERSETS_OUTDIR% rmdir /s /q %SUBSETS_OUTDIR%
 md %USERSETS_OUTDIR%
 
 .\dist\bin\bcp ^
+    icl ^
     filesystem ^
     program_options ^
     system ^
