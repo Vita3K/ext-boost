@@ -13,6 +13,7 @@ echo "Creating $SUBSETS_OUTDIR"
 mkdir -p "$SUBSETS_OUTDIR"
 
 ./dist/bin/bcp \
+icl \
 filesystem \
 program_options \
 system \
