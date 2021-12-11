@@ -1,6 +1,6 @@
 # Boost libraries - trimmed down for Vita3K
 
-This is a subset of Boost v1.72.0 generated using the bcp tool. To get a list of boost modules guaranteed to exist, check the build script.
+This is a subset of Boost v1.78.0 generated using the bcp tool. To get a list of boost modules guaranteed to exist, check the build script.
 Adapted from [citra-emu/ext-boost](https://github.com/citra-emu/ext-boost).
 
 ## Updating this repo

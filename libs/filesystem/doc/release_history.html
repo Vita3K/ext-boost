@@ -31,12 +31,105 @@
     <a href="faq.htm">FAQ</a> &nbsp;&nbsp;
     <a href="release_history.html">Releases</a> &nbsp;&nbsp;
     <a href="portability_guide.htm">Portability</a> &nbsp;&nbsp;
+    <a href="v4.html">V4</a> &nbsp;&nbsp;
     <a href="v3.html">V3 Intro</a> &nbsp;&nbsp;
     <a href="v3_design.html">V3 Design</a> &nbsp;&nbsp;
     <a href="deprecated.html">Deprecated</a> &nbsp;&nbsp;
-    <a href="issue_reporting.html">Bug Reports </a>&nbsp;&nbsp;
+    <a href="issue_reporting.html">Bug Reports</a>&nbsp;&nbsp;
     </td>
 </table>
+
+<h2>1.78.0</h2>
+<ul>
+  <li><b>v4:</b> <code>path::filename</code> and <code>path::iterator</code> no longer return an implicit trailing dot (".") element if the path ends with a directory separator. Instead, an empty path is returned, similar to C++17 std::filesystem. This also affects other methods that are defined in terms of iterators or filename, such as <code>path::stem</code>, <code>path::compare</code> or <code>lexicographical_compare</code>. For example, <code>path("a/b/") == path("a/b/.")</code> no longer holds true. (<a href="https://github.com/boostorg/filesystem/issues/193">#193</a>)</li>
+  <li><b>v4:</b> <code>path::lexically_normal</code> no longer produce a trailing dot (".") element and omits a directory separator after a trailing dot-dot ("..") element in the normalized paths.</li>
+  <li><b>v4:</b> <code>path</code> append operations now consider root name and root directory in the appended path. If the appended path is absolute, or root name is present and differs from the source path, the resulting path is equivalent to the appended path. If root directory is present, the result is the root directory and
+  relative path rebased on top of the root name of the source path. Otherwise, the behavior is similar to v3. (<a href="https://github.com/boostorg/filesystem/issues/214">#214</a>)</li>
+  <li><code>path::lexically_normal</code> now converts directory separators to preferred separators in the root name of the normalized paths.</li>
+  <li>Optimized overloads of <code>path::assign</code>, <code>path::append</code>, <code>path::concat</code> and the corresponding operators to avoid unnecessary path copying and reduce the amount of code redundancy.</li>
+  <li>On POSIX systems, fixed <code>absolute(p, base)</code> returning a path with root name <code>base.root_name()</code> if <code>p</code> starts with a root directory. In such a case <code>p</code> is already an absolute path and should be returned as is.</li>
+  <li><code>create_directories</code> no longer reports an error if the input path consists entirely of dot (".") and dot-dot ("..") elements. The implementation is no longer using recursion internally and therefore is better protected from stack overflow on extremely long paths.</li>
+  <li>On Windows, <code>remove</code> now supports deleting read-only files. The operation will attempt to reset the read-only attribute prior to removal. Note that this introduces a possibility of the read-only attribute being left unset, if the operation fails and the original value of the attribute fails to be restored. This also affects <code>remove_all</code>. (<a href="https://github.com/boostorg/filesystem/issues/216">#216</a>)</li>
+  <li><code>remove_all</code> now returns <code>static_cast&lt; uintmax_t &gt;(-1)</code> in case of error, similar to C++17 std::filesystem.</li>
+  <li>Fixed a linking error about unresolved references to Boost.ContainerHash functions when user's code includes <code>boost/filesystem/path.hpp</code> but not <code>boost/container_hash/hash.hpp</code> and the compiler is set to preserve unused inline functions. (<a href="https://github.com/boostorg/filesystem/issues/215">#215</a>)</li>
+  <li>Added a workaround for MSVC and compatible compilers eliminating path globals cleanup in release builds. This could lead to a memory leak if Boost.Filesystem shared library was repeatedly loaded and unloaded in the process. (<a href="https://github.com/boostorg/filesystem/issues/217">#217</a>)</li>
+</ul>
+
+<h2>1.77.0</h2>
+<ul>
+  <li><b>Introducing Boost.Filesystem v4.</b> This new version of the library removes all deprecated features of v3 and also makes a number of breaking API changes intended to make Boost.Filesystem more compatible with std::filesystem introduced in C++17. The differences are described in the release notes and documentation using <b>v3</b> and <b>v4</b> tags and are also summarised in a <a href="v4.html">separate section</a>. Users can select Boost.Filesystem version by defining <code>BOOST_FILESYSTEM_VERSION</code> macro to either 3 or 4 when compiling their code. There is no need to separately compile Boost.Filesystem for each library version &mdash; a single binary supports both v3 and v4. Users should avoid using both v3 and v4 in the same application as this can lead to subtle bugs. Currently, v3 is the default. In a future release v4 will become the default, and eventually v3 will be removed. v4 is functional, but it is still a work in progress and there may be breaking API changes in the future.</li>
+  <li><b>v4:</b> <code>path::filename</code>, <code>path::stem</code> and <code>path::extension</code> no longer consider root name or root directory of the path as a filename if the path only consists of those components. For example, on Windows <code>path("C:").filename()</code> used to return "C:" and <code>path("C:\\").filename()</code> used to return "\" and both will return an empty path now. (<a href="https://github.com/boostorg/filesystem/issues/88">#88</a>, <a href="https://github.com/boostorg/filesystem/issues/194">#194</a>)</li>
+  <li><b>v4:</b> <code>path::stem</code> and <code>path::extension</code> no longer treat a filename that starts with a dot and has no other dots as an extension. Filenames starting with a dot are commonly treated as filenames with an empty extension. The leading dot is used to indicate a hidden file on most UNIX-like systems. (<a href="https://github.com/boostorg/filesystem/issues/88">#88</a>)</li>
+  <li><b>New:</b> Improved support for various path prefixes on Windows. Added support for local device prefix ("\\.\") and experimental support for NT path prefix ("\??\"). The prefixes will be included in the root name of a path. Note that using the prefixes with Boost.Filesystem v3 can lead to surprising results (e.g. <code>path("\\\\.\\").stem() == "\\\\"</code>). It is recommended to use the prefixes only with Boost.Filesystem v4.</li>
+  <li>Reworked <code>path::lexically_normal</code> implementation to eliminate some cases of duplicate dot (".") elements in the normalized paths.</li>
+  <li><b>New:</b> Added runtime detection of the <code>statx</code> and <code>getrandom</code> system calls on Linux. This can be useful if the syscall is present at compile time but fails with <code>ENOSYS</code> at run time (for example, in Docker containers that restrict the syscall, even if available on the host). (<a href="https://github.com/boostorg/filesystem/issues/172">#172</a>)</li>
+  <li><b>New:</b> Added support for disabling usage of various system APIs at library build time. This can be useful when a certain API is detected as present by the library configuration scripts but must not be used for some reason (for example, when runtime detection does not work on the target system). See the description of <a href="index.htm#Macros">configuration macros</a> for more details.</li>
+  <li><b>New:</b> Added <code>copy_options::synchronize_data</code> and <code>copy_options::synchronize</code> options for the <code>copy_file</code> operation. These options allow to synchronize the written data and attributes with the permanent storage. These options are expensive in terms of performance, but allow to ensure reliability of the copied data. Note that <code>copy_file</code> performed implicit data synchronization on POSIX systems since Boost.Filesystem 1.74.0. This release adds support for more platforms and disables data synchronization by default while allowing the caller to explicitly request it. (<a href="https://github.com/boostorg/filesystem/issues/186">#186</a>)</li>
+  <li>Added handling of <code>EINTR</code> error code on POSIX systems for some system calls issued internally. In particular, <code>EINTR</code> could have been ignored on <code>close</code>, which on HP-UX would result in a leaked file descriptor.</li>
+  <li>In the <code>copy_file</code> implementations based on Linux <code>sendfile</code> and <code>copy_file_range</code> system calls, added handling of error codes indicating that a particular filesystem does not support the system call and fall back to the generic <code>read</code>/<code>write</code> loop. This should fix <code>copy_file</code> failing on <a href="https://www.ecryptfs.org/">eCryptFS</a> and possibly other filesystems. (<a href="https://github.com/boostorg/filesystem/issues/184">#184</a>)</li>
+  <li>The <code>copy_file_range</code> system call is now used since Linux kernel 4.5, whereas previously it was only enabled since 5.3. The <code>copy_file</code> implementation will fall back to <code>sendfile</code> or <code>read</code>/<code>write</code> loop if <code>copy_file_range</code> fails to copy a given file across filesystems.</li>
+  <li>The <code>copy_file</code> implementations based on Linux <code>sendfile</code> and <code>copy_file_range</code> system calls will not be used on filesystems that are known to contain files with generated content. These system calls are incompatible with such files, and copying them would result in zero-sized files. The generic <code>read</code>/<code>write</code> loop will be used instead. Currently, the blacklisted filesystems are: procfs, sysfs, tracefs and debugfs.</li>
+  <li>In the <code>copy_file</code> implementation based on <code>read</code>/<code>write</code> loop, increased the maximum size of the buffer used for temporary storage and take into account the target filesystem block size for more optimal performance.</li>
+  <li>On Windows CE, calling <code>current_path</code> to obtain the current path for a process will now fail with an error instead of returning successfully with a root path. This platform does not support current directory. Changing the current path was already failing similarly in previous releases of Boost.Filesystem.</li>
+  <li>In <code>canonical</code>, fixed the check for a symlink referencing a directory above root, if an earlier symlink was resolved to an absolute path with a different root from the original path.</li>
+  <li>In <code>canonical</code>, added a limit for the maximum number of symlinks that can be resolved during the call. The limit is currently at least 40 symlinks.</li>
+  <li>On Windows, <code>canonical</code> and <code>weakly_canonical</code> will now use <code>path::preferred_separator</code> for the root directory separator in the resulting paths. This fixes "file not found" errors caused by Windows API not handling generic separators in UNC paths and paths that start with the Win32 filesystem prefix ("\\?\"). (<a href="https://github.com/boostorg/filesystem/issues/87">#87</a>, <a href="https://github.com/boostorg/filesystem/issues/187">#187</a>)</li>
+  <li><b>New:</b> Added <code>weakly_canonical</code> overloads taking <code>base</code> path as an argument.</li>
+  <li>On Windows, <code>weakly_canonical</code> no longer fails with an error if the input path contains elements that do not exist in the filesystem but are cancelled by a subsequent dot-dot ("..") element. For example, <code>weakly_canonical("C:\\a\\..")</code> would previously fail if "C:\a" directory did not exist. (<a href="https://github.com/boostorg/filesystem/issues/201">#201</a>)</li>
+  <li>In <code>read_symlink</code> on Windows, corrected reparse point handling. The operation would return an empty path for some mount points (for example, created by <a href="https://www.box.com/">Box</a> cloud storage driver) and directory junction points that had empty print names. The new implementation now parses substitute name of the reparse point and attempts to reconstruct a Win32 path from it. (<a href="https://github.com/boostorg/filesystem/issues/187">#187</a>)</li>
+  <li>On Windows, file streams provided in <code>boost/filesystem/fstream.hpp</code> will use wide character paths on libc++ versions 7.0 and higher, when the standard library supports opening files with wide character paths. (<a href="https://github.com/boostorg/filesystem/issues/181">#181</a>)</li>
+  <li>On Windows, creating symlinks should no longer require elevated privileges, if Windows is configured in <a href="https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development">Developer mode</a>.</li>
+  <li>With some compilers, global objects used internally in Boost.Filesystem are now destroyed after user's global destructors are called. This allows to call Boost.Filesystem methods during the program termination stage. In particular, this concerns the path locale that is used for character code conversion and can be installed by calling <code>path::imbue</code>. The supported compilers include MSVC, GCC and Clang, as well as other compilers that support customizing program initialization order through <code>#pragma section</code> (for MSVC-compatible compilers) or <code>__attribute__ ((init_priority))</code> (for GCC-compatible compilers).</li>
+</ul>
+
+<h2>1.76.0</h2>
+<ul>
+  <li>Updated compatibility with <a href="https://wasi.dev/">WASI</a> platform. (<a href="https://github.com/boostorg/filesystem/pull/169">PR#169</a>)</li>
+  <li>Fixed an exception being thrown by <code>path::remove_filename</code> if the path is "////". (<a href="https://github.com/boostorg/filesystem/issues/176">#176</a>)</li>
+  <li>Fixed <code>create_directories</code> disregarding errors from file status query operations issued internally. This could result in incorrect error codes returned by <code>create_directories</code>. (<a href="https://github.com/boostorg/filesystem/issues/182">#182</a>)</li>
+</ul>
+
+<h2>1.75.0</h2>
+<ul>
+  <li><b>New:</b> Added <code>creation_time</code> operation, which allows to obtain file creation time. (Inspired by <a href="https://github.com/boostorg/filesystem/pull/134">PR#134</a>)</li>
+  <li>The returned value of <code>last_write_time(p, ec)</code> operation in case of failure has been changed to a minimal value representable by <code>std::time_t</code> instead of -1.</li>
+  <li>The returned value of <code>hard_link_count(p, ec)</code> operation in case of failure has been changed to <code>static_cast&lt;uintmax_t&gt;(-1)</code> instead of 0.</li>
+  <li>On POSIX systems, <code>file_size</code> will now indicate error code <code>errc::function_not_supported</code> if the path resolves to a non-regular file. Previously, <code>errc::operation_not_permitted</code> was reported.</li>
+  <li>On Linux, many operations now use <code>statx</code> system call internally, when possible, which allows to reduce the amount of information queried from the filesystem and potentially improve performance. The <code>statx</code> system call was introduced in Linux kernel 4.11.</li>
+  <li>Removed <code>const</code>-qualification from return types of some <code>path</code> methods. This could prevent move construction and move assignment at the call site in some cases. (<a href="https://github.com/boostorg/filesystem/issues/160">#160</a>)</li>
+  <li>On OpenBSD 4.4 and newer, use <code>statvfs</code> system call to obtain filesystem space information. (Inspired by <a href="https://github.com/boostorg/filesystem/pull/162">PR#162</a>)</li>
+  <li>On Windows, <code>space</code> now returns with an error if the provided path does not idendify an existing file. (<a href="https://github.com/boostorg/filesystem/issues/167">#167</a>)</li>
+</ul>
+
+<h2>1.74.0</h2>
+<ul>
+  <li>Removed compile-time checks for support for symlinks and hardlink on Windows. Instead, a runtime check is used. (<a href="https://github.com/boostorg/filesystem/pull/142">PR#142</a>)</li>
+  <li>Fixed handling of reparse points in <code>canonical</code> and <code>read_symlink</code> on Windows. This also affects other algorithms that involve <code>canonical</code> and <code>read_symlink</code> in their implementation. (<a href="https://github.com/boostorg/filesystem/pull/100">PR#100</a>, <a href="https://github.com/boostorg/filesystem/issues/85">#85</a>, <a href="https://github.com/boostorg/filesystem/issues/99">#99</a>, <a href="https://github.com/boostorg/filesystem/issues/123">#123</a>, <a href="https://github.com/boostorg/filesystem/issues/125">#125</a>)</li>
+  <li>Fixed that <code>read_symlink</code> on Windows could potentially fail or cause failures elsewhere with a sharing violation error, if the same symlink was opened concurrently. (<a href="https://github.com/boostorg/filesystem/issues/138">#138</a>)</li>
+  <li>Fixed that <code>is_symlink(directory_entry)</code> would always return <code>false</code>, even if the directory entry actually referred to a symlink. (<a href="https://github.com/boostorg/filesystem/pull/148">PR#148</a>)</li>
+  <li>Added missing status inspection operation overloads for <code>directory_entry</code> and <code>error_code</code> (e.g. <code>is_directory(directory_entry, error_code&amp;)</code>). Removed incorrect <code>noexcept</code> specifications for the overloads not taking the <code>error_code</code> arguments.</li>
+  <li><code>copy_file</code> implementation has been updated to perform checks on the source and target files, as required by C++20 ([fs.op.copy.file]/4.1). In particular, the operation will fail if the source or target file is not a regular file or the source and target paths identify the same file.</li>
+  <li><code>copy_file</code> on POSIX systems will now also copy the source file permissions to the target file, if the target file is overwritten.</li>
+  <li><b>New:</b> Added <code>copy_file</code> implementations based on <code>sendfile</code> and <code>copy_file_range</code> system calls on Linux, which may improve file copying performance, especially on network filesystems.</li>
+  <li><b>Deprecated:</b> The <code>copy_option</code> enumeration that is used with the <code>copy_file</code> operation is deprecated. As a replacement, the new enum <code>copy_options</code> (note the trailing 's') has been added. The new enum contains values similar to the <code>copy_options</code> enum from C++20. The old enum values are mapped onto the new enum. The old enum will be removed in a future release.</li>
+  <li><b>New:</b> Added <code>copy_options::skip_existing</code> option, which allows <code>copy_file</code> operation to succeed without overwriting the target file, if it exists.</li>
+  <li><b>New:</b> Added <code>copy_options::update_existing</code> option, which allows <code>copy_file</code> operation to conditionally overwrite the target file, if it exists, if its last write time is older than that of the replacement file.</li>
+  <li><b>New:</b> <code>copy_file</code> now returns <code>bool</code>, which indicates whether the file was copied.</li>
+  <li><b>New, breaking change:</b> <code>copy</code> operation has been extended and reworked to implement behavior specified in C++20 [fs.op.copy]. This includes support for <code>copy_options::recursive</code>, <code>copy_options::copy_symlinks</code>, <code>copy_options::skip_symlinks</code>, <code>copy_options::directories_only</code>, <code>copy_options::create_symlinks</code> and <code>copy_options::create_hard_links</code> options. The operation performs additional checks based on the specified options. Applying <code>copy</code> to a directory with default <code>copy_options</code> will now also copy files residing in that directory (but not nested directories or files in those directories).</li>
+  <li><b>New:</b> Added <code>create_directory</code> overload taking two paths. The second path is a path to an existing directory, which is used as a source of permission attributes to use in the directory to create.</li>
+  <li><b>Deprecated:</b> <code>copy_directory</code> operation has been deprecated in favor of the new <code>create_directory</code> overload. Note that the two operations have reversed order of the path arguments.</li>
+  <li><code>equivalent</code> on POSIX systems now returns the actual error code from the OS if one of the paths does not resolve to a file. Previously the function would return an error code of 1. (<a href="https://github.com/boostorg/filesystem/issues/141">#141</a>)</li>
+  <li><code>equivalent</code> no longer considers file size and last modification time in order to test whether the two paths refer to the same file. These checks could result in a false negative if the file was modified during the <code>equivalent</code> call.</li>
+  <li><b>New:</b> Added <code>absolute</code> overloads taking <code>error_code</code> argument.</li>
+  <li>Operations that have <code>current_path()</code> as the default value of their arguments and also have an <code>error_code</code> argument will use the <code>current_path(error_code& ec)</code> overload to obtain the current path, so that its failure is reported via the <code>error_code</code> argument instead of an exception.</li>
+  <li><code>space</code> now initializes the <code>space_info</code> structure members to -1 values on error, as required by C++20 ([fs.op.space]/1).</li>
+  <li><code>space</code> on Windows now accepts paths referring to arbitrary files, not only directories. This is similar to POSIX systems and corresponds to the operation description in C++20. (<a href="https://github.com/boostorg/filesystem/issues/73">#73</a>)</li>
+  <li><b>New:</b> Added implementation of <code>temp_directory_path</code> for Windows CE. (<a href="https://github.com/boostorg/filesystem/pull/25">PR#25</a>)</li>
+  <li><b>New:</b> Improved compatibility with <a href="https://wasi.dev/">WASI</a> platform. (<a href="https://github.com/boostorg/filesystem/pull/144">PR#144</a>)</li>
+  <li><b>New:</b> Improved support for Embarcadero compilers. (<a href="https://github.com/boostorg/filesystem/pull/130">PR#130</a>)</li>
+  <li><b>New:</b> Added implementations of <code>unique_path</code> operation based on <code>getrandom</code> (Linux), <code>arc4random_buf</code> (OpenBSD/FreeBSD/CloudABI) and BCrypt (Windows) system APIs.</li>
+  <li><b>Deprecated:</b> Auto-linking against system libraries on Windows with MSVC-compatible compilers is deprecated and will be removed in a future release. This affects users linking against static library of Boost.Filesystem. Users are advised to update their project build systems to either use a shared library of Boost.Filesystem, or explicitly specify the dependencies of Boost.Filesystem in the linker command line. In the future, the dependency information may also be exposed through CMake config files.</li>
+</ul>
 
 <h2>1.72.0</h2>
 <ul>
@@ -165,7 +258,7 @@
   <p dir="ltr"><b>New:</b> Added functions <code>
   <a href="reference.html#lex-normal">lexically_normal</a></code>, <code>
   <a href="reference.html#lex-relative">lexically_relative</a></code>, <code>
-  <a href="reference.html#op-relative">relative</a></code>, and <code>
+  <a href="reference.html#relative">relative</a></code>, and <code>
   <a href="reference.html#weakly_canonical">weakly_canonical</a></code>. Many thanks to Jamie Allsop for his help and
   perseverance. Resolves tickets
   <a href="https://svn.boost.org/trac/boost/ticket/1976">#1976</a>,
@@ -513,9 +606,8 @@
   <li>Miscellaneous implementation code cleanup. </li>
 </ul>
 <hr>
-<p>Revised
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d %B, %Y" startspan -->07 August, 2017<!--webbot bot="Timestamp" endspan i-checksum="34770" --></p>
 <p>&copy; Copyright Beman Dawes, 2011</p>
+<p>&copy; Copyright Andrey Semashev, 2019-2021</p>
 <p> Use, modification, and distribution are subject to the Boost Software
 License, Version 1.0. See <a href="http://www.boost.org/LICENSE_1_0.txt">
 www.boost.org/LICENSE_1_0.txt</a></p>
