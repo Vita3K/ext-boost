@@ -31,6 +31,7 @@
     <a href="faq.htm">FAQ</a> &nbsp;&nbsp;
     <a href="release_history.html">Releases</a> &nbsp;&nbsp;
     <a href="portability_guide.htm">Portability</a> &nbsp;&nbsp;
+    <a href="v4.html">V4</a> &nbsp;&nbsp;
     <a href="v3.html">V3 Intro</a> &nbsp;&nbsp;
     <a href="v3_design.html">V3 Design</a> &nbsp;&nbsp;
     <a href="deprecated.html">Deprecated</a> &nbsp;&nbsp;
@@ -223,7 +224,7 @@ BOOST_FILESYSTEM_NO_DEPRECATED</code> is defined.</p>
     <td style="font-size: 10pt" valign="top">
     &nbsp;</td>
     <td style="font-size: 10pt" valign="top">
-    Class template <code>basic_path</code> is replaced by <code>class path</code>.
+    Class template <code>basic_path</code> is replaced by class <code>path</code>.
     No workaround for an explicitly coded <code>basic_path</code> is provided,
     but see the next row - <code>path</code>.</td>
   </tr>
@@ -292,6 +293,16 @@ BOOST_FILESYSTEM_NO_DEPRECATED</code> is defined.</p>
     &nbsp;</td>
     <td style="font-size: 10pt" valign="top">
     <i>Function removed</i></td>
+  </tr>
+  <tr>
+    <td style="font-size: 10pt" valign="top">
+    <code>operations.hpp</code></td>
+    <td style="font-size: 10pt" valign="top">
+    <code>copy_directory(const path&amp; from, const path&amp; to)</code></td>
+    <td style="font-size: 10pt" valign="top">
+    &nbsp;</td>
+    <td style="font-size: 10pt" valign="top">
+    <i>Function removed, use <code>create_directory(const path&amp; to, const path&amp; from)</code> instead (note the reversed order of arguments)</i></td>
   </tr>
   <tr>
     <td style="font-size: 10pt" valign="top">
@@ -410,6 +421,19 @@ BOOST_FILESYSTEM_NO_DEPRECATED</code> is defined.</p>
     <td style="font-size: 10pt" valign="top">
     <i>No longer supported; native path format selection is always automatic.</i></td>
   </tr>
+  <tr>
+    <td style="font-size: 10pt" valign="top">
+    Build system</td>
+    <td style="font-size: 10pt" valign="top">
+    <code>Auto-linking on Windows</code></td>
+    <td style="font-size: 10pt" valign="top">
+    &nbsp;</td>
+    <td style="font-size: 10pt" valign="top">
+    <i>No longer supported. When users are linking against static library of Boost.Filesystem,
+    they are recommended to explicitly add Boost.Filesystem dependencies to their linker command
+    line. Shared library of Boost.Filesystem is not affected by this as it is already linked with
+    all its dependencies.</i></td>
+  </tr>
 </table>
 
 <h2>Deprecation rationale</h2>
@@ -421,10 +445,9 @@ beginning of <code>main()</code> is too error prone.&nbsp; An equivalent
 function can trivially be provided by a user.</p>
 
 <hr>
-<p>Revised
-<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d %B, %Y" startspan -->29 December, 2014<!--webbot bot="Timestamp" endspan i-checksum="38652" --></p>
 
 <p>&copy; Copyright Beman Dawes, 2002-2005, 2010</p>
+<p>&copy; Copyright Andrey Semashev, 2019-2021</p>
 <p> Use, modification, and distribution are subject to the Boost Software
 License, Version 1.0. See <a href="http://www.boost.org/LICENSE_1_0.txt">
 www.boost.org/LICENSE_1_0.txt</a></p>
