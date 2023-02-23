@@ -15,7 +15,7 @@
 
 [template class_sinks_asynchronous_sink_run_func[][classref boost::log::sinks::asynchronous_sink::run_func run_func]]
 
-[template class_sinks_asynchronous_sink_scoped_feeding_opereation[][classref boost::log::sinks::asynchronous_sink::scoped_feeding_opereation scoped_feeding_opereation]]
+[template class_sinks_asynchronous_sink_scoped_feeding_operation[][classref boost::log::sinks::asynchronous_sink::scoped_feeding_operation scoped_feeding_operation]]
 
 [template class_sinks_asynchronous_sink_scoped_flag[][classref boost::log::sinks::asynchronous_sink::scoped_flag scoped_flag]]
 
@@ -128,6 +128,8 @@
 [template class_file_rotation_at_time_interval[][classref boost::log::sinks::file::rotation_at_time_interval rotation_at_time_interval]]
 
 [template class_file_rotation_at_time_point[][classref boost::log::sinks::file::rotation_at_time_point rotation_at_time_point]]
+
+[template class_file_scan_result[][classref boost::log::sinks::file::scan_result scan_result]]
 
 [template boost_log_sinks_text_ipc_message_queue_backend_hpp[][headerref boost/log/sinks/text_ipc_message_queue_backend.hpp]]
 

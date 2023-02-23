@@ -1,20 +1,22 @@
-.\bootstrap.bat
+call .\bootstrap.bat
 .\b2 tools\bcp
 
-set SUBSETS_OUTDIR=".\subsets-boost"
+set SUBSETS_OUTDIR=.\subsets-boost
 
-if exist %USERSETS_OUTDIR% rmdir /s /q %SUBSETS_OUTDIR%
-md %USERSETS_OUTDIR%
+if exist "%SUBSETS_OUTDIR%" rmdir /s /q "%SUBSETS_OUTDIR%"
+md "%SUBSETS_OUTDIR%"
 
 .\dist\bin\bcp ^
-    icl ^
-    filesystem ^
-    program_options ^
-    system ^
-    optional ^
-    log ^
     config ^
+    filesystem ^
+    icl ^
+    log ^
+    optional ^
     predef ^
+    program_options ^
+    range ^
+    system ^
+    unordered ^
     bootstrap.bat ^
     bootstrap.sh ^
     boostcpp.jam ^

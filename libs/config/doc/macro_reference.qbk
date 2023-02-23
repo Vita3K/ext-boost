@@ -630,22 +630,6 @@ standard).
 
 [endsect]
 
-[section Macros that describe possible C++ future features]
-
-The following macros describe features that may be included in some future
-ISO C++ standard, but have not yet been approved for inclusion in the language.
-
-
-[table
-[[Macro     ][Description     ]]
-
-[[`BOOST_HAS_CONCEPTS`][
-The compiler supports  concepts.
-]]
-]
-
-[endsect]
-
 [section Macros that describe C++11 features not supported]
 
 The following macros describe features in the 2011 ISO C++ standard, formerly known as C++0x,
@@ -656,6 +640,7 @@ that are not yet supported by a particular compiler or library.
 
 [[`BOOST_NO_CXX11_ADDRESSOF`][The standard library header <memory> has no working std::addressof.]]
 [[`BOOST_NO_CXX11_ALIGNAS`][The compiler does not support the `alignas` keyword.]]
+[[`BOOST_NO_CXX11_ALIGNOF`][The compiler does not support the `alignof` keyword.]]
 [[`BOOST_NO_CXX11_ALLOCATOR`][The standard library does not provide a C++11 version of `std::allocator` in <memory>.]]
 [[`BOOST_NO_CXX11_ATOMIC_SMART_PTR`][The standard library <memory> does not support atomic smart pointer operations.]]
 [[`BOOST_NO_CXX11_AUTO_DECLARATIONS`][The compiler does not support
@@ -966,6 +951,10 @@ and must be defined for all translation units in the program, including Boost li
 This macro will no longer have any effect once an official Microsoft
 release supports the CTP features.
 ]]
+[[`BOOST_NULLPTR`][
+If `BOOST_NO_CXX11_NULLPTR` is not defined (i.e. C++11 compliant compilers), expands to `nullptr`,
+otherwise expands to `0`.
+]]
 ]
 
 [endsect]
@@ -1037,6 +1026,7 @@ that are not yet supported by a particular compiler or library.
 [[`BOOST_NO_CXX17_ITERATOR_TRAITS`][The compiler does not support SFINAE-friendly `std::iterator_traits`.]]
 [[`BOOST_NO_CXX17_IF_CONSTEXPR`][The compiler does not support `if constexpr`.]]
 [[`BOOST_NO_CXX17_INLINE_VARIABLES`][The compiler does not support `inline` variables.]]
+[[`BOOST_NO_CXX17_DEDUCTION_GUIDES`][The compiler does not support class template argument deduction (CTAD) guides.]]
 ]
 
 [endsect]
@@ -1066,7 +1056,7 @@ that are not yet supported by a particular compiler or library.
 [[Macro ][Description ]]
 [[`BOOST_NO_CXX20_HDR_BARRIER`][The compiler does not support the header `<barrier>`.]]
 [[`BOOST_NO_CXX20_HDR_FORMAT`][The compiler does not support the header `<format>`.]]
-[[`BOOST_NO_CXX20_HDR_SOURCE_LOCATION`][The compiler does not support the header `<format>`.]]
+[[`BOOST_NO_CXX20_HDR_SOURCE_LOCATION`][The compiler does not support the header `<source_location>`.]]
 [[`BOOST_NO_CXX20_HDR_BIT`][The compiler does not support the header `<bit>`.]]
 [[`BOOST_NO_CXX20_HDR_LATCH`][The compiler does not support the header `<latch>`.]]
 [[`BOOST_NO_CXX20_HDR_SPAN`][The compiler does not support the header `<span>`.]]
@@ -1074,10 +1064,11 @@ that are not yet supported by a particular compiler or library.
 [[`BOOST_NO_CXX20_HDR_NUMBERS`][The compiler does not support the header `<numbers>`.]]
 [[`BOOST_NO_CXX20_HDR_STOP_TOKEN`][The compiler does not support the header `<stop_token>`.]]
 [[`BOOST_NO_CXX20_HDR_CONCEPTS`][The compiler does not support the header `<concepts>`.]]
-[[`BOOST_NO_CXX20_HDR_RANGES`][The compiler does not support the header `<range>`.]]
+[[`BOOST_NO_CXX20_HDR_RANGES`][The compiler does not support the header `<ranges>`.]]
 [[`BOOST_NO_CXX20_HDR_SYNCSTREAM`][The compiler does not support the header `<syncstream>`.]]
 [[`BOOST_NO_CXX20_HDR_COROUTINE`][The compiler does not support the header `<coroutine>`.]]
 [[`BOOST_NO_CXX20_HDR_SEMAPHORE`][The compiler does not support the header `<semaphore>`.]]
+[[`BOOST_NO_CXX20_HDR_VERSION`][The compiler does not support the header `<version>`.]]
 ]
 
 [endsect]
@@ -1193,41 +1184,41 @@ struct foo{
 Normally evaluates to nothing, but evaluates to return x; if the compiler
 requires a return, even when it can never be reached.
 ]]
-[[`BOOST_FALLTHROUGH`][ 
-The BOOST_FALLTHROUGH macro can be used to annotate implicit fall-through 
-between switch labels: 
-`` 
- switch (x) { 
- case 40: 
- case 41: 
-    if (truth_is_out_there) { 
-       ++x; 
-       BOOST_FALLTHROUGH;  // Use instead of/along with annotations in 
-       // comments. 
-    } else { 
-      return x; 
-    } 
-    case 42: 
-       ... 
-`` 
-As shown in the example above, the BOOST_FALLTHROUGH macro should be 
-followed by a semicolon. It is designed to mimic control-flow statements 
-like 'break;', so it can be placed in most places where 'break;' can, but 
-only if there are no statements on the execution path between it and the 
-next switch label. 
+[[`BOOST_FALLTHROUGH`][
+The BOOST_FALLTHROUGH macro can be used to annotate implicit fall-through
+between switch labels:
+``
+ switch (x) {
+ case 40:
+ case 41:
+    if (truth_is_out_there) {
+       ++x;
+       BOOST_FALLTHROUGH;  // Use instead of/along with annotations in
+       // comments.
+    } else {
+      return x;
+    }
+    case 42:
+       ...
+``
+As shown in the example above, the BOOST_FALLTHROUGH macro should be
+followed by a semicolon. It is designed to mimic control-flow statements
+like 'break;', so it can be placed in most places where 'break;' can, but
+only if there are no statements on the execution path between it and the
+next switch label.
 
-When compiled with Clang >3.2 in C++11 mode, the BOOST_FALLTHROUGH macro is 
-expanded to `[[clang::fallthrough]]` attribute, which is analysed when 
-performing switch labels fall-through diagnostic ('-Wimplicit-fallthrough'). 
-See clang [@http://clang.llvm.org/docs/LanguageExtensions.html#clang__fallthrough 
-documentation on language extensions for details.] 
+When compiled with Clang >3.2 in C++11 mode, the BOOST_FALLTHROUGH macro is
+expanded to `[[clang::fallthrough]]` attribute, which is analysed when
+performing switch labels fall-through diagnostic ('-Wimplicit-fallthrough').
+See clang [@http://clang.llvm.org/docs/LanguageExtensions.html#clang__fallthrough
+documentation on language extensions for details.]
 
-When used with unsupported compilers, the BOOST_FALLTHROUGH macro has no 
-effect on diagnostics. 
+When used with unsupported compilers, the BOOST_FALLTHROUGH macro has no
+effect on diagnostics.
 
-In either case this macro has no effect on runtime behavior and performance 
-of code. 
-]] 
+In either case this macro has no effect on runtime behavior and performance
+of code.
+]]
 [[`BOOST_EXPLICIT_TEMPLATE_TYPE(t)`
 
   `BOOST_EXPLICIT_TEMPLATE_NON_TYPE(t,v)`
@@ -1316,11 +1307,11 @@ used to create a mangled name in combination with a predefined macro such a
 \_\_LINE__.
 ]]
 [[`BOOST_RESTRICT`][
-This macro can be used in place of the compiler specific variant of the C99 `restrict` keyword to
+This macro can be used in place of the compiler-specific variant of the C99 `restrict` keyword to
 notify the compiler that, for the lifetime of the qualified pointer variable, only it and its
-derivative value will be used to gain access to the object it references. This limits the effect of
-pointer aliasing and helps the optimizers in generating better code. However, i this condition is
-violated, undefined behavior may occurs.
+derivative values will be used to access the object it references. This limits the effect of
+pointer aliasing and helps optimizers in generating better code. However, if this condition is
+violated, undefined behavior may occur.
 
 Usage example:
 ``
@@ -1399,11 +1390,11 @@ Usage example:
     handle_error("ptr is NULL");
 ``
 ]]
-[[`BOOST_ATTRIBUTE_UNUSED`][Expands to `__attribute__((unused))` when this is available - 
+[[`BOOST_ATTRIBUTE_UNUSED`][Expands to `__attribute__((unused))` when this is available -
 can be used to disable compiler warnings relating to unused types or variables.]]
-[[`BOOST_ATTRIBUTE_NODISCARD`][Expands to `[[nodiscard]]` when this is available - 
+[[`BOOST_ATTRIBUTE_NODISCARD`][Expands to `[[nodiscard]]` when this is available -
 can be used to create a warning when a type or variable is unused.]]
-[[`BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS`][Expands to `[[no_unique_address]]` when this is available - 
+[[`BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS`][Expands to `[[no_unique_address]]` when this is available -
 can be used to indicate that a non-static data member need not have a unique address (for example empty classes).]]
 [[`BOOST_MAY_ALIAS`, `BOOST_NO_MAY_ALIAS`][
 `BOOST_MAY_ALIAS` expands to a type attribute that can be used to mark types that may
@@ -1417,6 +1408,27 @@ Usage example:
   typedef unsigned int BOOST_MAY_ALIAS aliasing_uint;
 ``
 ]]
+[[`BOOST_DEPRECATED(M)`][Expands to an attribute for a symbol that generates warnings when that
+symbol is used in code. The warnings may contain a message `M`, which must be a string literal.
+This attribute may be applied to types, functions or objects and is typically used to mark
+parts of the API as deprecated with a recommendation of replacement.
+
+Example:
+``
+BOOST_DEPRECATED("Use bar() instead.")
+void foo();
+
+template< typename T >
+class BOOST_DEPRECATED("Use std::unique_ptr instead.") auto_ptr
+{
+};
+
+BOOST_DEPRECATED("Use std::numeric_limits<int>::max() instead.")
+const int max_int = 0x7fffffff;
+``
+
+The warnings issued by `BOOST_DEPRECATED` can be suppressed by defining
+`BOOST_ALLOW_DEPRECATED_SYMBOLS` or `BOOST_ALLOW_DEPRECATED` macros.]]
 [[`BOOST_PRAGMA_MESSAGE(M)`][Defined in header `<boost/config/pragma_message.hpp>`,
 this macro expands to the equivalent of `#pragma message(M)`. `M` must be a string
 literal.
@@ -1432,8 +1444,8 @@ this macro issues the message "This header is deprecated. Use `A` instead." via
 
 Example: `BOOST_HEADER_DEPRECATED("<boost/config/workaround.hpp>")`
 
-The messages issued by `BOOST_HEADER_DEPRECATED` can be suppressed by defining the macro
-`BOOST_ALLOW_DEPRECATED_HEADERS`.]]
+The messages issued by `BOOST_HEADER_DEPRECATED` can be suppressed by defining
+`BOOST_ALLOW_DEPRECATED_HEADERS` or `BOOST_ALLOW_DEPRECATED` macros.]]
 ]
 
 [endsect]
@@ -1508,9 +1520,12 @@ Defined if the Windows platform API is available.
 Defined if the dinkumware standard library is in use, takes the same value
 as the Dinkumware library version macro `_CPPLIB_VER` if defined, otherwise 1.
 ]]
-[[`BOOST_NO_WREGEX`][`<boost/regex.hpp>`][
-Defined if the regex library does not support wide character regular
-expressions.
+[[`BOOST_MSSTL_VERSION`][`<boost/config.hpp>`][
+Defined if the Microsoft Visual C++ standard library is in use.
+Has the value of `_MSVC_STL_VERSION` when that is defined, and a synthesized
+value of the same format otherwise. Example values are 143 for
+VS2022/msvc-14.3, 142 for VS2019/msvc-14.2, 141 for VS2017/msvc-14.1,
+140 for VS2015/msvc-14.0, 120 for VS2013/msvc-12.0, and so on.
 ]]
 [[`BOOST_COMPILER`][`<boost/config.hpp>`][
 Defined as a string describing the name and version number of the compiler
@@ -1657,6 +1672,15 @@ The compiler has C++ extensions `__declspec(dllexport)` and `__declspec(dllimpor
 export/import of symbols from shared libraries.
 ['Deprecated. This macro is no longer necessary since BOOST_SYMBOL_EXPORT and BOOST_SYMBOL_IMPORT
 are now supplied. It is provided to support legacy code.]
+]]
+[[`BOOST_DISABLE_EXPLICIT_SYMBOL_VISIBILITY`][
+Disables the effect of the BOOST_SYMBOL_EXPORT, BOOST_SYMBOL_IMPORT and BOOST_SYMBOL_VISIBLE macros, 
+in order to revert to the default compiler behaviour.
+Note that this option should never be used if Boost libraries are being linking against dynamically, 
+or if you are building a shared library that exposes Boost types in its public API. 
+It is however advisable when statically-linking against Boost to prevent Boost symbols from leaking from the binary: 
+for instance because you are building a plug-in for a software which may itself use Boost which could cause 
+ODR conflicts.
 ]]
 ]
 

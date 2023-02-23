@@ -59,7 +59,7 @@ rule init ( version ? :  command * : options * ) {
     : version $(version) ] ;
 
   common.handle-options clang-linux : $(condition) : $(command) : $(options) ;
-  clang.init-cxxstd-flags clang-linux : $(condition) : $(version) ;
+  clang.init-flags clang-linux : $(condition) : $(version) ;
 
   # Support for gcc root as the backend, this is mainly useful for clang/gcc on Windows
   # since on Linux gcc will be the default compiler already located on the PATH.
@@ -177,9 +177,9 @@ local soname-os = [ set.difference $(all-os) : windows ] ;
 toolset.flags clang-linux.link SONAME_OPT <target-os>$(soname-os) : "-Wl,-soname -Wl," ;
 
 actions link bind LIBRARIES {
-    "$(CONFIG_COMMAND)" -L"$(LINKPATH)" -o "$(<)" @($(<[1]:T).rsp:O=FC:<=@":>=":E=-Wl,-R$(_)-Wl,"$(RPATH)" -Wl,-rpath-link$(_)-Wl,"$(RPATH_LINK)" $(START-GROUP) "$(>:T)" "$(LIBRARIES:T)" $(FINDLIBS-ST-PFX:T) -l$(FINDLIBS-ST:T) $(FINDLIBS-SA-PFX:T) -l$(FINDLIBS-SA:T) $(END-GROUP)) $(OPTIONS) $(USER_OPTIONS)
+    "$(CONFIG_COMMAND)" -L"$(LINKPATH)" -o "$(<)" @($(<[1]:T).rsp:O=FC:<=@":>=":E=-Wl,-R$(_)-Wl,$(RPATH) -Wl,-rpath-link$(_)-Wl,"$(RPATH_LINK)" $(START-GROUP) "$(>:T)" "$(LIBRARIES:T)" $(FINDLIBS-ST-PFX:T) -l$(FINDLIBS-ST:T) $(FINDLIBS-SA-PFX:T) -l$(FINDLIBS-SA:T) $(END-GROUP)) $(OPTIONS) $(USER_OPTIONS)
 }
 
 actions link.dll bind LIBRARIES {
-    "$(CONFIG_COMMAND)" -L"$(LINKPATH)" -o "$(<)" @($(<[1]:T).rsp:O=FC:<=@":>=":E=-Wl,-R$(_)-Wl,"$(RPATH)" $(SONAME_OPT)$(<[1]:D=) -shared $(START-GROUP) "$(>:T)" "$(LIBRARIES:T)" $(FINDLIBS-ST-PFX:T) -l$(FINDLIBS-ST:T) $(FINDLIBS-SA-PFX:T) -l$(FINDLIBS-SA:T) $(END-GROUP)) $(OPTIONS) $(USER_OPTIONS)
+    "$(CONFIG_COMMAND)" -L"$(LINKPATH)" -o "$(<)" @($(<[1]:T).rsp:O=FC:<=@":>=":E=-Wl,-R$(_)-Wl,$(RPATH) $(SONAME_OPT)$(<[1]:D=) -shared $(START-GROUP) "$(>:T)" "$(LIBRARIES:T)" $(FINDLIBS-ST-PFX:T) -l$(FINDLIBS-ST:T) $(FINDLIBS-SA-PFX:T) -l$(FINDLIBS-SA:T) $(END-GROUP)) $(OPTIONS) $(USER_OPTIONS)
 }

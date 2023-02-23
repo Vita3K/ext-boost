@@ -154,7 +154,7 @@ def reorder_tests(tests, first_test):
         return tests
 
 
-critical_tests = ["unit_tests", "module_actions", "startup_v2", "core_d12",
+critical_tests = ["unit_tests", "module_actions", "core_d12",
     "core_typecheck", "core_delete_module", "core_language", "core_arguments",
     "core_varnames", "core_import_module"]
 
@@ -250,6 +250,7 @@ tests = ["abs_workdir",
          "inherit_toolset",
          "inherited_dependency",
          "inline",
+         "install_build_no",
          "libjpeg",
          "liblzma",
          "libpng",
@@ -317,6 +318,7 @@ tests = ["abs_workdir",
          "toolset_defaults",
          "toolset_gcc",
          "toolset_intel_darwin",
+         "toolset_msvc",
          "toolset_requirements",
          "transitive_skip",
          "unit_test",

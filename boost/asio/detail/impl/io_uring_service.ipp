@@ -2,7 +2,7 @@
 // detail/impl/io_uring_service.ipp
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-// Copyright (c) 2003-2021 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+// Copyright (c) 2003-2023 Christopher M. Kohlhoff (chris at kohlhoff dot com)
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -22,6 +22,7 @@
 #include <cstddef>
 #include <sys/eventfd.h>
 #include <boost/asio/detail/io_uring_service.hpp>
+#include <boost/asio/detail/reactor_op.hpp>
 #include <boost/asio/detail/scheduler.hpp>
 #include <boost/asio/detail/throw_error.hpp>
 #include <boost/asio/error.hpp>
@@ -377,13 +378,21 @@ void io_uring_service::deregister_io_object(
   if (!io_obj->shutdown_)
   {
     op_queue<operation> ops;
-    do_cancel_ops(io_obj, ops);
+    bool pending_cancelled_ops = do_cancel_ops(io_obj, ops);
     io_obj->shutdown_ = true;
     io_object_lock.unlock();
     scheduler_.post_deferred_completions(ops);
-
-    // Leave io_obj set so that it will be freed by the subsequent
-    // call to cleanup_io_obj.
+    if (pending_cancelled_ops)
+    {
+      // There are still pending operations. Prevent cleanup_io_object from
+      // freeing the I/O object and let the last operation to complete free it.
+      io_obj = 0;
+    }
+    else
+    {
+      // Leave io_obj set so that it will be freed by the subsequent call to
+      // cleanup_io_object.
+    }
   }
   else
   {
@@ -518,7 +527,7 @@ void io_uring_service::init_ring()
     boost::asio::detail::throw_error(ec, "io_uring_queue_init");
   }
 
-#if defined(BOOST_ASIO_HAS_EPOLL)
+#if !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
   event_fd_ = ::eventfd(0, EFD_CLOEXEC | EFD_NONBLOCK);
   if (event_fd_ < 0)
   {
@@ -537,10 +546,10 @@ void io_uring_service::init_ring()
         boost::asio::error::get_system_category());
     boost::asio::detail::throw_error(ec, "io_uring_queue_init");
   }
-#endif // defined(BOOST_ASIO_HAS_EPOLL)
+#endif // !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 }
 
-#if defined(BOOST_ASIO_HAS_EPOLL)
+#if !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 class io_uring_service::event_fd_read_op :
   public reactor_op
 {
@@ -586,14 +595,14 @@ public:
 private:
   io_uring_service* service_;
 };
-#endif // defined(BOOST_ASIO_HAS_EPOLL)
+#endif // !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 
 void io_uring_service::register_with_reactor()
 {
-#if defined(BOOST_ASIO_HAS_EPOLL)
+#if !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
   reactor_.register_internal_descriptor(reactor::read_op,
       event_fd_, reactor_data_, new event_fd_read_op(this));
-#endif // defined(BOOST_ASIO_HAS_EPOLL)
+#endif // !defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 }
 
 io_uring_service::io_object* io_uring_service::allocate_io_object()
@@ -610,7 +619,7 @@ void io_uring_service::free_io_object(io_uring_service::io_object* io_obj)
   registered_io_objects_.free(io_obj);
 }
 
-void io_uring_service::do_cancel_ops(
+bool io_uring_service::do_cancel_ops(
     per_io_object_data& io_obj, op_queue<operation>& ops)
 {
   bool cancel_op = false;
@@ -646,6 +655,8 @@ void io_uring_service::do_cancel_ops(
     }
     submit_sqes();
   }
+
+  return cancel_op;
 }
 
 void io_uring_service::do_add_timer_queue(timer_queue_base& queue)
@@ -687,7 +698,10 @@ __kernel_timespec io_uring_service::get_timeout() const
     sqe = ::io_uring_get_sqe(&ring_);
   }
   if (sqe)
+  {
+    ::io_uring_sqe_set_data(sqe, 0);
     ++pending_sqes_;
+  }
   return sqe;
 }
 
@@ -757,12 +771,18 @@ io_uring_service::io_queue::io_queue()
 struct io_uring_service::perform_io_cleanup_on_block_exit
 {
   explicit perform_io_cleanup_on_block_exit(io_uring_service* s)
-    : service_(s), first_op_(0)
+    : service_(s), io_object_to_free_(0), first_op_(0)
   {
   }
 
   ~perform_io_cleanup_on_block_exit()
   {
+    if (io_object_to_free_)
+    {
+      mutex::scoped_lock lock(service_->mutex_);
+      service_->free_io_object(io_object_to_free_);
+    }
+
     if (first_op_)
     {
       // Post the remaining completed operations for invocation.
@@ -783,6 +803,7 @@ struct io_uring_service::perform_io_cleanup_on_block_exit
   }
 
   io_uring_service* service_;
+  io_object* io_object_to_free_;
   op_queue<operation> ops_;
   operation* first_op_;
 };
@@ -842,6 +863,15 @@ operation* io_uring_service::io_queue::perform_io(int result)
         io_cleanup.ops_.push(op);
       }
     }
+  }
+
+  // The last operation to complete on a shut down object must free it.
+  if (io_object_->shutdown_)
+  {
+    io_cleanup.io_object_to_free_ = io_object_;
+    for (int i = 0; i < max_ops; ++i)
+      if (!io_object_->queues_[i].op_queue_.empty())
+        io_cleanup.io_object_to_free_ = 0;
   }
 
   // The first operation will be returned for completion now. The others will

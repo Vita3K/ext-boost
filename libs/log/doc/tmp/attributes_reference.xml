@@ -538,7 +538,7 @@ The header contains an implementation of a basic attribute value implementation 
 </returns></method>
 </method-group>
 <constructor specifiers="explicit"><parameter name="v"><paramtype>value_type const &amp;</paramtype></parameter><description><para>Constructor with initialization of the stored value </para></description></constructor>
-<constructor specifiers="explicit" cv="noexcept(boost::is_nothrow_move_constructible&lt; value_type &gt;::value))"><parameter name="v"><paramtype>value_type &amp;&amp;</paramtype></parameter><description><para>Constructor with initialization of the stored value </para></description></constructor>
+<constructor specifiers="explicit" cv="noexcept(boost::is_nothrow_move_constructible&lt; value_type &gt;::value)"><parameter name="v"><paramtype>value_type &amp;&amp;</paramtype></parameter><description><para>Constructor with initialization of the stored value </para></description></constructor>
 </class>
 
 
@@ -804,7 +804,7 @@ The header contains implementation of a constant attribute. </para><namespace na
     </template><inherit access="public">attribute</inherit><purpose>A class of an attribute that holds a single constant value. </purpose><description><para>The constant is a simplest and one of the most frequently used types of attributes. It stores a constant value, which it eventually returns as its value each time requested. </para></description><class name="impl"><inherit access="public">attribute_value_impl&lt; value_type &gt;</inherit><purpose>Factory implementation. </purpose><method-group name="public member functions">
 </method-group>
 <constructor specifiers="explicit"><parameter name="value"><paramtype>value_type const &amp;</paramtype></parameter><description><para>Constructor with the stored value initialization </para></description></constructor>
-<constructor specifiers="explicit" cv="noexcept(boost::is_nothrow_move_constructible&lt; value_type &gt;::value))"><parameter name="value"><paramtype>value_type &amp;&amp;</paramtype></parameter><description><para>Constructor with the stored value initialization </para></description></constructor>
+<constructor specifiers="explicit" cv="noexcept(boost::is_nothrow_move_constructible&lt; value_type &gt;::value)"><parameter name="value"><paramtype>value_type &amp;&amp;</paramtype></parameter><description><para>Constructor with the stored value initialization </para></description></constructor>
 </class><typedef name="value_type"><purpose>Attribute value type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <method name="get" cv="const"><type>value_type const  &amp;</type><description><para>

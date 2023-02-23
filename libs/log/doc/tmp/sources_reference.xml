@@ -46,7 +46,7 @@ The header contains implementation of a base class for loggers. Convenience macr
 </method-group>
 <constructor><description><para>Default constructor (default-constructs all features) </para></description></constructor>
 <constructor><parameter name="that"><paramtype><classname>basic_composite_logger</classname> const &amp;</paramtype></parameter><description><para>Copy constructor </para></description></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value))"><parameter name="that"><paramtype>logger_base &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value)"><parameter name="that"><paramtype>logger_base &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
 <constructor specifiers="explicit"><template>
           <template-type-parameter name="ArgsT"/>
         </template><parameter name="args"><paramtype>ArgsT const &amp;</paramtype></parameter><description><para>Constructor with named parameters </para></description></constructor>
@@ -73,7 +73,7 @@ The header contains implementation of a base class for loggers. Convenience macr
 </method-group>
 <constructor/>
 <constructor><parameter name="that"><paramtype><classname>basic_composite_logger</classname> const &amp;</paramtype></parameter></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value))"><parameter name="that"><paramtype><classname>logger_base</classname> &amp;&amp;</paramtype></parameter></constructor>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value)"><parameter name="that"><paramtype><classname>logger_base</classname> &amp;&amp;</paramtype></parameter></constructor>
 <constructor specifiers="explicit"><template>
           <template-type-parameter name="ArgsT"/>
         </template><parameter name="args"><paramtype>ArgsT const &amp;</paramtype></parameter></constructor>
@@ -110,7 +110,7 @@ The logger implements fundamental facilities of loggers, such as storing source-
 </note>
 
 </para></description></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; threading_model &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; core_ptr &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; attribute_set &gt;::value))"><parameter name="that"><paramtype><classname>basic_logger</classname> &amp;&amp;</paramtype><description><para>Source logger </para></description></parameter><description><para>Move constructor. Moves all attributes from the source logger.</para><para><note><para>Not thread-safe. The source logger must be locked in the final class before copying.</para>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; threading_model &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; core_ptr &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; attribute_set &gt;::value)"><parameter name="that"><paramtype><classname>basic_logger</classname> &amp;&amp;</paramtype><description><para>Source logger </para></description></parameter><description><para>Move constructor. Moves all attributes from the source logger.</para><para><note><para>Not thread-safe. The source logger must be locked in the final class before copying.</para>
 </note>
 
 </para></description></constructor>
@@ -202,7 +202,7 @@ The header contains implementation of a channel support feature. </para><namespa
 </method-group>
 <constructor><description><para>Default constructor. The constructed logger has the default-constructed channel name. </para></description></constructor>
 <constructor><parameter name="that"><paramtype><classname>basic_channel_logger</classname> const &amp;</paramtype></parameter><description><para>Copy constructor </para></description></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; channel_attribute &gt;::value))"><parameter name="that"><paramtype><classname>basic_channel_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; channel_attribute &gt;::value)"><parameter name="that"><paramtype><classname>basic_channel_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
 <constructor specifiers="explicit"><template>
           <template-type-parameter name="ArgsT"/>
         </template><parameter name="args"><paramtype>ArgsT const &amp;</paramtype><description><para>A set of named arguments. The following arguments are supported: <itemizedlist>
@@ -346,7 +346,7 @@ The header contains implementation of an exception handler support feature. </pa
 </method-group>
 <constructor><description><para>Default constructor. The constructed logger does not have an exception handler. </para></description></constructor>
 <constructor><parameter name="that"><paramtype><classname>basic_exception_handler_logger</classname> const &amp;</paramtype></parameter><description><para>Copy constructor </para></description></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; exception_handler_type &gt;::value))"><parameter name="that"><paramtype><classname>basic_exception_handler_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; exception_handler_type &gt;::value)"><parameter name="that"><paramtype><classname>basic_exception_handler_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
 <constructor specifiers="explicit"><template>
           <template-type-parameter name="ArgsT"/>
         </template><parameter name="args"><paramtype>ArgsT const &amp;</paramtype></parameter><description><para>Constructor with arguments. Passes arguments to other features. </para></description></constructor>
@@ -639,7 +639,7 @@ The header contains implementation of a severity level support feature. </para><
 </method-group>
 <constructor><description><para>Default constructor. The constructed logger will have a severity attribute registered. The default level for log records will be 0. </para></description></constructor>
 <constructor><parameter name="that"><paramtype><classname>basic_severity_logger</classname> const &amp;</paramtype></parameter><description><para>Copy constructor </para></description></constructor>
-<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; severity_level &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; severity_attribute &gt;::value))"><parameter name="that"><paramtype><classname>basic_severity_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
+<constructor cv="noexcept(boost::is_nothrow_move_constructible&lt; base_type &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; severity_level &gt;::value &amp;&amp;boost::is_nothrow_move_constructible&lt; severity_attribute &gt;::value)"><parameter name="that"><paramtype><classname>basic_severity_logger</classname> &amp;&amp;</paramtype></parameter><description><para>Move constructor </para></description></constructor>
 <constructor specifiers="explicit"><template>
           <template-type-parameter name="ArgsT"/>
         </template><parameter name="args"><paramtype>ArgsT const &amp;</paramtype><description><para>A set of named arguments. The following arguments are supported: <itemizedlist>
@@ -779,10 +779,10 @@ The header contains definition of threading models that can be used in loggers. 
 <method name="unlock_upgrade_and_lock_shared" cv="const"><type>void</type></method>
 <method name="swap" cv="noexcept"><type>void</type><parameter name=""><paramtype><classname>multi_thread_model</classname> &amp;</paramtype></parameter></method>
 </method-group>
-<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value))"/>
-<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value))"><parameter name=""><paramtype><classname>multi_thread_model</classname> const &amp;</paramtype></parameter></constructor>
+<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value)"/>
+<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value)"><parameter name=""><paramtype><classname>multi_thread_model</classname> const &amp;</paramtype></parameter></constructor>
 <copy-assignment cv="noexcept"><type><classname>multi_thread_model</classname> &amp;</type><parameter name=""><paramtype><classname>multi_thread_model</classname> const &amp;</paramtype></parameter></copy-assignment>
-<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value))"><parameter name=""><paramtype><classname>multi_thread_model</classname> &amp;&amp;</paramtype></parameter></constructor>
+<constructor cv="noexcept(boost::has_nothrow_constructor&lt; MutexT &gt;::value)"><parameter name=""><paramtype><classname>multi_thread_model</classname> &amp;&amp;</paramtype></parameter></constructor>
 <copy-assignment cv="noexcept"><type><classname>multi_thread_model</classname> &amp;</type><parameter name=""><paramtype><classname>multi_thread_model</classname> &amp;&amp;</paramtype></parameter></copy-assignment>
 </struct><struct name="single_thread_model"><purpose>Single thread locking model. </purpose><method-group name="public member functions">
 <method name="lock_shared" cv="const noexcept"><type>void</type></method>

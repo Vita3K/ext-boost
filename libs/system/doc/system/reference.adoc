@@ -1,6 +1,6 @@
 ////
 Copyright 2003-2017 Beman Dawes
-Copyright 2018-2021 Peter Dimov
+Copyright 2018-2022 Peter Dimov
 
 Distributed under the Boost Software License, Version 1.0.
 
@@ -28,6 +28,11 @@ disappear.
 When `BOOST_SYSTEM_USE_UTF8` is defined, on Windows the library returns
 UTF-8 messages using code page `CP_UTF8` instead of the default `CP_ACP`.
 This macro has no effect on POSIX.
+
+When `BOOST_SYSTEM_DISABLE_THREADS` is defined, the library assumes that
+the current platform doesn't support multiple threads and disables the use
+of the standard header `<mutex>`, eliminating the mutex locks. The single
+threaded `libstdc++` is one such platform.
 
 ## Deprecated Names
 
@@ -185,8 +190,12 @@ namespace errc {
 template<> struct is_error_condition_enum<errc::errc_t>
   { static const bool value = true; };
 
-constexpr error_code make_error_code( errc::errc_t e ) noexcept;
 constexpr error_condition make_error_condition( errc::errc_t e ) noexcept;
+
+constexpr error_code make_error_code( errc::errc_t e ) noexcept;
+
+error_code make_error_code( errc::errc_t e,
+  boost::source_location const * loc ) noexcept;
 
 } // namespace system
 } // namespace boost
@@ -249,6 +258,38 @@ void my_api_function( boost::system::error_code& ec )
     {
         // return ENOMEM
         ec = make_error_code( boost::system::errc::out_of_memory );
+        return;
+    }
+
+    // use p
+}
+```
+
+```
+constexpr error_code make_error_code( errc::errc_t e,
+  boost::source_location const * loc ) noexcept;
+```
+[none]
+* {blank}
++
+Returns: :: `error_code( e, generic_category(), loc )`.
+
+Same as the above overload, but takes a source location.
+* {blank}
++
+```
+void my_api_function( boost::system::error_code& ec )
+{
+    void* p = std::malloc( 16 );
+
+    if( p == 0 )
+    {
+        // return ENOMEM
+
+        BOOST_STATIC_CONSTEXPR boost::source_location loc =
+          BOOST_CURRENT_LOCATION;
+
+        ec = make_error_code( boost::system::errc::out_of_memory, &loc );
         return;
     }
 
@@ -574,9 +615,8 @@ public:
     template<class ErrorCodeEnum>
       constexpr error_code( ErrorCodeEnum e ) noexcept;
 
-    template<class ErrorCodeEnum>
-      error_code( ErrorCodeEnum e, boost::source_location const * loc )
-        noexcept;
+    error_code( error_code const& ec,
+      boost::source_location const * loc ) noexcept;
 
     error_code( std::error_code const& ec ) noexcept;
 
@@ -590,9 +630,8 @@ public:
     template<class ErrorCodeEnum>
       constexpr error_code & operator=( ErrorCodeEnum e ) noexcept;
 
-    template<class ErrorCodeEnum>
-      void assign( ErrorCodeEnum e,
-        boost::source_location const * loc ) noexcept;
+    void assign( error_code const& ec,
+      boost::source_location const * loc ) noexcept;
 
     constexpr void clear() noexcept;
 
@@ -721,17 +760,17 @@ Ensures: :: `*this == make_error_code( e )`.
 Remarks: :: This constructor is only enabled when `is_error_code_enum<ErrorCodeEnum>::value` is `true`.
 
 ```
-template<class ErrorCodeEnum>
-  error_code( ErrorCodeEnum e, boost::source_location const * loc ) noexcept;
+error_code( error_code const& ec,
+  boost::source_location const * loc ) noexcept;
 ```
 [none]
 * {blank}
 +
-Requires: :: `loc` points to a valid `boost::source_location` object with static storage duration.
-Ensures: :: `*this == make_error_code( e )`.
-Remarks: :: This constructor is only enabled when `is_error_code_enum<ErrorCodeEnum>::value` is `true`.
-  When `make_error_code( e )` is not a default-constructed `error_code` and doesn't wrap a
-  `std::error_code`, `has_location()` is `true` and `&location()` is `loc`.
+Requires: :: `loc` points to a valid `boost::source_location` object with static storage duration, or is `nullptr`.
+Ensures: :: `*this == ec`.
+Remarks: :: When `ec` is a default-constructed `error_code` or wraps a `std::error_code`,
+  or when `loc` is `nullptr`, `*this` stores no location (`has_location()` is `false`).
+  Otherwise, `*this` stores `loc` (`has_location()` is `true` and `&location()` is `loc`.)
 
 ```
 error_code( std::error_code const & ec ) noexcept;
@@ -772,16 +811,13 @@ Ensures: :: `*this == make_error_code( e )`.
 Remarks: :: This operator is only enabled when `is_error_code_enum<ErrorCodeEnum>::value` is `true`.
 
 ```
-template<class ErrorCodeEnum>
-  void assign( ErrorCodeEnum e,
-    boost::source_location const * loc ) noexcept;
+void assign( error_code const& ec,
+  boost::source_location const * loc ) noexcept;
 ```
 [none]
 * {blank}
 +
-Requires: :: `loc` points to a valid `boost::source_location` object with static storage duration.
-Effects: :: `*this = error_code( e, loc )`.
-Remarks: :: This function is only enabled when `is_error_code_enum<ErrorCodeEnum>::value` is `true`.
+Effects: :: `*this = error_code( ec, loc )`.
 
 ```
 constexpr void clear() noexcept;
@@ -1454,7 +1490,20 @@ namespace system {
 
 // throw_exception_from_error
 
-BOOST_NORETURN inline void throw_exception_from_error( error_code const & e );
+BOOST_NORETURN inline void throw_exception_from_error( error_code const & e,
+  boost::source_location const & loc );
+
+BOOST_NORETURN inline void throw_exception_from_error( std::error_code const & e,
+  boost::source_location const & loc );
+
+BOOST_NORETURN inline void throw_exception_from_error( errc::errc_t const & e,
+  boost::source_location const & loc );
+
+BOOST_NORETURN inline void throw_exception_from_error( std::errc const & e,
+  boost::source_location const & loc );
+
+BOOST_NORETURN inline void throw_exception_from_error( std::exception_ptr & e,
+  boost::source_location const & loc );
 
 // in_place_*
 
@@ -1486,13 +1535,57 @@ If `result<T, E>` is used with other error types, the user is expected to provid
 an appropriate overload of `throw_exception_from_error` in the namespace of `E`.
 
 ```
-BOOST_NORETURN inline void throw_exception_from_error( error_code const & e );
+BOOST_NORETURN inline void throw_exception_from_error( error_code const & e,
+  boost::source_location const & loc );
 ```
 [none]
 * {blank}
 +
 Effects: ::
-  `boost::throw_exception( system_error( e ) )`.
+  `boost::throw_with_location( system_error( e ), loc )`.
+
+```
+BOOST_NORETURN inline void throw_exception_from_error( std::error_code const & e,
+  boost::source_location const & loc );
+```
+[none]
+* {blank}
++
+Effects: ::
+  `boost::throw_with_location( std::system_error( e ), loc )`.
+
+```
+BOOST_NORETURN inline void throw_exception_from_error( errc::errc_t const & e,
+  boost::source_location const & loc );
+```
+[none]
+* {blank}
++
+Effects: ::
+  `boost::throw_with_location( system_error( make_error_code( e ) ), loc )`.
+
+```
+BOOST_NORETURN inline void throw_exception_from_error( std::errc const & e,
+  boost::source_location const & loc );
+```
+[none]
+* {blank}
++
+Effects: ::
+  `boost::throw_with_location( std::system_error( make_error_code( e ) ), loc )`.
+
+```
+BOOST_NORETURN inline void throw_exception_from_error( std::exception_ptr & e,
+  boost::source_location const & loc );
+```
+[none]
+* {blank}
++
+Effects: ::
++
+[disc]
+** If `e` isn't null, `std::rethrow_exception( e )`.
+** Otherwise, `boost::throw_with_location( std::bad_exception(), loc )`.
 
 ### result<T, E>
 
@@ -1507,6 +1600,12 @@ template<class T, class E = error_code> class result
 {
 public:
 
+    using value_type = T;
+    using error_type = E;
+
+    static constexpr in_place_value_t in_place_value{};
+    static constexpr in_place_error_t in_place_error{};
+
     // constructors
 
     constexpr result();
@@ -1520,6 +1619,12 @@ public:
     template<class... A>
       constexpr result( in_place_error_t, A&&... a );
 
+    template<class T2, class E2>
+      constexpr result( result<T2, E2> const& r2 );
+
+    template<class T2, class E2>
+      constexpr result( result<T2, E2>&& r2 );
+
     // queries
 
     constexpr bool has_value() const noexcept;
@@ -1528,10 +1633,17 @@ public:
 
     // checked value access
 
-    constexpr T& value() & ;
-    constexpr T const& value() const& ;
-    constexpr T&& value() && ;
-    constexpr T const&& value() const&& ;
+    constexpr T& value( boost::source_location const & loc =
+      BOOST_CURRENT_LOCATION ) & ;
+
+    constexpr T const& value( boost::source_location const & loc =
+      BOOST_CURRENT_LOCATION ) const& ;
+
+    constexpr T&& value( boost::source_location const & loc =
+      BOOST_CURRENT_LOCATION ) && ;
+
+    constexpr T const&& value( boost::source_location const & loc =
+      BOOST_CURRENT_LOCATION ) const&& ;
 
     // unchecked value access
 
@@ -1546,6 +1658,11 @@ public:
     // error access
 
     constexpr E error() const;
+
+    // emplace
+
+    template<class... A>
+      constexpr T& emplace( A&&... a );
 
     // swap
 
@@ -1621,6 +1738,30 @@ Ensures: ::
 Remarks: ::
   This constructor is only enabled when `std::is_constructible<E, A...>::value` is `true`.
 
+```
+template<class T2, class E2>
+  constexpr result( result<T2, E2> const& r2 );
+```
+[none]
+* {blank}
++
+Ensures: ::
+  If `r2.has_value()` is `true`, `*this` holds the value `T( *r2 )`, otherwise `*this` holds the value `E( r2.error() )`.
+Remarks: ::
+  This constructor is only enabled when `std::is_convertible<T2, T>::value && std::is_convertible<E2, E>::value` is `true`.
+
+```
+template<class T2, class E2>
+  constexpr result( result<T2, E2>&& r2 );
+```
+[none]
+* {blank}
++
+Ensures: ::
+  If `r2.has_value()` is `true`, `*this` holds the value `T( std::move( *r2 ) )`, otherwise `*this` holds the value `E( r2.error() )`.
+Remarks: ::
+  This constructor is only enabled when `std::is_convertible<T2, T>::value && std::is_convertible<E2, E>::value` is `true`.
+
 #### Queries
 
 ```
@@ -1653,10 +1794,17 @@ Returns: ::
 #### Checked Value Access
 
 ```
-constexpr T& value() & ;
-constexpr T const& value() const& ;
-constexpr T&& value() && ;
-constexpr T const&& value() const&& ;
+constexpr T& value(
+  boost::source_location const & loc = BOOST_CURRENT_LOCATION ) & ;
+
+constexpr T const& value(
+  boost::source_location const & loc = BOOST_CURRENT_LOCATION ) const& ;
+
+constexpr T&& value(
+  boost::source_location const & loc = BOOST_CURRENT_LOCATION ) && ;
+
+constexpr T const&& value(
+  boost::source_location const & loc = BOOST_CURRENT_LOCATION ) const&& ;
 ```
 [none]
 * {blank}
@@ -1664,7 +1812,7 @@ constexpr T const&& value() const&& ;
 Effects: ::
   If `*this` holds a value, returns a reference to it. Otherwise,
   calls `throw_exception_from_error`, passing it a reference to
-  the held error.
+  the held error, and `loc`.
 
 #### Unchecked Value Access
 
@@ -1710,6 +1858,20 @@ constexpr E error() const;
 +
 Effects: ::
   If `*this` holds an error, returns it. Otherwise, returns `E()`.
+
+#### emplace
+
+```
+template<class... A>
+  constexpr T& emplace( A&&... a );
+```
+[none]
+* {blank}
++
+Ensures: ::
+  `*this` holds the value `T( std::forward<A>(a)... )`.
+Returns: ::
+  A reference to the contained value.
 
 #### swap
 
@@ -1779,6 +1941,12 @@ template<class E> class result<void, E>
 {
 public:
 
+    using value_type = void;
+    using error_type = E;
+
+    static constexpr in_place_value_t in_place_value{};
+    static constexpr in_place_error_t in_place_error{};
+
     // constructors
 
     constexpr result() noexcept;
@@ -1799,7 +1967,8 @@ public:
 
     // checked value access
 
-    constexpr void value() const;
+    constexpr void value( boost::source_location const & loc =
+      BOOST_CURRENT_LOCATION ) const;
 
     // unchecked value access
 
@@ -1811,6 +1980,10 @@ public:
     // error access
 
     constexpr E error() const;
+
+    // emplace
+
+    constexpr void emplace();
 
     // swap
 
@@ -1912,14 +2085,15 @@ Returns: ::
 #### Checked Value Access
 
 ```
-constexpr void value() const;
+constexpr void value(
+  boost::source_location const & loc = BOOST_CURRENT_LOCATION ) const;
 ```
 [none]
 * {blank}
 +
 Effects: ::
   If `*this` doesn't hold a value, calls `throw_exception_from_error`,
-  passing it a reference to the held error.
+  passing it a reference to the held error, and `loc`.
 
 #### Unchecked Value Access
 
@@ -1953,6 +2127,17 @@ constexpr E error() const;
 +
 Effects: ::
   If `*this` holds an error, returns it. Otherwise, returns `E()`.
+
+#### emplace
+
+```
+constexpr void emplace();
+```
+[none]
+* {blank}
++
+Ensures: ::
+  `*this` holds an unspecified value.
 
 #### swap
 

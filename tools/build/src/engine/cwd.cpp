@@ -12,6 +12,7 @@
 #include "mem.h"
 #include "output.h"
 #include "pathsys.h"
+#include "startup.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -61,7 +62,7 @@ void cwd_init( void )
         if ( cwd_buffer )
         {
             /* We store the path using its canonical/long/key format. */
-            OBJECT * const cwd = object_new( cwd_buffer );
+            OBJECT * cwd = object_new( cwd_buffer );
             cwd_ = path_as_key( cwd );
             object_free( cwd );
             cwd_s = cwd_buffer;
@@ -74,7 +75,7 @@ void cwd_init( void )
     if ( !cwd_ )
     {
         errno_puts( "can not get current working directory" );
-        exit( EXITBAD );
+        b2::clean_exit( EXITBAD );
     }
 }
 

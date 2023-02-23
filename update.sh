@@ -13,14 +13,16 @@ echo "Creating $SUBSETS_OUTDIR"
 mkdir -p "$SUBSETS_OUTDIR"
 
 ./dist/bin/bcp \
-icl \
-filesystem \
-program_options \
-system \
-optional \
-log \
-config \
-predef \
+config ^
+filesystem ^
+icl ^
+log ^
+optional ^
+predef ^
+program_options ^
+range ^
+system ^
+unordered ^
 bootstrap.bat \
 bootstrap.sh \
 boostcpp.jam \

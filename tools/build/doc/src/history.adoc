@@ -1,6 +1,128 @@
 [[b2.history]]
 = History
 
+== Version 4.9.4
+
+* Fix crash on some platforms/compilers from invalid garbage reads of varargs
+  end marker being an `int` instead of a `nullptr`.
+* Don't force Windows path separators for GCC when on Windows. As it confuses
+  Cygwin GCC's relative include path handling.
+  -- _René Ferdinand Rivera Morell_
+* Added `common-requirements` to project declaration to shorthand as declaring
+  the same for both `requirements` and `usage-requirements`.
+  -- _René Ferdinand Rivera Morell_
+* Add to pass in targets to project `explicit` rule to reduce duplication of
+  `explicit` targets when there are many.
+  -- _René Ferdinand Rivera Morell_
+* Make coverage feature non-incidental and link-incompatible.
+  -- _Thomas Brown_
+* Use PATH-based lookup for `sh`. For things such as Gentoo Prefix, we want to
+  use the Bourne shell from the prefix and not the potentially ancient version
+  from the main system.
+  -- _David Seifert_
+
+== Version 4.9.3
+
+* Updated cxxstd for 23 and 26 versions of recent gcc and clang. (#184)
+  -- _Andrey Semashev_
+
+== Version 4.9.2
+
+* Fix too long msvc link actions.
+  -- _René Ferdinand Rivera Morell_
+
+== Version 4.9.1
+
+* Fix bad calculation of initial dev-only path to bootstrap file within the
+  b2 dev tree.
+  -- _René Ferdinand Rivera Morell_
+* Fix bad path calculation in final fallback for loading bootstrap file from
+  path specified in boost-build rule.
+  -- _René Ferdinand Rivera Morell_
+
+== Version 4.9.0
+
+This release has mostly internal cleanups and restructuring. The most
+significant being: fixing all memory leaks, automatic build system
+startup with the `boost-build` rule, the Jam Python interfaces, and
+the unmaintained Python build system port.
+
+* Add `minimal` and `debug` options for `optimization` feature.
+  -- _René Ferdinand Rivera Morell_
+* Add Rocket Lake, Alder Lake, Sapphire Rapids and Zen 3 instruction sets.
+  -- _Andrey Semashev_
+* Remove all, on-exit, memory leaks and fix all ASAN errors.
+  -- _René Ferdinand Rivera Morell_
+* Remove use of `boost-build.jam` as a initialization configuration file.
+  -- _René Ferdinand Rivera Morell_
+* Remove the incomplete build system port and Jam engine Python support
+  extensions.
+  -- _René Ferdinand Rivera Morell_
+* Fix not being able to do combined arm+x86 builds on macOS with `darwin`
+  and `clang` toolsets.
+  -- _René Ferdinand Rivera Morell_
+* Fix not being able to do cross-compiles on macOS with `clang` toolset.
+  -- _René Ferdinand Rivera Morell_
+* Fix errors when collecting a large number of object files with long names
+  into a static archive for `gcc` and `clang` toolsets.
+  -- _René Ferdinand Rivera Morell_
+* Fix detection of QCC in `build.sh` engine build script.
+  -- _René Ferdinand Rivera Morell_
+* Fix missing assembly flags for intel-win toolset.
+  -- _René Ferdinand Rivera Morell_
+* Fix possible command line length limit exceeded error with msvc toolset for
+  link actions.
+  -- _René Ferdinand Rivera Morell_
+* *New*: Add a "t" mode to `FILE_OPEN` built-in rule that gives one the
+  contents of a file when evaluated.
+  -- _René Ferdinand Rivera Morell_
+
+WARNING: This release removes the use of `boost-build.jam` and the
+`boost-build` rule for initialization. The `boost-build.jam` is still
+searched for and loaded to not break existing operations. But is considered
+deprecated and will be removed in a future release.
+
+== Version 4.8.2
+
+* Fix crash on exit cleanup of target lists caused by recursive destruction
+  and incorrect target list pop unlinking.
+  -- _René Ferdinand Rivera Morell_
+
+== Version 4.8.1
+
+* Fix build of engine on old macOS/XCode versions prior to 9.0 because of
+  missing `EXIT_SUCCESS` and `EXIT_FAILURE` macros.
+  -- _René Ferdinand Rivera Morell_
+
+== Version 4.8.0
+
+* *New:* Add support for LoongArch.
+  -- _Zhang Na_
+* Change engine build to use static Intel libs if available instead of C++
+  runtime static libs to fix systems where the static {CPP}} runtime is not
+  available.
+  -- _Alain Miniussi_
+* Reorder msvc `cflags` and `cxxflags`, and add `compileflags`, to fix inability
+  to override flags by users.
+  -- _Peter Dimov_
+* Don't quote `RPATH` on `clang-linux` to fix use of double-quotes to make it
+  possible to use `$ORIGIN`.
+  -- _Dimitry Andric_
+* Fix `b2` executable detection on kFreeBSD.
+  -- _Laurent Bigonville_
+* Add `.ipp` extension to header scanning and a valid {CPP} file.
+  -- _Jim King_
+* Fix missing install targets when `build=no` is in source target usage
+  requirements.
+  -- _Dmitry Arkhipov_
+* Add some future versions of {CPP} to `cxxstd` feature.
+  -- _René Ferdinand Rivera Morell_
+* Fix many memory leaks in engine.
+  -- _René Ferdinand Rivera Morell_
+* Change `abort`/`exit` calls to clean exception handling to allow for memory
+  cleanup in engine.
+  -- _René Ferdinand Rivera Morell_
+
 == Version 4.7.2
 
 * Fix errors configuring intel-linux toolset if icpx is not in the PATH but
