@@ -17,9 +17,11 @@
 
 [template boost_log_utility_formatting_ostream_hpp[][headerref boost/log/utility/formatting_ostream.hpp]]
 
-[template boost_log_utility_formatting_ostream_fwd_hpp[][headerref boost/log/utility/formatting_ostream_fwd.hpp]]
-
 [template class_log_basic_formatting_ostream[][classref boost::log::basic_formatting_ostream basic_formatting_ostream]]
+
+[template class_log_basic_formatting_ostream_sentry[][classref boost::log::basic_formatting_ostream::sentry sentry]]
+
+[template boost_log_utility_formatting_ostream_fwd_hpp[][headerref boost/log/utility/formatting_ostream_fwd.hpp]]
 
 [template boost_log_utility_functional_hpp[][headerref boost/log/utility/functional.hpp]]
 
@@ -209,9 +211,9 @@
 
 [template boost_log_utility_string_literal_hpp[][headerref boost/log/utility/string_literal.hpp]]
 
-[template boost_log_utility_string_literal_fwd_hpp[][headerref boost/log/utility/string_literal_fwd.hpp]]
-
 [template class_log_basic_string_literal[][classref boost::log::basic_string_literal basic_string_literal]]
+
+[template boost_log_utility_string_literal_fwd_hpp[][headerref boost/log/utility/string_literal_fwd.hpp]]
 
 [template boost_log_utility_type_dispatch_date_time_types_hpp[][headerref boost/log/utility/type_dispatch/date_time_types.hpp]]
 
@@ -241,6 +243,6 @@
 
 [template boost_log_utility_value_ref_hpp[][headerref boost/log/utility/value_ref.hpp]]
 
-[template boost_log_utility_value_ref_fwd_hpp[][headerref boost/log/utility/value_ref_fwd.hpp]]
-
 [template class_log_value_ref[][classref boost::log::value_ref value_ref]]
+
+[template boost_log_utility_value_ref_fwd_hpp[][headerref boost/log/utility/value_ref_fwd.hpp]]

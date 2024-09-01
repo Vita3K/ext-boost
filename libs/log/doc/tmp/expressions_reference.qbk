@@ -11,11 +11,13 @@
 
 [template boost_log_expressions_attr_hpp[][headerref boost/log/expressions/attr.hpp]]
 
-[template boost_log_expressions_attr_fwd_hpp[][headerref boost/log/expressions/attr_fwd.hpp]]
-
 [template class_expressions_attribute_actor[][classref boost::log::expressions::attribute_actor attribute_actor]]
 
 [template class_expressions_attribute_terminal[][classref boost::log::expressions::attribute_terminal attribute_terminal]]
+
+[template class_expressions_attribute_terminal_result[][classref boost::log::expressions::attribute_terminal::result result]]
+
+[template boost_log_expressions_attr_fwd_hpp[][headerref boost/log/expressions/attr_fwd.hpp]]
 
 [template boost_log_expressions_filter_hpp[][headerref boost/log/expressions/filter.hpp]]
 
@@ -89,9 +91,9 @@
 
 [template boost_log_expressions_keyword_hpp[][headerref boost/log/expressions/keyword.hpp]]
 
-[template boost_log_expressions_keyword_fwd_hpp[][headerref boost/log/expressions/keyword_fwd.hpp]]
-
 [template class_expressions_attribute_keyword[][classref boost::log::expressions::attribute_keyword attribute_keyword]]
+
+[template boost_log_expressions_keyword_fwd_hpp[][headerref boost/log/expressions/keyword_fwd.hpp]]
 
 [template boost_log_expressions_message_hpp[][headerref boost/log/expressions/message.hpp]]
 

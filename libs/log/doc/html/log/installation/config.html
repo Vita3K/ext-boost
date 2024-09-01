@@ -7,14 +7,14 @@
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.Log v2">
 <link rel="up" href="../installation.html" title="Installation and compatibility">
 <link rel="prev" href="../installation.html" title="Installation and compatibility">
-<link rel="next" href="../defs.html" title="Definitions">
+<link rel="next" href="../design.html" title="Design overview">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../installation.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../installation.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../defs.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../installation.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../installation.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../design.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -23,7 +23,7 @@
 </h3></div></div></div>
 <p>
         The library has a separately compiled part which should be built as described
-        in the <a href="http://www.boost.org/doc/libs/release/more/getting_started/" target="_top">Getting
+        in the <a href="https://www.boost.org/doc/libs/release/more/getting_started/" target="_top">Getting
         Started guide</a>. One thing should be noted, though. If your application
         consists of more than one module (e.g. an exe and one or several dll's) that
         use Boost.Log, the library <span class="underline">must</span> be
@@ -347,16 +347,16 @@
                 <p>
                   Affects only compilation of the library. By defining one of these
                   macros the user can instruct Boost.Log to use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">regex</span></code>,
-                  <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
-                  or <a href="http://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
+                  <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
+                  or <a href="https://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
                   internally for string matching filters parsed from strings and
                   settings. If none of these macros is defined then Boost.Log uses
-                  <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
+                  <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
                   by default. Using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">regex</span></code>
-                  or <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
-                  typically produces smaller executables, <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
-                  usually also being the fastest in run time. Using <a href="http://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
-                  allows to eliminate the dependency on <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
+                  or <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
+                  typically produces smaller executables, <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
+                  usually also being the fastest in run time. Using <a href="https://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
+                  allows to eliminate the dependency on <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
                   compiled binary. Note that these macros do not affect <a class="link" href="../detailed/expressions.html#log.detailed.expressions.predicates.advanced_string_matching" title="Advanced string matching filter">filtering
                   expressions</a> created by users.
                 </p>
@@ -374,10 +374,10 @@
 </table></div>
 </div>
 <br class="table-break"><p>
-        You can define configuration macros in the <code class="computeroutput"><span class="identifier">bjam</span></code>
+        You can define configuration macros in the <code class="computeroutput"><span class="identifier">b2</span></code>
         command line, like this:
       </p>
-<pre class="programlisting">bjam --with-log variant=release define=BOOST_LOG_WITHOUT_EVENT_LOG define=BOOST_USE_WINAPI_VERSION=0x0600 stage
+<pre class="programlisting">b2 --with-log variant=release define=BOOST_LOG_WITHOUT_EVENT_LOG define=BOOST_USE_WINAPI_VERSION=0x0600 stage
 </pre>
 <p>
         With CMake, the configuration macros can be specified as CMake options in
@@ -394,11 +394,11 @@
       </p>
 <p>
         The logging library uses several other Boost libraries that require building
-        too. These are <a href="http://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>,
-        <a href="http://www.boost.org/doc/libs/release/libs/system/doc/index.html" target="_top">Boost.System</a>,
-        <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>,
-        <a href="http://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
-        and in some configurations <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>.
+        too. These are <a href="https://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>,
+        <a href="https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html" target="_top">Boost.System</a>,
+        <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>,
+        <a href="https://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
+        and in some configurations <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>.
         Refer to their documentation for detailed instructions on the building procedure.
       </p>
 <p>
@@ -417,7 +417,7 @@
         storage, which is used in several parts of the library. This feature is also
         included in the C++11 standard. Generally, these intrinsics allow for a much
         more efficient access to the storage than any surrogate implementation, be
-        that <a href="http://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
+        that <a href="https://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
         or even native operating system API. However, this feature has several caveats:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -449,16 +449,16 @@
 <p>
         Note that the <code class="computeroutput"><span class="identifier">BOOST_LOG_USE_COMPILER_TLS</span></code>
         macro only controls use of TLS in Boost.Log but not in other libraries used
-        by Boost.Log. For example, <a href="http://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
+        by Boost.Log. For example, <a href="https://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
         uses compiler-supplied TLS by default. In order to build Boost.Log binaries
         completely free from use of compiler-supplied TLS, this feature has to be
-        disabled in those other libraries as well (in case of <a href="http://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
+        disabled in those other libraries as well (in case of <a href="https://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
         this can be achieved by defining <code class="computeroutput"><span class="identifier">BOOST_ASIO_DISABLE_THREAD_KEYWORD_EXTENSION</span></code>
         when building and using Boost).
       </p>
 <p>
         Also note that enabling builtin compiler support for TLS does not remove
-        the dependency on <a href="http://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
+        the dependency on <a href="https://www.boost.org/doc/libs/release/doc/html/thread.html" target="_top">Boost.Thread</a>
         or lower level OS threading primitives, including those implementing TLS.
         The purpose of using compiler intrinsics for TLS is better performance rather
         than reducing dependencies.
@@ -527,14 +527,14 @@
         options to the corresponding paths in the command line.
       </p>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../installation.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../installation.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../defs.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../installation.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../installation.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../design.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

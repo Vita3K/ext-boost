@@ -6,6 +6,48 @@
 :github-pr-url: https://github.com/boostorg/unordered/pull
 :cpp: C++
 
+== Release 1.86.0
+
+* Added container `pmr` aliases when header `<memory_resource>` is available. The alias `boost::unordered::pmr::[container]` refers to `boost::unordered::[container]` with a `std::pmr::polymorphic_allocator` allocator type.
+* Equipped open-addressing and concurrent containers to internally calculate and provide statistical metrics affected by the quality of the hash function. This functionality is enabled by the global macro `BOOST_UNORDERED_ENABLE_STATS`.
+* Avalanching hash functions must now be marked via an `is_avalanching` typedef with an embedded `value` constant set to `true` (typically, defining `is_avalanching` as `std::true_type`). `using is_avalanching = void` is deprecated but allowed for backwards compatibility.
+* Added Visual Studio Natvis framework custom visualizations for containers and iterators. This works for all containers with an allocator using raw pointers. In this release, containers and iterators are not supported if their allocator uses fancy pointers. This may be addressed in later releases.
+
+== Release 1.85.0
+
+* Optimized `emplace()` for a `value_type` or `init_type` (if applicable) argument to bypass creating an intermediate object. The argument is already the same type as the would-be intermediate object.
+* Optimized `emplace()` for `k,v` arguments on map containers to delay constructing the object until it is certain that an element should be inserted. This optimization happens when the map's `key_type` is move constructible or when the `k` argument is a `key_type`.
+* Fixed support for allocators with `explicit` copy constructors ({github-pr-url}/234[PR#234^]).
+* Fixed bug in the `const` version of `unordered_multimap::find(k, hash, eq)` ({github-pr-url}/238[PR#238^]).
+
+== Release 1.84.0 - Major update
+
+* Added `boost::concurrent_flat_set`.
+* Added `[c]visit_while` operations to concurrent containers,
+with serial and parallel variants.
+* Added efficient move construction of `boost::unordered_flat_(map|set)` from
+`boost::concurrent_flat_(map|set)` and vice versa.
+* Added bulk visitation to concurrent containers for increased lookup performance.
+* Added debug-mode mechanisms for detecting illegal reentrancies into
+a concurrent container from user code.
+* Added Boost.Serialization support to all containers and their (non-local) iterator types.
+* Added support for fancy pointers to open-addressing and concurrent containers.
+  This enables scenarios like the use of Boost.Interprocess allocators to construct containers in shared memory.
+* Fixed bug in member of pointer operator for local iterators of closed-addressing
+  containers ({github-pr-url}/221[PR#221^], credit goes to GitHub user vslashg for finding
+  and fixing this issue).
+* Starting with this release, `boost::unordered_[multi]set` and `boost::unordered_[multi]map`
+  only work with C++11 onwards.
+
+== Release 1.83.0 - Major update
+
+* Added `boost::concurrent_flat_map`, a fast, thread-safe hashmap based on open addressing.
+* Sped up iteration of open-addressing containers.
+* In open-addressing containers, `erase(iterator)`, which previously returned nothing, now
+returns a proxy object convertible to an iterator to the next element.
+This enables the typical `it = c.erase(it)` idiom without incurring any performance penalty
+when the returned proxy is not used.
+
 == Release 1.82.0 - Major update
 
 * {cpp}03 support is planned for deprecation. Boost 1.84.0 will no longer support
@@ -14,7 +56,7 @@
   `boost::unordered_node_map` and `boost::unordered_node_set`.
 * Extended heterogeneous lookup to more member functions as specified in
   https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2363r5.html[P2363].
-* Replaced the previous post-mixing process for open-addressing containers with 
+* Replaced the previous post-mixing process for open-addressing containers with
   a new algorithm based on extended multiplication by a constant.
 * Fixed bug in internal emplace() impl where stack-local types were not properly
   constructed using the Allocator of the container which breaks uses-allocator
@@ -31,20 +73,20 @@
 
 * Refactor internal implementation to be dramatically faster
 * Allow `final` Hasher and KeyEqual objects
-* Update documentation, adding benchmark graphs and notes on the new internal 
+* Update documentation, adding benchmark graphs and notes on the new internal
   data structures
 
 == Release 1.79.0
 
 * Improved {cpp}20 support:
-  ** All containers have been updated to support 
+  ** All containers have been updated to support
     heterogeneous `count`, `equal_range` and `find`.
   ** All containers now implement the member function `contains`.
   ** `erase_if` has been implemented for all containers.
 * Improved {cpp}23 support:
   ** All containers have been updated to support
     heterogeneous `erase` and `extract`.
-* Changed behavior of `reserve` to eagerly 
+* Changed behavior of `reserve` to eagerly
   allocate ({github-pr-url}/59[PR#59^]).
 * Various warning fixes in the test suite.
 * Update code to internally use `boost::allocator_traits`.

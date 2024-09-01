@@ -44,9 +44,9 @@
         a number of frontends that cover most use cases.
       </p>
 <p>
-        Sink frontends derive from the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/sink.html" title="Class sink">sink</a></code>
+        Sink frontends derive from the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1sink.html" title="Class sink">sink</a></code>
         class template, which is used by the logging core to supply log records.
-        Technically speaking, one can derive his class from the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/sink.html" title="Class sink">sink</a></code>
+        Technically speaking, one can derive his class from the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1sink.html" title="Class sink">sink</a></code>
         template and have his new-found sink, but using sink frontends saves from
         quite an amount of routine work. As every sink frontend is associated with
         a backend, the corresponding backend will also be constructed by the frontend
@@ -170,16 +170,16 @@
 <a name="log.detailed.sink_frontends.unlocked"></a><a class="link" href="sink_frontends.html#log.detailed.sink_frontends.unlocked" title="Unlocked sink frontend">Unlocked sink
         frontend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.unlocked_frontend_hpp" title="Header &lt;boost/log/sinks/unlocked_frontend.hpp&gt;">boost/log/sinks/unlocked_frontend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.unlocked__frontend_8hpp" title="Header &lt;boost/log/sinks/unlocked_frontend.hpp&gt;">boost/log/sinks/unlocked_frontend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The unlocked sink frontend is implemented with the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unlocked_sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
+          The unlocked sink frontend is implemented with the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unlocked__sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
           class template. This frontend provides the most basic service for the backend.
-          The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unlocked_sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unlocked__sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
           frontend performs no thread synchronization when accessing the backend,
           assuming that synchronization either is not needed or is implemented by
           the backend. Nevertheless, setting up a filter is still thread-safe (that
-          is, one can safely change the filter in the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unlocked_sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
+          is, one can safely change the filter in the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unlocked__sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
           frontend while other threads are writing logs through this sink). This
           is the only sink frontend available in a single threaded environment. The
           example of use is as follows:
@@ -246,11 +246,11 @@
 <a name="log.detailed.sink_frontends.sync"></a><a class="link" href="sink_frontends.html#log.detailed.sink_frontends.sync" title="Synchronous sink frontend">Synchronous sink
         frontend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.sync_frontend_hpp" title="Header &lt;boost/log/sinks/sync_frontend.hpp&gt;">boost/log/sinks/sync_frontend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.sync__frontend_8hpp" title="Header &lt;boost/log/sinks/sync_frontend.hpp&gt;">boost/log/sinks/sync_frontend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The synchronous sink frontend is implemented with the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/synchronous_sink.html" title="Class template synchronous_sink">synchronous_sink</a></code>
-          class template. It is similar to the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unlocked_sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
+          The synchronous sink frontend is implemented with the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1synchronous__sink.html" title="Class template synchronous_sink">synchronous_sink</a></code>
+          class template. It is similar to the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unlocked__sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>
           but additionally provides thread synchronization with a mutex before passing
           log records to the backend. All sink backends that support formatting currently
           require thread synchronization in the frontend.
@@ -266,7 +266,7 @@
           the sink gets blocked until the backend is released.
         </p>
 <p>
-          The usage is similar to the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unlocked_sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>.
+          The usage is similar to the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unlocked__sink.html" title="Class template unlocked_sink">unlocked_sink</a></code>.
         </p>
 <p>
 </p>
@@ -322,18 +322,18 @@
 <a name="log.detailed.sink_frontends.async"></a><a class="link" href="sink_frontends.html#log.detailed.sink_frontends.async" title="Asynchronous sink frontend">Asynchronous sink
         frontend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.async_frontend_hpp" title="Header &lt;boost/log/sinks/async_frontend.hpp&gt;">boost/log/sinks/async_frontend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.async__frontend_8hpp" title="Header &lt;boost/log/sinks/async_frontend.hpp&gt;">boost/log/sinks/async_frontend.hpp</a></code><span class="special">&gt;</span>
 
 <span class="comment">// Related headers</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.unbounded_fifo_queue_hpp" title="Header &lt;boost/log/sinks/unbounded_fifo_queue.hpp&gt;">boost/log/sinks/unbounded_fifo_queue.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.unbounded_ordering_queue_hpp" title="Header &lt;boost/log/sinks/unbounded_ordering_queue.hpp&gt;">boost/log/sinks/unbounded_ordering_queue.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.bounded_fifo_queue_hpp" title="Header &lt;boost/log/sinks/bounded_fifo_queue.hpp&gt;">boost/log/sinks/bounded_fifo_queue.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.bounded_ordering_queue_hpp" title="Header &lt;boost/log/sinks/bounded_ordering_queue.hpp&gt;">boost/log/sinks/bounded_ordering_queue.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.drop_on_overflow_hpp" title="Header &lt;boost/log/sinks/drop_on_overflow.hpp&gt;">boost/log/sinks/drop_on_overflow.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.block_on_overflow_hpp" title="Header &lt;boost/log/sinks/block_on_overflow.hpp&gt;">boost/log/sinks/block_on_overflow.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.unbounded__fifo__queue_8hpp" title="Header &lt;boost/log/sinks/unbounded_fifo_queue.hpp&gt;">boost/log/sinks/unbounded_fifo_queue.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.unbounded__ordering__queue_8hpp" title="Header &lt;boost/log/sinks/unbounded_ordering_queue.hpp&gt;">boost/log/sinks/unbounded_ordering_queue.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.bounded__fifo__queue_8hpp" title="Header &lt;boost/log/sinks/bounded_fifo_queue.hpp&gt;">boost/log/sinks/bounded_fifo_queue.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.bounded__ordering__queue_8hpp" title="Header &lt;boost/log/sinks/bounded_ordering_queue.hpp&gt;">boost/log/sinks/bounded_ordering_queue.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.drop__on__overflow_8hpp" title="Header &lt;boost/log/sinks/drop_on_overflow.hpp&gt;">boost/log/sinks/drop_on_overflow.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.block__on__overflow_8hpp" title="Header &lt;boost/log/sinks/block_on_overflow.hpp&gt;">boost/log/sinks/block_on_overflow.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The frontend is implemented in the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/asynchronous_sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
+          The frontend is implemented in the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1asynchronous__sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
           class template. Like the synchronous one, asynchronous sink frontend provides
           a way of synchronizing access to the backend. All log records are passed
           to the backend in a dedicated thread, which makes it suitable for backends
@@ -499,30 +499,30 @@
           record queueing strategy</a>
         </h6>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/asynchronous_sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1asynchronous__sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
           class template can be customized with the record queueing strategy. Several
           strategies are provided by the library:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unbounded_fifo_queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>.
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unbounded__fifo__queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>.
               This strategy is the default. As the name implies, the queue is not
               limited in depth and does not order log records.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unbounded_ordering_queue.html" title="Class template unbounded_ordering_queue">unbounded_ordering_queue</a></code>.
-              Like <code class="computeroutput"><a class="link" href="../../boost/log/sinks/unbounded_fifo_queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>,
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unbounded__ordering__queue.html" title="Class template unbounded_ordering_queue">unbounded_ordering_queue</a></code>.
+              Like <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unbounded__fifo__queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>,
               the queue has unlimited depth but it applies an order on the queued
               records. We will return to ordering queues in a moment.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/bounded_fifo_queue.html" title="Class template bounded_fifo_queue">bounded_fifo_queue</a></code>.
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1bounded__fifo__queue.html" title="Class template bounded_fifo_queue">bounded_fifo_queue</a></code>.
               The queue has limited depth specified in a template parameter as well
               as the overflow handling strategy. No record ordering is applied.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/bounded_ordering_queue.html" title="Class template bounded_ordering_queue">bounded_ordering_queue</a></code>.
-              Like <code class="computeroutput"><a class="link" href="../../boost/log/sinks/bounded_fifo_queue.html" title="Class template bounded_fifo_queue">bounded_fifo_queue</a></code>
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1bounded__ordering__queue.html" title="Class template bounded_ordering_queue">bounded_ordering_queue</a></code>.
+              Like <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1bounded__fifo__queue.html" title="Class template bounded_fifo_queue">bounded_fifo_queue</a></code>
               but also applies log record ordering.
             </li>
 </ul></div>
@@ -543,11 +543,11 @@
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/drop_on_overflow.html" title="Class drop_on_overflow">drop_on_overflow</a></code>.
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1drop__on__overflow.html" title="Class drop_on_overflow">drop_on_overflow</a></code>.
               When the queue is full, silently drop excessive log records.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../boost/log/sinks/block_on_overflow.html" title="Class block_on_overflow">block_on_overflow</a></code>.
+              <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1block__on__overflow.html" title="Class block_on_overflow">block_on_overflow</a></code>.
               When the queue is full, block the logging thread until the backend
               feeding thread manages to process some of the queued records.
             </li>
@@ -769,7 +769,7 @@
         </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

@@ -300,14 +300,12 @@
     #define OSMINOR "OS=SINIX"
     #define OS_SINIX
 #endif
-#ifdef sun
-    #if defined(__svr4__) || defined(__SVR4)
-        #define OSMINOR "OS=SOLARIS"
-        #define OS_SOLARIS
-    #else
-        #define OSMINOR "OS=SUNOS"
-        #define OS_SUNOS
-    #endif
+#if defined(__svr4__) || defined(__SVR4)
+    #define OSMINOR "OS=SOLARIS"
+    #define OS_SOLARIS
+#elif defined(__sun__) || defined(__sun) || defined(sun)
+    #define OSMINOR "OS=SUNOS"
+    #define OS_SUNOS
 #endif
 #ifdef ultrix
     #define OSMINOR "OS=ULTRIX"
@@ -425,8 +423,13 @@
 #endif
 
 #if defined( __arm__ ) || \
-    defined( __aarch64__ )
+    defined( _M_ARM )
     #define OSPLAT "OSPLAT=ARM"
+#endif
+
+#if defined( __aarch64__ ) || \
+    defined( _M_ARM64 )
+    #define OSPLAT "OSPLAT=ARM64"
 #endif
 
 #ifdef __s390__
@@ -435,6 +438,14 @@
 
 #ifdef __hppa
     #define OSPLAT "OSPLAT=PARISC"
+#endif
+
+#if defined( __riscv ) || defined( __riscv__ )
+  #if __riscv_xlen == 64
+    #define OSPLAT "OSPLAT=RISCV64"
+  #elif __riscv_xlen == 32
+    #define OSPLAT "OSPLAT=RISCV32"
+  #endif
 #endif
 
 #ifndef OSPLAT
@@ -492,6 +503,8 @@ struct globs
 };
 
 extern struct globs globs;
+
+extern int anyhow;
 
 #define DEBUG_MAKE     ( globs.debug[ 1 ] )   /* show actions when executed */
 #define DEBUG_MAKEQ    ( globs.debug[ 2 ] )   /* show even quiet actions */

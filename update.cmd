@@ -8,6 +8,7 @@ md "%SUBSETS_OUTDIR%"
 
 .\dist\bin\bcp ^
     config ^
+    crc ^
     filesystem ^
     icl ^
     log ^
@@ -27,4 +28,4 @@ md "%SUBSETS_OUTDIR%"
     tools/boost_install/boost-install.jam ^
     tools/boost_install/BoostDetectToolset.cmake ^
     tools/boost_install/boost-install-dirs.jam ^
-    %USERSETS_OUTDIR%
+    %SUBSETS_OUTDIR%

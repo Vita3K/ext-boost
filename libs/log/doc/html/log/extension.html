@@ -30,7 +30,7 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="log.extension.sinks"></a><a class="link" href="extension.html#log.extension.sinks" title="Writing your own sinks">Writing your own sinks</a>
 </h3></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../sinks.html#header.boost.log.sinks.basic_sink_backend_hpp" title="Header &lt;boost/log/sinks/basic_sink_backend.hpp&gt;">boost/log/sinks/basic_sink_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../sinks.html#doxygen.sinks.basic__sink__backend_8hpp" title="Header &lt;boost/log/sinks/basic_sink_backend.hpp&gt;">boost/log/sinks/basic_sink_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
         As was described in the <a class="link" href="design.html" title="Design overview">Design overview</a>
@@ -40,8 +40,8 @@
         filtering, formatting and thread synchronization is done there.
       </p>
 <p>
-        In order to develop a sink backend, you derive your class from either <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_sink_backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>
-        or <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_formatted_s_idm32241.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>,
+        In order to develop a sink backend, you derive your class from either <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__sink__backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>
+        or <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__formatted__sink__backend.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>,
         depending on whether your backend requires formatted log records or not.
         Both base classes define a set of types that are required to interface with
         sink frontends. One of these types is <code class="computeroutput"><span class="identifier">frontend_requirements</span></code>.
@@ -51,7 +51,7 @@
         <span class="phrase"><a name="log.extension.sinks.frontend_requirements"></a></span><a class="link" href="extension.html#log.extension.sinks.frontend_requirements">Frontend
         requirements</a>
       </h5>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../sinks.html#header.boost.log.sinks.frontend_requirements_hpp" title="Header &lt;boost/log/sinks/frontend_requirements.hpp&gt;">boost/log/sinks/frontend_requirements.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../sinks.html#doxygen.sinks.frontend__requirements_8hpp" title="Header &lt;boost/log/sinks/frontend_requirements.hpp&gt;">boost/log/sinks/frontend_requirements.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
         In order to work with sink backends, frontends use the <code class="computeroutput"><span class="identifier">frontend_requirements</span></code>
@@ -60,7 +60,7 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronized_feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>.
+            <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1synchronized__feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>.
             If the backend has this requirement, it expects log records to be passed
             from frontend in synchronized manner (i.e. only one thread should be
             feeding a record at a time). Note that different threads may be feeding
@@ -68,22 +68,22 @@
             concurrent feeds.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/log/sinks/concurrent_feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>.
-            This requirement extends <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronized_feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1concurrent__feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>.
+            This requirement extends <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1synchronized__feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
             by allowing different threads to feed records concurrently. The backend
             implements all necessary thread synchronization in this case.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/log/sinks/formatted_records.html" title="Struct formatted_records">formatted_records</a></code>.
+            <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1formatted__records.html" title="Struct formatted_records">formatted_records</a></code>.
             The backend expects formatted log records. The frontend implements formatting
             to a string with character type defined by the <code class="computeroutput"><span class="identifier">char_type</span></code>
             typedef within the backend. The formatted string will be passed along
-            with the log record to the backend. The <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_formatted_s_idm32241.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
+            with the log record to the backend. The <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__formatted__sink__backend.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
             base class automatically adds this requirement to the <code class="computeroutput"><span class="identifier">frontend_requirements</span></code>
             type.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/log/sinks/flushing.html" title="Struct flushing">flushing</a></code>. The
+            <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1flushing.html" title="Struct flushing">flushing</a></code>. The
             backend supports flushing its internal buffers. If the backend indicates
             this requirement it has to implement the <code class="computeroutput"><span class="identifier">flush</span></code>
             method taking no arguments; this method will be called by the frontend
@@ -103,7 +103,7 @@
 </table></div>
 <p>
         Multiple requirements can be combined into <code class="computeroutput"><span class="identifier">frontend_requirements</span></code>
-        type with the <code class="computeroutput"><a class="link" href="../boost/log/sinks/combine_requirements.html" title="Struct template combine_requirements">combine_requirements</a></code>
+        type with the <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1combine__requirements.html" title="Struct template combine_requirements">combine_requirements</a></code>
         metafunction:
       </p>
 <pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">sinks</span><span class="special">::</span><span class="identifier">combine_requirements</span><span class="special">&lt;</span>
@@ -113,16 +113,16 @@
 <span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">frontend_requirements</span><span class="special">;</span>
 </pre>
 <p>
-        It must be noted that <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronized_feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/log/sinks/concurrent_feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>
+        It must be noted that <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1synchronized__feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1concurrent__feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>
         should not be combined together as it would make the synchronization requirement
-        ambiguous. The <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronized_feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
-        is a more strict requirement than <code class="computeroutput"><a class="link" href="../boost/log/sinks/concurrent_feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>,
+        ambiguous. The <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1synchronized__feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
+        is a more strict requirement than <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1concurrent__feeding.html" title="Struct concurrent_feeding">concurrent_feeding</a></code>,
         so whenever the backend requires concurrent feeding it is also capable of
         synchronized feeding.
       </p>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/log/sinks/has_requirement.html" title="Struct template has_requirement">has_requirement</a></code>
+        The <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1has__requirement.html" title="Struct template has_requirement">has_requirement</a></code>
         metafunction can be used to test for a specific requirement in the <code class="computeroutput"><span class="identifier">frontend_requirements</span></code> typedef.
       </p>
 <h5>
@@ -131,7 +131,7 @@
         sink backend</a>
       </h5>
 <p>
-        As an example of the <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_sink_backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>
+        As an example of the <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__sink__backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>
         class usage, let's implement a simple statistical information collector backend.
         Assume we have a network server and we want to monitor how many incoming
         connections are active and how much data was sent or received. The collected
@@ -261,7 +261,7 @@
 <p>
       </p>
 <p>
-        Note that we used <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+        Note that we used <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
         to automatically generate visitor function objects for attribute values.
       </p>
 <p>
@@ -353,8 +353,8 @@
 </table></div>
 <p>
         The first thing to notice is that the <code class="computeroutput"><span class="identifier">app_launcher</span></code>
-        backend derives from <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_formatted_s_idm32241.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
-        rather than <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_sink_backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>.
+        backend derives from <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__formatted__sink__backend.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
+        rather than <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__sink__backend.html" title="Struct template basic_sink_backend">basic_sink_backend</a></code>.
         This base class accepts the character type in addition to the requirements.
         The specified character type defines the target string type the formatter
         will compose in the frontend and it typically corresponds to the underlying
@@ -367,15 +367,15 @@
         The second notable difference from the previous examples is that <code class="computeroutput"><span class="identifier">consume</span></code> method takes an additional string
         parameter besides the log record. This is the result of formatting. The
         <code class="computeroutput"><span class="identifier">string_type</span></code> type is defined
-        by the <code class="computeroutput"><a class="link" href="../boost/log/sinks/basic_formatted_s_idm32241.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
+        by the <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1basic__formatted__sink__backend.html" title="Struct template basic_formatted_sink_backend">basic_formatted_sink_backend</a></code>
         base class and it corresponds to the requested character type.
       </p>
 <p>
         We don't need to flush any buffers in this example, so we didn't specify
-        the <code class="computeroutput"><a class="link" href="../boost/log/sinks/flushing.html" title="Struct flushing">flushing</a></code> requirement
+        the <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1flushing.html" title="Struct flushing">flushing</a></code> requirement
         and omitted the <code class="computeroutput"><span class="identifier">flush</span></code> method
         in the backend. Although we don't need any synchronization in our backend,
-        we specified <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronized_feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
+        we specified <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1synchronized__feeding.html" title="Struct synchronized_feeding">synchronized_feeding</a></code>
         requirement so that we don't spawn multiple instances of <code class="computeroutput"><span class="identifier">notify</span><span class="special">-</span><span class="identifier">send</span></code> program
         and cause a "fork bomb".
       </p>
@@ -461,7 +461,7 @@
 <p>
       </p>
 <p>
-        The most interesting part is the sink setup. The <code class="computeroutput"><a class="link" href="../boost/log/sinks/synchronous_sink.html" title="Class template synchronous_sink">synchronous_sink</a></code>
+        The most interesting part is the sink setup. The <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1synchronous__sink.html" title="Class template synchronous_sink">synchronous_sink</a></code>
         frontend (as well as any other frontend) will detect that the <code class="computeroutput"><span class="identifier">app_launcher</span></code> backend requires formatting
         and enable the corresponding functionality. The <code class="computeroutput"><span class="identifier">set_formatter</span></code>
         method becomes available and can be used to set the formatting expression
@@ -470,7 +470,7 @@
         keywords</a> to identify particular attribute values in the formatter.
         Notice that string attribute values have to be preprocessed so that special
         characters interpreted by the shell are escaped in the command line. We achieve
-        that with the <code class="computeroutput"><a class="link" href="../boost/log/expressions/char_decor_idm27654.html" title="Function template char_decor">char_decor</a></code> decorator with
+        that with the <code class="computeroutput"><a class="link" href="../doxygen/expressions/char__decorator_8hpp_1a3d053d15ef958330ce0a68e2e7e0a4c3.html" title="Function template char_decor">char_decor</a></code> decorator with
         our custom replacement map. After the sink is configured we also add the
         <a class="link" href="detailed/attributes.html#log.detailed.attributes.process_name" title="Current process name">current process name</a>
         attribute to the core so that we don't have to add it to every record.
@@ -493,7 +493,7 @@
       </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

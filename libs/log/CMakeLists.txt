@@ -1,4 +1,4 @@
-# Copyright 2021-2022 Andrey Semashev
+# Copyright 2021-2023 Andrey Semashev
 #
 # Distributed under the Boost Software License, Version 1.0.
 # See accompanying file LICENSE_1_0.txt or copy at https://www.boost.org/LICENSE_1_0.txt
@@ -272,6 +272,18 @@ if (WIN32)
             set_source_files_properties("${CMAKE_CURRENT_BINARY_DIR}/src/windows/simple_event_log.h" PROPERTIES GENERATED TRUE)
             set_source_files_properties("${CMAKE_CURRENT_BINARY_DIR}/src/windows/simple_event_log.rc" PROPERTIES GENERATED TRUE)
 
+            if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+                # Workaround for a windres.exe issue on MinGW-w64: by default, it uses popen to pipe preprocessed
+                # output from the preprocessor, but popen is buggy on non-English Windows systems and causes
+                # compilation errors such as:
+                #
+                # windres.exe: can't open file `page:': Invalid argument
+                #
+                # This option forces windres.exe to use a temporary file instead.
+                # https://github.com/boostorg/log/pull/231
+                list(APPEND CMAKE_RC_FLAGS "--use-temp-file")
+            endif()
+
             list(APPEND boost_log_sources
                 "${CMAKE_CURRENT_BINARY_DIR}/src/windows/simple_event_log.h"
                 "${CMAKE_CURRENT_BINARY_DIR}/src/windows/simple_event_log.rc"
@@ -442,6 +454,13 @@ endif()
 set(boost_log_install_targets boost_log)
 add_library(Boost::log ALIAS boost_log)
 
+target_compile_features(boost_log
+    PUBLIC
+        cxx_static_assert
+    PRIVATE
+        cxx_lambdas
+)
+
 target_include_directories(boost_log
     PUBLIC
         include
@@ -485,7 +504,6 @@ target_link_libraries(boost_log
         Boost::bind
         Boost::exception
         Boost::interprocess
-        Boost::lexical_cast
         Boost::optional
         Boost::random
         Boost::spirit
@@ -544,7 +562,6 @@ set(boost_log_setup_public_deps
     Boost::config
     Boost::core
     Boost::iterator
-    Boost::lexical_cast
     Boost::move
     Boost::optional
     Boost::parameter
@@ -581,6 +598,14 @@ if (NOT BOOST_LOG_WITHOUT_SETTINGS_PARSERS)
         set_target_properties(boost_log_setup PROPERTIES VERSION "${BOOST_SUPERPROJECT_VERSION}")
     endif()
     list(APPEND boost_log_install_targets boost_log_setup)
+
+    target_compile_features(boost_log_setup
+        PUBLIC
+            cxx_static_assert
+            cxx_uniform_initialization
+        PRIVATE
+            cxx_lambdas
+    )
 
     target_include_directories(boost_log_setup
         PUBLIC

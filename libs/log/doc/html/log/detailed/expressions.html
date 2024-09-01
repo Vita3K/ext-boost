@@ -50,11 +50,11 @@
 <dt><span class="section"><a href="expressions.html#log.detailed.expressions.attr.tags">Attribute tags
           and custom formatting operators</a></span></dt>
 </dl></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.attr_fwd_hpp" title="Header &lt;boost/log/expressions/attr_fwd.hpp&gt;">boost/log/expressions/attr_fwd.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.attr_hpp" title="Header &lt;boost/log/expressions/attr.hpp&gt;">boost/log/expressions/attr.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.attr__fwd_8hpp" title="Header &lt;boost/log/expressions/attr_fwd.hpp&gt;">boost/log/expressions/attr_fwd.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.attr_8hpp" title="Header &lt;boost/log/expressions/attr.hpp&gt;">boost/log/expressions/attr.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/expressions/attr_idm27041.html" title="Function template attr">attr</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/expressions/attr_8hpp_1a4092770e33ec0ec13894eebf01050a76.html" title="Function template attr">attr</a></code>
           placeholder represents an attribute value in template expressions. Given
           the record view or a set of attribute values, the placeholder will attempt
           to extract the specified attribute value from the argument upon invocation.
@@ -70,13 +70,13 @@
           is the log <a class="link" href="../detailed.html#log.detailed.core.record" title="Logging records">record view</a>
           or <a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_value_set" title="Attribute value set">attribute
           value set</a>. <code class="computeroutput"><span class="identifier">T</span></code> can
-          be a <a href="http://www.boost.org/doc/libs/release/libs/mpl/doc/index.html" target="_top">Boost.MPL</a>
+          be a <a href="https://www.boost.org/doc/libs/release/libs/mpl/doc/index.html" target="_top">Boost.MPL</a>
           type sequence with possible expected types of the value; the extraction
           will succeed if the type of the value matches one of the types in the sequence.
         </p>
 <p>
           The <code class="computeroutput"><span class="identifier">attr</span></code> placeholder can
-          be used in <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+          be used in <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
           expressions, including the <code class="computeroutput"><span class="identifier">bind</span></code>
           expression.
         </p>
@@ -138,8 +138,8 @@
             the placeholder will be empty. This behavior can be changed:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-                To throw an exception (<code class="computeroutput"><a class="link" href="../../boost/log/missing_value.html" title="Class missing_value">missing_value</a></code>
-                or <code class="computeroutput"><a class="link" href="../../boost/log/invalid_type.html" title="Class invalid_type">invalid_type</a></code>,
+                To throw an exception (<code class="computeroutput"><a class="link" href="../../doxygen/top_level_headers/classboost_1_1log_1_1missing__value.html" title="Class missing_value">missing_value</a></code>
+                or <code class="computeroutput"><a class="link" href="../../doxygen/top_level_headers/classboost_1_1log_1_1invalid__type.html" title="Class invalid_type">invalid_type</a></code>,
                 depending on the reason of the failure). Add the <code class="computeroutput"><span class="identifier">or_throw</span></code>
                 modifier:
               </li></ul></div>
@@ -301,13 +301,13 @@
 <a name="log.detailed.expressions.attr_keywords"></a><a class="link" href="expressions.html#log.detailed.expressions.attr_keywords" title="Defining attribute keywords">Defining attribute
         keywords</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.keyword_fwd_hpp" title="Header &lt;boost/log/expressions/keyword_fwd.hpp&gt;">boost/log/expressions/keyword_fwd.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.keyword_hpp" title="Header &lt;boost/log/expressions/keyword.hpp&gt;">boost/log/expressions/keyword.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.keyword__fwd_8hpp" title="Header &lt;boost/log/expressions/keyword_fwd.hpp&gt;">boost/log/expressions/keyword_fwd.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.keyword_8hpp" title="Header &lt;boost/log/expressions/keyword.hpp&gt;">boost/log/expressions/keyword.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Attribute keywords can be used as replacements for the <a class="link" href="expressions.html#log.detailed.expressions.attr" title="Generic attribute placeholder"><code class="computeroutput"><span class="identifier">attr</span></code></a> placeholders in filters and
           formatters while providing a more concise and less error prone syntax.
-          An attribute keyword can be declared with the <code class="computeroutput"><a class="link" href="../../BOOST_LOG_ATTRIBU_idm28759.html" title="Macro BOOST_LOG_ATTRIBUTE_KEYWORD">BOOST_LOG_ATTRIBUTE_KEYWORD</a></code>
+          An attribute keyword can be declared with the <code class="computeroutput"><a class="link" href="../../doxygen/expressions/keyword_8hpp_1a0da0c9f1e3e57d3506cd5aac06d00dd0.html" title="Macro BOOST_LOG_ATTRIBUTE_KEYWORD">BOOST_LOG_ATTRIBUTE_KEYWORD</a></code>
           macro:
         </p>
 <pre class="programlisting"><span class="identifier">BOOST_LOG_ATTRIBUTE_KEYWORD</span><span class="special">(</span><span class="identifier">keyword</span><span class="special">,</span> <span class="string">"Keyword"</span><span class="special">,</span> <span class="identifier">type</span><span class="special">)</span>
@@ -425,7 +425,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.expressions.record"></a><a class="link" href="expressions.html#log.detailed.expressions.record" title="Record placeholder">Record placeholder</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.record_hpp" title="Header &lt;boost/log/expressions/record.hpp&gt;">boost/log/expressions/record.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.record_8hpp" title="Header &lt;boost/log/expressions/record.hpp&gt;">boost/log/expressions/record.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The <code class="computeroutput"><span class="identifier">record</span></code> placeholder
@@ -458,7 +458,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.expressions.message"></a><a class="link" href="expressions.html#log.detailed.expressions.message" title="Message text placeholders">Message text placeholders</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.message_hpp" title="Header &lt;boost/log/expressions/message.hpp&gt;">boost/log/expressions/message.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.message_8hpp" title="Header &lt;boost/log/expressions/message.hpp&gt;">boost/log/expressions/message.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Log records typically contain a special attribute "Message" with
@@ -521,10 +521,10 @@
 <a name="log.detailed.expressions.predicates.has_attr"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.has_attr" title="Attribute presence filter">Attribute
           presence filter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.has_attr_hpp" title="Header &lt;boost/log/expressions/predicates/has_attr.hpp&gt;">boost/log/expressions/predicates/has_attr.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.has__attr_8hpp" title="Header &lt;boost/log/expressions/predicates/has_attr.hpp&gt;">boost/log/expressions/predicates/has_attr.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The filter <code class="computeroutput"><a class="link" href="../../boost/log/expressions/has_attr_idm29685.html" title="Function template has_attr">has_attr</a></code> checks if an
+            The filter <code class="computeroutput"><a class="link" href="../../doxygen/expressions/has__attr_8hpp_1adf338121e617ed6d9bd593aa2edcc2e1.html" title="Function template has_attr">has_attr</a></code> checks if an
             attribute value with the specified name and, optionally, type is attached
             to a log record. If no type specified to the filter, the filter returns
             <code class="computeroutput"><span class="keyword">true</span></code> if any value with the
@@ -664,10 +664,10 @@
 <a name="log.detailed.expressions.predicates.is_in_range"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.is_in_range" title="Range checking filter">Range
           checking filter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.is_in_range_hpp" title="Header &lt;boost/log/expressions/predicates/is_in_range.hpp&gt;">boost/log/expressions/predicates/is_in_range.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.is__in__range_8hpp" title="Header &lt;boost/log/expressions/predicates/is_in_range.hpp&gt;">boost/log/expressions/predicates/is_in_range.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/expressions/is_in_range_idm29725.html" title="Function template is_in_range">is_in_range</a></code> predicate
+            The <code class="computeroutput"><a class="link" href="../../doxygen/expressions/is__in__range_8hpp_1a996650fa93ba1ae8a95a280647d2dfe1.html" title="Function template is_in_range">is_in_range</a></code> predicate
             checks that the attribute value fits in the half-open range (i.e. it
             returns <code class="computeroutput"><span class="keyword">true</span></code> if the attribute
             value <code class="computeroutput"><span class="identifier">x</span></code> satisfies the
@@ -700,13 +700,13 @@
 <a name="log.detailed.expressions.predicates.simple_string_matching"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.simple_string_matching" title="Simple string matching filters">Simple
           string matching filters</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.begins_with_hpp" title="Header &lt;boost/log/expressions/predicates/begins_with.hpp&gt;">boost/log/expressions/predicates/begins_with.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.ends_with_hpp" title="Header &lt;boost/log/expressions/predicates/ends_with.hpp&gt;">boost/log/expressions/predicates/ends_with.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.contains_hpp" title="Header &lt;boost/log/expressions/predicates/contains.hpp&gt;">boost/log/expressions/predicates/contains.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.begins__with_8hpp" title="Header &lt;boost/log/expressions/predicates/begins_with.hpp&gt;">boost/log/expressions/predicates/begins_with.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.ends__with_8hpp" title="Header &lt;boost/log/expressions/predicates/ends_with.hpp&gt;">boost/log/expressions/predicates/ends_with.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.contains_8hpp" title="Header &lt;boost/log/expressions/predicates/contains.hpp&gt;">boost/log/expressions/predicates/contains.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            Predicates <code class="computeroutput"><a class="link" href="../../boost/log/expressions/begins_with_idm28895.html" title="Function template begins_with">begins_with</a></code>, <code class="computeroutput"><a class="link" href="../../boost/log/expressions/ends_with_idm29552.html" title="Function template ends_with">ends_with</a></code>
-            and <code class="computeroutput"><a class="link" href="../../boost/log/expressions/contains_idm29495.html" title="Function template contains">contains</a></code> provide an
+            Predicates <code class="computeroutput"><a class="link" href="../../doxygen/expressions/begins__with_8hpp_1acbda274757fbce454ac166cf73b8bc66.html" title="Function template begins_with">begins_with</a></code>, <code class="computeroutput"><a class="link" href="../../doxygen/expressions/ends__with_8hpp_1a1193a9724a334d8eedba277ec7d44e79.html" title="Function template ends_with">ends_with</a></code>
+            and <code class="computeroutput"><a class="link" href="../../doxygen/expressions/contains_8hpp_1a058fdd2241c555c63eb53b64d4d5f088.html" title="Function template contains">contains</a></code> provide an
             easy way of matching string attribute values. As follows from their names,
             the functions construct filters that return <code class="computeroutput"><span class="keyword">true</span></code>
             if an attribute value begins with, ends with or contains the specified
@@ -728,22 +728,22 @@
 <a name="log.detailed.expressions.predicates.advanced_string_matching"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.advanced_string_matching" title="Advanced string matching filter">Advanced
           string matching filter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.matches_hpp" title="Header &lt;boost/log/expressions/predicates/matches.hpp&gt;">boost/log/expressions/predicates/matches.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.matches_8hpp" title="Header &lt;boost/log/expressions/predicates/matches.hpp&gt;">boost/log/expressions/predicates/matches.hpp</a></code><span class="special">&gt;</span>
 
 <span class="comment">// Supporting headers</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.regex_hpp" title="Header &lt;boost/log/support/regex.hpp&gt;">boost/log/support/regex.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.std_regex_hpp" title="Header &lt;boost/log/support/std_regex.hpp&gt;">boost/log/support/std_regex.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.xpressive_hpp" title="Header &lt;boost/log/support/xpressive.hpp&gt;">boost/log/support/xpressive.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.spirit_qi_hpp" title="Header &lt;boost/log/support/spirit_qi.hpp&gt;">boost/log/support/spirit_qi.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.spirit_classic_hpp" title="Header &lt;boost/log/support/spirit_classic.hpp&gt;">boost/log/support/spirit_classic.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.regex_8hpp" title="Header &lt;boost/log/support/regex.hpp&gt;">boost/log/support/regex.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.std__regex_8hpp" title="Header &lt;boost/log/support/std_regex.hpp&gt;">boost/log/support/std_regex.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.xpressive_8hpp" title="Header &lt;boost/log/support/xpressive.hpp&gt;">boost/log/support/xpressive.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.spirit__qi_8hpp" title="Header &lt;boost/log/support/spirit_qi.hpp&gt;">boost/log/support/spirit_qi.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.spirit__classic_8hpp" title="Header &lt;boost/log/support/spirit_classic.hpp&gt;">boost/log/support/spirit_classic.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/expressions/matches_idm29825.html" title="Function template matches">matches</a></code> function creates
+            The <code class="computeroutput"><a class="link" href="../../doxygen/expressions/matches_8hpp_1adcefdc2be04b89ba4a6b49f3998faa1a.html" title="Function template matches">matches</a></code> function creates
             a filter that apples a regular expression or a parser to a string attribute
-            value. The regular expression can be provided by <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
-            or <a href="http://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>.
-            Parsers from <a href="http://www.boost.org/doc/libs/release/libs/spirit/classic/index.html" target="_top">Boost.Spirit</a>
-            and <a href="http://www.boost.org/doc/libs/release/libs/spirit/doc/html/index.html" target="_top">Boost.Spirit2</a>
+            value. The regular expression can be provided by <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
+            or <a href="https://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>.
+            Parsers from <a href="https://www.boost.org/doc/libs/release/libs/spirit/classic/index.html" target="_top">Boost.Spirit</a>
+            and <a href="https://www.boost.org/doc/libs/release/libs/spirit/doc/html/index.html" target="_top">Boost.Spirit2</a>
             are also supported. The filter returns <code class="computeroutput"><span class="keyword">true</span></code>
             if the regular expression matches or the parser successfully parses the
             attribute value.
@@ -773,17 +773,17 @@
 <a name="log.detailed.expressions.predicates.channel_severity_filter"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.channel_severity_filter" title="Severity threshold per channel filter">Severity
           threshold per channel filter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.channel_severity_filter_hpp" title="Header &lt;boost/log/expressions/predicates/channel_severity_filter.hpp&gt;">boost/log/expressions/predicates/channel_severity_filter.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.channel__severity__filter_8hpp" title="Header &lt;boost/log/expressions/predicates/channel_severity_filter.hpp&gt;">boost/log/expressions/predicates/channel_severity_filter.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             This filter is aimed for a specific but commonly encountered use case.
-            The <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity_filter.html" title="Function channel_severity_filter">channel_severity_filter</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/expressions/channel__severity__filter_8hpp_1a98f26e21f5ccab9f9ba23a1e96af7440.html" title="Function template channel_severity_filter">channel_severity_filter</a></code>
             function creates a predicate that will check log record severity levels
             against a threshold. The predicate allows setting different thresholds
             for different channels. The mapping between channel names and severity
             thresholds can be filled in <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">map</span></code>
             style by using the subscript operator or by calling <code class="computeroutput"><span class="identifier">add</span></code>
-            method on the filter itself (the <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity__idm28946.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
+            method on the filter itself (the <code class="computeroutput"><a class="link" href="../../doxygen/expressions/classboost_1_1log_1_1expressions_1_1channel__severity__filter__actor.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
             instance). Let's see an example:
           </p>
 <p>
@@ -849,14 +849,14 @@
             the complete code</a>.
           </p>
 <p>
-            The filter for the console sink is composed from the <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity__idm28946.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
+            The filter for the console sink is composed from the <code class="computeroutput"><a class="link" href="../../doxygen/expressions/classboost_1_1log_1_1expressions_1_1channel__severity__filter__actor.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
             filter and a general severity level check. This general check will be
             used when log records do not have a channel attribute or the channel
-            name is not one of those specified in <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity__idm28946.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
+            name is not one of those specified in <code class="computeroutput"><a class="link" href="../../doxygen/expressions/classboost_1_1log_1_1expressions_1_1channel__severity__filter__actor.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
             initialization. It should be noted that it is possible to set the default
             result of the threshold filter that will be used in this case; the default
             result can be set by the <code class="computeroutput"><span class="identifier">set_default</span></code>
-            method. The <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity__idm28946.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
+            method. The <code class="computeroutput"><a class="link" href="../../doxygen/expressions/classboost_1_1log_1_1expressions_1_1channel__severity__filter__actor.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
             filter is set up to limit record severity levels for channels "general",
             "network" and "gui" - all records in these channels
             with levels below the specified thresholds will not pass the filter and
@@ -869,8 +869,8 @@
             against thresholds. By default the predicate will use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">less</span></code>
             equivalent for channel name ordering and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">greater_equal</span></code>
             equivalent to compare severity levels. It is possible to customize the
-            ordering predicates. Consult the reference of the <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity__idm28946.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
-            class and <code class="computeroutput"><a class="link" href="../../boost/log/expressions/channel_severity_filter.html" title="Function channel_severity_filter">channel_severity_filter</a></code>
+            ordering predicates. Consult the reference of the <code class="computeroutput"><a class="link" href="../../doxygen/expressions/classboost_1_1log_1_1expressions_1_1channel__severity__filter__actor.html" title="Class template channel_severity_filter_actor">channel_severity_filter_actor</a></code>
+            class and <code class="computeroutput"><a class="link" href="../../doxygen/expressions/channel__severity__filter_8hpp_1a98f26e21f5ccab9f9ba23a1e96af7440.html" title="Function template channel_severity_filter">channel_severity_filter</a></code>
             generator to see the relevant template parameters.
           </p>
 </div>
@@ -879,7 +879,7 @@
 <a name="log.detailed.expressions.predicates.is_debugger_present"></a><a class="link" href="expressions.html#log.detailed.expressions.predicates.is_debugger_present" title="Debugger presence filter">Debugger
           presence filter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.predicates.is_debugger_present_hpp" title="Header &lt;boost/log/expressions/predicates/is_debugger_present.hpp&gt;">boost/log/expressions/predicates/is_debugger_present.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.is__debugger__present_8hpp" title="Header &lt;boost/log/expressions/predicates/is_debugger_present.hpp&gt;">boost/log/expressions/predicates/is_debugger_present.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             This filter is implemented for Windows only. The <code class="computeroutput"><span class="identifier">is_debugger_present</span></code>
@@ -935,13 +935,13 @@
 <p>
           As was noted in the <a class="link" href="../tutorial/formatters.html" title="Log record formatting">tutorial</a>,
           the library provides several ways of expressing formatters, most notable
-          being with a stream-style syntax and <a href="http://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-style
+          being with a stream-style syntax and <a href="https://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-style
           expression. Which of the two formats is chosen is determined by the appropriate
           anchor expression. To use stream-style syntax one should begin the formatter
           definition with the <code class="computeroutput"><span class="identifier">stream</span></code>
           keyword, like that:
         </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.stream_hpp" title="Header &lt;boost/log/expressions/formatters/stream.hpp&gt;">boost/log/expressions/formatters/stream.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.stream_8hpp" title="Header &lt;boost/log/expressions/formatters/stream.hpp&gt;">boost/log/expressions/formatters/stream.hpp</a></code><span class="special">&gt;</span>
 
 <span class="identifier">sink</span><span class="special">-&gt;</span><span class="identifier">set_formatter</span><span class="special">(</span><span class="identifier">expr</span><span class="special">::</span><span class="identifier">stream</span> <span class="special">&lt;&lt;</span> <span class="identifier">expr1</span> <span class="special">&lt;&lt;</span> <span class="identifier">expr2</span> <span class="special">&lt;&lt;</span> <span class="special">...</span> <span class="special">&lt;&lt;</span> <span class="identifier">exprN</span><span class="special">);</span>
 </pre>
@@ -952,11 +952,11 @@
           in an object that supports putting into a standard library output stream.
         </p>
 <p>
-          To use <a href="http://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-style
+          To use <a href="https://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-style
           syntax one should use <code class="computeroutput"><span class="identifier">format</span></code>
           construct:
         </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.format_hpp" title="Header &lt;boost/log/expressions/formatters/format.hpp&gt;">boost/log/expressions/formatters/format.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.format_8hpp" title="Header &lt;boost/log/expressions/formatters/format.hpp&gt;">boost/log/expressions/formatters/format.hpp</a></code><span class="special">&gt;</span>
 
 <span class="identifier">sink</span><span class="special">-&gt;</span><span class="identifier">set_formatter</span><span class="special">(</span><span class="identifier">expr</span><span class="special">::</span><span class="identifier">format</span><span class="special">(</span><span class="string">"format string"</span><span class="special">)</span> <span class="special">%</span> <span class="identifier">expr1</span> <span class="special">%</span> <span class="identifier">expr2</span> <span class="special">%</span> <span class="special">...</span> <span class="special">%</span> <span class="identifier">exprN</span><span class="special">);</span>
 </pre>
@@ -981,16 +981,16 @@
 <a name="log.detailed.expressions.formatters.date_time"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.date_time" title="Date and time formatter">Date
           and time formatter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.date_time_hpp" title="Header &lt;boost/log/expressions/formatters/date_time.hpp&gt;">boost/log/expressions/formatters/date_time.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.date__time_8hpp" title="Header &lt;boost/log/expressions/formatters/date_time.hpp&gt;">boost/log/expressions/formatters/date_time.hpp</a></code><span class="special">&gt;</span>
 
 <span class="comment">// Supporting headers</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.date_time_hpp" title="Header &lt;boost/log/support/date_time.hpp&gt;">boost/log/support/date_time.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.date__time_8hpp" title="Header &lt;boost/log/support/date_time.hpp&gt;">boost/log/support/date_time.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The library provides the <code class="computeroutput"><a class="link" href="../../boost/log/expressions/format_date_time_idm27849.html" title="Function template format_date_time">format_date_time</a></code> formatter
+            The library provides the <code class="computeroutput"><a class="link" href="../../doxygen/expressions/date__time_8hpp_1a30264200aaf62ee0ffa1cd6fc021ba04.html" title="Function template format_date_time">format_date_time</a></code> formatter
             dedicated to date and time-related attribute value types. The function
             accepts the attribute value name and the format string compatible with
-            <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>.
+            <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>.
           </p>
 <pre class="programlisting"><span class="identifier">sink</span><span class="special">-&gt;</span><span class="identifier">set_formatter</span>
 <span class="special">(</span>
@@ -1520,8 +1520,8 @@
 </div>
 <br class="table-break"><p>
             Note that in order to use this formatter you will also have to include
-            a supporting header. When <code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.date_time_hpp" title="Header &lt;boost/log/support/date_time.hpp&gt;">boost/log/support/date_time.hpp</a></code>
-            is included, the formatter supports the following types of <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>:
+            a supporting header. When <code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.date__time_8hpp" title="Header &lt;boost/log/support/date_time.hpp&gt;">boost/log/support/date_time.hpp</a></code>
+            is included, the formatter supports the following types of <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -1546,7 +1546,7 @@
 <th align="left">Tip</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-              <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+              <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
               already provides formatting functionality implemented as a number of
               locale facets. This functionality can be used instead of this formatter,
               although the formatter is expected to provide better performance.
@@ -1558,10 +1558,10 @@
 <a name="log.detailed.expressions.formatters.named_scope"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.named_scope" title="Named scope formatter">Named
           scope formatter</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.named_scope_hpp" title="Header &lt;boost/log/expressions/formatters/named_scope.hpp&gt;">boost/log/expressions/formatters/named_scope.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.named__scope_8hpp" title="Header &lt;boost/log/expressions/formatters/named_scope.hpp&gt;">boost/log/expressions/formatters/named_scope.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The formatter <code class="computeroutput"><a class="link" href="../../boost/log/expressions/format_named_scop_idm28366.html" title="Function template format_named_scope">format_named_scope</a></code> is
+            The formatter <code class="computeroutput"><a class="link" href="../../doxygen/expressions/named__scope_8hpp_1a5c3a44308ce796adfc3a32c41823021b.html" title="Function template format_named_scope">format_named_scope</a></code> is
             intended to add support for flexible formatting of the <a class="link" href="attributes.html#log.detailed.attributes.named_scope" title="Named scopes">named
             scope</a> attribute values. The basic usage is quite straightforward
             and its result is similar to what <a class="link" href="expressions.html#log.detailed.expressions.attr" title="Generic attribute placeholder"><code class="computeroutput"><span class="identifier">attr</span></code></a> provides:
@@ -1851,7 +1851,7 @@
 <a name="log.detailed.expressions.formatters.conditional"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.conditional" title="Conditional formatters">Conditional
           formatters</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.if_hpp" title="Header &lt;boost/log/expressions/formatters/if.hpp&gt;">boost/log/expressions/formatters/if.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.if_8hpp" title="Header &lt;boost/log/expressions/formatters/if.hpp&gt;">boost/log/expressions/formatters/if.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             There are cases when one would want to check some condition about the
@@ -1869,7 +1869,7 @@
 <span class="special">]</span>
 </pre>
 <p>
-            Those familiar with <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+            Those familiar with <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
             lambda expressions will find this syntax quite familiar. The <code class="computeroutput"><span class="identifier">filter</span></code> argument is a filter that is
             applied to the record being formatted. If it returns <code class="computeroutput"><span class="keyword">true</span></code>,
             the <code class="computeroutput"><span class="identifier">true_formatter</span></code> is
@@ -1905,7 +1905,7 @@
 <a name="log.detailed.expressions.formatters.auto_newline"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.auto_newline" title="Automatic newline insertion">Automatic
           newline insertion</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.auto_newline_hpp" title="Header &lt;boost/log/expressions/formatters/auto_newline.hpp&gt;">boost/log/expressions/formatters/auto_newline.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.auto__newline_8hpp" title="Header &lt;boost/log/expressions/formatters/auto_newline.hpp&gt;">boost/log/expressions/formatters/auto_newline.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             This is an adaptation of the <a class="link" href="utilities.html#log.detailed.utilities.manipulators.auto_newline" title="Automatic newline insertion"><code class="computeroutput"><span class="identifier">auto_newline</span></code> manipulator</a> for
@@ -1964,7 +1964,7 @@
 <a name="log.detailed.expressions.formatters.decorators.xml"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.decorators.xml" title="XML character decorator">XML
             character decorator</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.xml_decorator_hpp" title="Header &lt;boost/log/expressions/formatters/xml_decorator.hpp&gt;">boost/log/expressions/formatters/xml_decorator.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.xml__decorator_8hpp" title="Header &lt;boost/log/expressions/formatters/xml_decorator.hpp&gt;">boost/log/expressions/formatters/xml_decorator.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               This decorator replaces XML special characters (&amp;, &lt;, &gt;,
@@ -2004,7 +2004,7 @@
 <a name="log.detailed.expressions.formatters.decorators.csv"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.decorators.csv" title="CSV character decorator">CSV
             character decorator</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.csv_decorator_hpp" title="Header &lt;boost/log/expressions/formatters/csv_decorator.hpp&gt;">boost/log/expressions/formatters/csv_decorator.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.csv__decorator_8hpp" title="Header &lt;boost/log/expressions/formatters/csv_decorator.hpp&gt;">boost/log/expressions/formatters/csv_decorator.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               This decorator allows to ensure that the resulting string conforms
@@ -2026,7 +2026,7 @@
 <a name="log.detailed.expressions.formatters.decorators.c"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.decorators.c" title="C-style character decorators">C-style
             character decorators</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.c_decorator_hpp" title="Header &lt;boost/log/expressions/formatters/c_decorator.hpp&gt;">boost/log/expressions/formatters/c_decorator.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.c__decorator_8hpp" title="Header &lt;boost/log/expressions/formatters/c_decorator.hpp&gt;">boost/log/expressions/formatters/c_decorator.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               The header defines two character decorators: <code class="computeroutput"><span class="identifier">c_decor</span></code>
@@ -2055,7 +2055,7 @@
 <a name="log.detailed.expressions.formatters.decorators.char"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.decorators.char" title="General character decorator">General
             character decorator</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.char_decorator_hpp" title="Header &lt;boost/log/expressions/formatters/char_decorator.hpp&gt;">boost/log/expressions/formatters/char_decorator.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.char__decorator_8hpp" title="Header &lt;boost/log/expressions/formatters/char_decorator.hpp&gt;">boost/log/expressions/formatters/char_decorator.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               This decorator allows the user to define his own character replacement
@@ -2111,7 +2111,7 @@
 <a name="log.detailed.expressions.formatters.decorators.max_size"></a><a class="link" href="expressions.html#log.detailed.expressions.formatters.decorators.max_size" title="String length limiting decorator">String
             length limiting decorator</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#header.boost.log.expressions.formatters.max_size_decorator_hpp" title="Header &lt;boost/log/expressions/formatters/max_size_decorator.hpp&gt;">boost/log/expressions/formatters/max_size_decorator.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../expressions.html#doxygen.expressions.max__size__decorator_8hpp" title="Header &lt;boost/log/expressions/formatters/max_size_decorator.hpp&gt;">boost/log/expressions/formatters/max_size_decorator.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               Sometimes it can be useful to be able to limit the size of the output
@@ -2200,10 +2200,10 @@
                 in multibyte encodings, it is important that the locale used by the
                 formatter is set up properly. In particular, the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">codecvt</span></code>
                 facet in the locale must correctly recognize multibyte sequences
-                corresponding to a single character in the output. One can use <a href="http://www.boost.org/doc/libs/release/libs/locale/doc/html/index.html" target="_top">Boost.Locale</a>
+                corresponding to a single character in the output. One can use <a href="https://www.boost.org/doc/libs/release/libs/locale/doc/html/index.html" target="_top">Boost.Locale</a>
                 to generate the locale and then install it in the sink frontend by
                 calling <code class="computeroutput"><span class="identifier">imbue</span></code> (see
-                <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_formatting__idm32293.html" title="Class template basic_formatting_sink_frontend">basic_formatting_sink_frontend</a></code>
+                <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__formatting__sink__frontend.html" title="Class template basic_formatting_sink_frontend">basic_formatting_sink_frontend</a></code>
                 for reference). If the output character type is <code class="computeroutput"><span class="keyword">wchar_t</span></code>,
                 <code class="computeroutput"><span class="keyword">char16_t</span></code> or <code class="computeroutput"><span class="keyword">char32_t</span></code> the library assumes that
                 the output is encoded in UTF-16 or UTF-32, depending on the size
@@ -2237,7 +2237,7 @@
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.Log v2">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.Log v2">
-<link rel="prev" href="defs.html" title="Definitions">
+<link rel="prev" href="installation/config.html" title="Configuring and building the library">
 <link rel="next" href="tutorial.html" title="Tutorial">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,7 +14,7 @@
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="defs.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tutorial.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="installation/config.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tutorial.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -119,9 +119,9 @@
       values to the set; these values will only be attached to the particular log
       record and will not be associated with the logging source or logging core.
       As you may notice, it is possible for a same-named attribute to appear in several
-      attribute sets. Such conflicts are solved on priority basis: global attributes
-      have the least priority, source-specific attributes have the highest; the lower
-      priority attributes are discarded from consideration in case of conflicts.
+      attribute sets. Such conflicts are solved on precedence basis: global attributes
+      have the least precedence, source-specific attributes have the highest; the
+      lower precedence attributes are discarded from consideration in case of conflicts.
     </p>
 <h4>
 <a name="log.design.h2"></a>
@@ -141,9 +141,9 @@
     </p>
 <p>
       It must be mentioned that for a given log record filtering is performed only
-      once. Obviously, only those attribute values attached to the record before
-      filtering starts can participate in filtering. Some attribute values, like
-      log record message, are typically attached to the record after the filtering
+      once. Obviously, only the attribute values that were attached to the record
+      before filtering starts can participate in filtering. Some attribute values,
+      like log record message, are typically attached to the record after the filtering
       is done; such values cannot be used in filters, they can only be used by formatters
       and sinks themselves.
     </p>
@@ -183,14 +183,14 @@
       section.
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="defs.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tutorial.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="installation/config.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tutorial.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

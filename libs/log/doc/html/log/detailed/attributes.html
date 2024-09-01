@@ -37,20 +37,31 @@
 <dt><span class="section"><a href="attributes.html#log.detailed.attributes.related_components">Other attribute-related
         components</a></span></dt>
 </dl></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_hpp" title="Header &lt;boost/log/attributes/attribute.hpp&gt;">boost/log/attributes/attribute.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_cast_hpp" title="Header &lt;boost/log/attributes/attribute_cast.hpp&gt;">boost/log/attributes/attribute_cast.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_value_hpp" title="Header &lt;boost/log/attributes/attribute_value.hpp&gt;">boost/log/attributes/attribute_value.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute_8hpp" title="Header &lt;boost/log/attributes/attribute.hpp&gt;">boost/log/attributes/attribute.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__cast_8hpp" title="Header &lt;boost/log/attributes/attribute_cast.hpp&gt;">boost/log/attributes/attribute_cast.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__value_8hpp" title="Header &lt;boost/log/attributes/attribute_value.hpp&gt;">boost/log/attributes/attribute_value.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-        All attributes in the library are implemented using the <a href="http://c2.com/cgi/wiki?PimplIdiom" target="_top">pimpl
+        As described in the <a class="link" href="../design.html" title="Design overview">Design overview</a>, attributes
+        in Boost.Log represent information to be associated with log records. An
+        attribute is essentially a function that produces an attribute value upon
+        being invoked. The function may produce a different value each time it is
+        called, or always produce the same value on every call. For example, the
+        <a class="link" href="attributes.html#log.detailed.attributes.clock" title="Wall clock"><code class="computeroutput"><span class="identifier">local_clock</span></code></a>
+        attribute produces timestamp values according to the local wall time clock,
+        and <a class="link" href="attributes.html#log.detailed.attributes.constant" title="Constants"><code class="computeroutput"><span class="identifier">constant</span></code></a>
+        always produces the same value every time.
+      </p>
+<p>
+        All attributes in the library are implemented using the <a href="https://en.cppreference.com/w/cpp/language/pimpl" target="_top">pimpl
         idiom</a>, or more specifically - shared pimpl idiom. Every attribute
-        provides an interface class which derives from the <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code>
-        class and an implementation class that derives from <code class="computeroutput"><a class="link" href="../../boost/log/attribute/impl.html" title="Struct impl">impl</a></code>.
+        provides an interface class which derives from the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
+        class and an implementation class that derives from <code class="computeroutput"><a class="link" href="../../doxygen/attributes/structboost_1_1log_1_1attribute_1_1impl.html" title="Struct impl">impl</a></code>.
         The interface class only holds a reference counted pointer to the actual
-        implementation of the attribute; this pointer is a member of the <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code> class, so derived interface
+        implementation of the attribute; this pointer is a member of the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code> class, so derived interface
         classes don't have any data members. When the interface class is default
         constructed, it creates the corresponding implementation object and initializes
-        the <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code> base class
+        the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code> base class
         with a pointer to the implementation. Therefore the pimpl nature of attributes
         is transparent for users in a typical workflow.
       </p>
@@ -58,14 +69,14 @@
         The shared pimpl design comes significant in a few cases though. One such
         case is copying the attribute. The copy operation is shallow, so multiple
         interface objects may refer to a single implementation object. There is no
-        way to deep copy an attribute. Another case is default construction of <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code> which creates an empty
+        way to deep copy an attribute. Another case is default construction of <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code> which creates an empty
         object that does not refer to an implementation. Attributes in such empty
         state should not be passed to the library but can be useful in some cases,
         e.g. when a delayed variable initialization is needed.
       </p>
 <p>
-        It is possible to upcast the attribute interface from <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code>
-        to the actual interface class. To do this one has to apply <code class="computeroutput"><a class="link" href="../../boost/log/attribute_cast.html" title="Function template attribute_cast">attribute_cast</a></code>:
+        It is possible to upcast the attribute interface from <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
+        to the actual interface class. To do this one has to apply <code class="computeroutput"><a class="link" href="../../doxygen/attributes/attribute__cast_8hpp_1a5a80d3aced95644715e22060f0576e52.html" title="Function template attribute_cast">attribute_cast</a></code>:
       </p>
 <pre class="programlisting"><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute</span> <span class="identifier">attr</span> <span class="special">=</span> <span class="special">...;</span>
 <span class="identifier">attrs</span><span class="special">::</span><span class="identifier">constant</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">const_attr</span> <span class="special">=</span> <span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_cast</span><span class="special">&lt;</span> <span class="identifier">attrs</span><span class="special">::</span><span class="identifier">constant</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="special">&gt;(</span><span class="identifier">attr</span><span class="special">);</span>
@@ -77,34 +88,41 @@
         object, no data is lost in the casting process.
       </p>
 <p>
-        The main purpose of attributes is to generate attribute values. Values are
-        semantically distinct from the attributes. Such separation allows implementing
-        attributes that can return different values at different time points (like
-        clock-related attributes, for example) and, on the other hand, allows using
-        different values of the same attribute independently. The <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code>
+        As it was said, the main purpose of attributes is to generate attribute values.
+        Values are semantically distinct from the attributes. Such separation allows
+        implementing attributes that can return different values at different times
+        and, on the other hand, allows using different values of the same attribute
+        independently. The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
         interface has a method named <code class="computeroutput"><span class="identifier">get_value</span></code>
         that returns the actual attribute value. Attribute values are also implemented
-        using the shared pimpl approach, the interface class is <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
-        and implementation classes derive from <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value/impl.html" title="Struct impl">impl</a></code>.
+        using the shared pimpl approach, the interface class is <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
+        and implementation classes derive from <code class="computeroutput"><a class="link" href="../../doxygen/attributes/structboost_1_1log_1_1attribute__value_1_1impl.html" title="Struct impl">impl</a></code>.
       </p>
 <p>
-        The attribute value object is mostly intended to store the actual attribute
-        value and implement type dispatching in order to be able to extract the stored
-        value. One should not confuse the attribute value object type and the stored
-        value type. The former is in most cases not needed by users and provides
-        type erasure, but the latter is needed to be able to extract the value. For
-        brevity we call the stored attribute value type simply the attribute value
-        type in this documentation.
+        The attribute value object is intended to store the actual attribute value
+        and implement type dispatching in order to be able to extract the stored
+        value. One should not confuse the attribute value implementation type and
+        the stored value type. The former is in most cases not important to users
+        and provides type erasure, but the latter is needed to be able to extract
+        the value. In the example above, the <code class="computeroutput"><span class="identifier">constant</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span></code> type is the attribute type, its <code class="computeroutput"><span class="identifier">get_value</span><span class="special">()</span></code>
+        method produces an object of type <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>,
+        which is a pimpl wrapper for the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1attribute__value__impl.html" title="Class template attribute_value_impl">attribute_value_impl&lt;
+        int &gt;</a></code>
+        implementation type. The actual stored attribute value type here is <code class="computeroutput"><span class="keyword">int</span></code>, which is what the attribute generates,
+        and what is needed by the user in order to be able to extract the value from
+        <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>.
+        For brevity we call the stored attribute value type simply the attribute
+        value type in this documentation.
       </p>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.constant"></a><a class="link" href="attributes.html#log.detailed.attributes.constant" title="Constants">Constants</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.constant_hpp" title="Header &lt;boost/log/attributes/constant.hpp&gt;">boost/log/attributes/constant.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.constant_8hpp" title="Header &lt;boost/log/attributes/constant.hpp&gt;">boost/log/attributes/constant.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The most simple and frequently used attribute type is a constant value
-          of some type. This kind of attribute is implemented with the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/constant.html" title="Class template constant">constant</a></code> class template.
+          of some type. This kind of attribute is implemented with the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1constant.html" title="Class template constant">constant</a></code> class template.
           The template is parametrized with the attribute value type. The constant
           value should be passed to the attribute constructor. Here is an example:
         </p>
@@ -132,11 +150,11 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.mutable_constant"></a><a class="link" href="attributes.html#log.detailed.attributes.mutable_constant" title="Mutable constants">Mutable constants</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.mutable_constant_hpp" title="Header &lt;boost/log/attributes/mutable_constant.hpp&gt;">boost/log/attributes/mutable_constant.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.mutable__constant_8hpp" title="Header &lt;boost/log/attributes/mutable_constant.hpp&gt;">boost/log/attributes/mutable_constant.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           This kind of attribute is an extension for the <a class="link" href="attributes.html#log.detailed.attributes.constant" title="Constants">constant
-          attribute</a>. In addition to being able to store some value, the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/mutable_constant.html" title="Class template mutable_constant">mutable_constant</a></code>
+          attribute</a>. In addition to being able to store some value, the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1mutable__constant.html" title="Class template mutable_constant">mutable_constant</a></code>
           class template has two distinctions:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -170,9 +188,9 @@
           In multithreaded applications the <code class="computeroutput"><span class="identifier">set</span></code>
           method calls must be serialized with the <code class="computeroutput"><span class="identifier">get_value</span></code>
           calls (which, generally speaking, happen on every log record being made).
-          By default <code class="computeroutput"><a class="link" href="../../boost/log/attributes/mutable_constant.html" title="Class template mutable_constant">mutable_constant</a></code>
+          By default <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1mutable__constant.html" title="Class template mutable_constant">mutable_constant</a></code>
           does not serialize calls in any way, assuming that the user will do so
-          externally. However, the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/mutable_constant.html" title="Class template mutable_constant">mutable_constant</a></code>
+          externally. However, the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1mutable__constant.html" title="Class template mutable_constant">mutable_constant</a></code>
           template provides three additional template arguments: synchronization
           primitive type, scoped exclusive lock type and scoped shareable lock type.
           If a synchronization primitive type is specified, the scoped exclusive
@@ -231,12 +249,12 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.counter"></a><a class="link" href="attributes.html#log.detailed.attributes.counter" title="Counters">Counters</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.counter_hpp" title="Header &lt;boost/log/attributes/counter.hpp&gt;">boost/log/attributes/counter.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.counter_8hpp" title="Header &lt;boost/log/attributes/counter.hpp&gt;">boost/log/attributes/counter.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Counters are one of the simplest attributes that generate a new value each
           time requested. Counters are often used to identify log records or to count
-          some events, e.g. accepted network connections. The class template <code class="computeroutput"><a class="link" href="../../boost/log/attributes/counter.html" title="Class template counter">counter</a></code> provides such
+          some events, e.g. accepted network connections. The class template <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1counter.html" title="Class template counter">counter</a></code> provides such
           functionality. This template is parametrized with the counter value type,
           which should support arithmetic operations, such as <code class="computeroutput"><span class="keyword">operator</span>
           <span class="special">+</span></code> and <code class="computeroutput"><span class="keyword">operator</span>
@@ -271,12 +289,12 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            Don't expect that the log records with the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/counter.html" title="Class template counter">counter</a></code>
+            Don't expect that the log records with the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1counter.html" title="Class template counter">counter</a></code>
             attribute will always have ascending or descending counter values in
             the resulting log. In multithreaded applications counter values acquired
             by different threads may come to a sink in any order. See <a class="link" href="../rationale/why_weak_record_ordering.html" title="Why log records are weakly ordered in a multithreaded application?">Rationale</a>
             for a more detailed explanation on why it can happen. For this reason
-            it is more accurate to say that the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/counter.html" title="Class template counter">counter</a></code>
+            it is more accurate to say that the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1counter.html" title="Class template counter">counter</a></code>
             attribute generates an identifier in an ascending or descending order
             rather than that it counts log records in either order.
           </p></td></tr>
@@ -286,7 +304,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.clock"></a><a class="link" href="attributes.html#log.detailed.attributes.clock" title="Wall clock">Wall clock</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.clock_hpp" title="Header &lt;boost/log/attributes/clock.hpp&gt;">boost/log/attributes/clock.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.clock_8hpp" title="Header &lt;boost/log/attributes/clock.hpp&gt;">boost/log/attributes/clock.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           One of the "must-have" features of any logging library is support
@@ -296,7 +314,7 @@
           returns the current UTC time and the latter returns the current local time.
           In either case the returned time stamp is acquired with the maximum precision
           for the target platform. The attribute value is <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">ptime</span></code>
-          (see <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
+          (see <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
           The usage is quite straightforward:
         </p>
 <pre class="programlisting"><span class="identifier">BOOST_LOG_DECLARE_GLOBAL_LOGGER</span><span class="special">(</span><span class="identifier">my_logger</span><span class="special">,</span> <span class="identifier">src</span><span class="special">::</span><span class="identifier">logger_mt</span><span class="special">)</span>
@@ -334,14 +352,14 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.timer"></a><a class="link" href="attributes.html#log.detailed.attributes.timer" title="Stop watch (timer)">Stop watch (timer)</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.timer_hpp" title="Header &lt;boost/log/attributes/timer.hpp&gt;">boost/log/attributes/timer.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.timer_8hpp" title="Header &lt;boost/log/attributes/timer.hpp&gt;">boost/log/attributes/timer.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/attributes/timer.html" title="Class timer">timer</a></code> attribute
+          The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1timer.html" title="Class timer">timer</a></code> attribute
           is very useful when there is a need to estimate the duration of some prolonged
           process. The attribute returns the time elapsed since the attribute construction.
           The attribute value type is <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">ptime</span><span class="special">::</span><span class="identifier">time_duration_type</span></code>
-          (see <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
+          (see <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
         </p>
 <pre class="programlisting"><span class="comment">// The class represents a single peer-to-peer connection</span>
 <span class="keyword">class</span> <span class="identifier">network_connection</span>
@@ -371,10 +389,10 @@
 <th align="left">Tip</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/attributes/timer.html" title="Class timer">timer</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1timer.html" title="Class timer">timer</a></code>
             attribute can even be used to profile the code in different modules without
             recompiling them. The trick is to wrap an expensive call to a foreign
-            module with the thread-specific <code class="computeroutput"><a class="link" href="../../boost/log/attributes/timer.html" title="Class timer">timer</a></code>
+            module with the thread-specific <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1timer.html" title="Class timer">timer</a></code>
             <a class="link" href="attributes.html#log.detailed.attributes.related_components.scoped_attributes" title="Scoped attributes">scoped
             attribute</a>, which will markup all log records made from within
             the module with time readings.
@@ -385,17 +403,17 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.named_scope"></a><a class="link" href="attributes.html#log.detailed.attributes.named_scope" title="Named scopes">Named scopes</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.named_scope_hpp" title="Header &lt;boost/log/attributes/named_scope.hpp&gt;">boost/log/attributes/named_scope.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.named__scope_8hpp" title="Header &lt;boost/log/attributes/named_scope.hpp&gt;">boost/log/attributes/named_scope.hpp</a></code><span class="special">&gt;</span>
 
 <span class="comment">// Supporting headers</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#header.boost.log.support.exception_hpp" title="Header &lt;boost/log/support/exception.hpp&gt;">boost/log/support/exception.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../other_libraries_support_layer.html#doxygen.other_libraries_support_layer.exception_8hpp" title="Header &lt;boost/log/support/exception.hpp&gt;">boost/log/support/exception.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The logging library supports maintaining scope stack tracking during the
           application's execution. This stack may either be written to log or be
           used for other needs (for example, to save the exact call sequence that
           led to an exception when throwing one). Each stack element contains the
-          following information (see the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/named_scope_entry.html" title="Struct named_scope_entry">named_scope_entry</a></code>
+          following information (see the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/structboost_1_1log_1_1attributes_1_1named__scope__entry.html" title="Struct named_scope_entry">named_scope_entry</a></code>
           structure template definition):
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -417,7 +435,7 @@
 </ul></div>
 <p>
           The scope stack is implemented as a thread-specific global storage internally.
-          There is the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/named_scope.html" title="Class named_scope">named_scope</a></code>
+          There is the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1named__scope.html" title="Class named_scope">named_scope</a></code>
           attribute that allows hooking this stack into the logging pipeline. This
           attribute generates value of the nested type <code class="computeroutput"><span class="identifier">named_scope</span><span class="special">::</span><span class="identifier">scope_stack</span></code>
           which is the instance of the scope stack. The attribute can be registered
@@ -525,7 +543,7 @@
 </table></div>
 <p>
           Another good use case is attaching the scope stack information to an exception.
-          With the help of <a href="http://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>,
+          With the help of <a href="https://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>,
           this is possible:
         </p>
 <pre class="programlisting"><span class="keyword">void</span> <span class="identifier">bar</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span>
@@ -562,7 +580,7 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            In order this code to compile, the <a href="http://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>
+            In order this code to compile, the <a href="https://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>
             support header has to be included.
           </p></td></tr>
 </table></div>
@@ -572,11 +590,11 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            We do not inject the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/named_scope.html" title="Class named_scope">named_scope</a></code>
+            We do not inject the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1named__scope.html" title="Class named_scope">named_scope</a></code>
             attribute into the exception. Since scope stacks are maintained globally,
             throwing an exception will cause stack unwinding and, as a result, will
             truncate the global stack. Instead we create a copy of the scope stack
-            by calling <code class="computeroutput"><a class="link" href="../../boost/log/current_scope.html" title="Function current_scope">current_scope</a></code> at the
+            by calling <code class="computeroutput"><a class="link" href="../../doxygen/other_libraries_support_layer/exception_8hpp_1a1ede20832f36da098e33624cc79aee92.html" title="Function current_scope">current_scope</a></code> at the
             throw site. This copy will be kept intact even if the global stack instance
             changes during the stack unwinding.
           </p></td></tr>
@@ -587,12 +605,12 @@
 <a name="log.detailed.attributes.process_id"></a><a class="link" href="attributes.html#log.detailed.attributes.process_id" title="Current process identifier">Current process
         identifier</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.current_process_id_hpp" title="Header &lt;boost/log/attributes/current_process_id.hpp&gt;">boost/log/attributes/current_process_id.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.current__process__id_8hpp" title="Header &lt;boost/log/attributes/current_process_id.hpp&gt;">boost/log/attributes/current_process_id.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           It is often useful to know the process identifier that produces the log,
           especially if the log can eventually combine the output of different processes.
-          The <code class="computeroutput"><a class="link" href="../../boost/log/attributes/current_process_id.html" title="Class current_process_id">current_process_id</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1current__process__id.html" title="Class current_process_id">current_process_id</a></code>
           attribute is a constant that formats into the current process identifier.
           The value type of the attribute can be determined by the <code class="computeroutput"><span class="identifier">current_process_id</span><span class="special">::</span><span class="identifier">value_type</span></code> typedef.
         </p>
@@ -609,10 +627,10 @@
 <a name="log.detailed.attributes.process_name"></a><a class="link" href="attributes.html#log.detailed.attributes.process_name" title="Current process name">Current process
         name</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.current_process_name_hpp" title="Header &lt;boost/log/attributes/current_process_name.hpp&gt;">boost/log/attributes/current_process_name.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.current__process__name_8hpp" title="Header &lt;boost/log/attributes/current_process_name.hpp&gt;">boost/log/attributes/current_process_name.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/attributes/current_process_name.html" title="Class current_process_name">current_process_name</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1current__process__name.html" title="Class current_process_name">current_process_name</a></code>
           produces <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> values with the executable name
           of the current process.
         </p>
@@ -640,10 +658,10 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.attributes.thread_id"></a><a class="link" href="attributes.html#log.detailed.attributes.thread_id" title="Current thread identifier">Current thread identifier</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.current_thread_id_hpp" title="Header &lt;boost/log/attributes/current_thread_id.hpp&gt;">boost/log/attributes/current_thread_id.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.current__thread__id_8hpp" title="Header &lt;boost/log/attributes/current_thread_id.hpp&gt;">boost/log/attributes/current_thread_id.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          Multithreaded builds of the library also support the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/current_thread_id.html" title="Class current_thread_id">current_thread_id</a></code>
+          Multithreaded builds of the library also support the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1current__thread__id.html" title="Class current_thread_id">current_thread_id</a></code>
           attribute with value type <code class="computeroutput"><span class="identifier">current_thread_id</span><span class="special">::</span><span class="identifier">value_type</span></code>.
           The attribute will generate values specific to the calling thread. The
           usage is similar to the process id.
@@ -674,7 +692,7 @@
 <a name="log.detailed.attributes.function"></a><a class="link" href="attributes.html#log.detailed.attributes.function" title="Function objects as attributes">Function objects
         as attributes</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.function_hpp" title="Header &lt;boost/log/attributes/function.hpp&gt;">boost/log/attributes/function.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.function_8hpp" title="Header &lt;boost/log/attributes/function.hpp&gt;">boost/log/attributes/function.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           This attribute is a simple wrapper around a user-defined function object.
@@ -689,7 +707,7 @@
 <span class="special">}</span>
 </pre>
 <p>
-          Auto-generated function objects, like the ones defined in <a href="http://www.boost.org/doc/libs/release/libs/bind/bind.html" target="_top">Boost.Bind</a>
+          Auto-generated function objects, like the ones defined in <a href="https://www.boost.org/doc/libs/release/libs/bind/doc/html/bind.html" target="_top">Boost.Bind</a>
           or C++ standard library, are also supported.
         </p>
 <div class="note"><table border="0" summary="Note">
@@ -729,19 +747,19 @@
 <a name="log.detailed.attributes.related_components.attribute_name"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_name" title="Attribute names">Attribute
           names</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_name_hpp" title="Header &lt;boost/log/attributes/attribute_name.hpp&gt;">boost/log/attributes/attribute_name.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__name_8hpp" title="Header &lt;boost/log/attributes/attribute_name.hpp&gt;">boost/log/attributes/attribute_name.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            Attribute names are represented with <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+            Attribute names are represented with <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
             objects which are used as keys in associative containers of attributes
-            used by the library. The <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+            used by the library. The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
             object can be created from a string, so most of the time its use is transparent.
           </p>
 <p>
-            The name is not stored as a string within the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+            The name is not stored as a string within the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
             object. Instead, a process-wide unique identifier is generated and associated
             with the particular name. This association is preserved until the process
-            termination, so every time the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+            termination, so every time the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
             object is created for the same name it obtains the same identifier. The
             association is not stable across the different runs of the application
             though.
@@ -756,7 +774,7 @@
               some state allocation, it is not advised to use externally provided
               or known to be changing strings for attribute names. Even if the name
               is not used in any log records, the association is preserved anyway.
-              Continuously constructing <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+              Continuously constructing <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
               objects with unique string names may manifest itself as a memory leak.
             </p></td></tr>
 </table></div>
@@ -767,7 +785,7 @@
             a human-readable attribute name for presentation, if needed.
           </p>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
             class supports an empty (uninitialized) state when default constructed.
             In this state the name object is not equal to any other initialized name
             object. Uninitialized attribute names should not be passed to the library
@@ -780,7 +798,7 @@
 <a name="log.detailed.attributes.related_components.attribute_set"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_set" title="Attribute set">Attribute
           set</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_set_hpp" title="Header &lt;boost/log/attributes/attribute_set.hpp&gt;">boost/log/attributes/attribute_set.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__set_8hpp" title="Header &lt;boost/log/attributes/attribute_set.hpp&gt;">boost/log/attributes/attribute_set.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Attribute set is an unordered associative container that maps <a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_name" title="Attribute names">attribute
@@ -789,7 +807,7 @@
             the <a class="link" href="../detailed.html#log.detailed.core.core" title="Logging core">logging core</a> to store
             source-specific, thread-specific and global attributes. The interface
             is very similar to standard library associative containers and is described
-            in the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_set.html" title="Class attribute_set">attribute_set</a></code>
+            in the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__set.html" title="Class attribute_set">attribute_set</a></code>
             class reference.
           </p>
 </div>
@@ -798,14 +816,14 @@
 <a name="log.detailed.attributes.related_components.attribute_value_set"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_value_set" title="Attribute value set">Attribute
           value set</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_value_set_hpp" title="Header &lt;boost/log/attributes/attribute_value_set.hpp&gt;">boost/log/attributes/attribute_value_set.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__value__set_8hpp" title="Header &lt;boost/log/attributes/attribute_value_set.hpp&gt;">boost/log/attributes/attribute_value_set.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Attribute value set is an unordered associative container that maps
             <a class="link" href="attributes.html#log.detailed.attributes.related_components.attribute_name" title="Attribute names">attribute
             names</a> to <a class="link" href="attributes.html" title="Attributes">attribute values</a>.
             This container is used in log <a class="link" href="../detailed.html#log.detailed.core.record" title="Logging records">records</a>
-            to represent attribute values. Unlike conventional containers, <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a></code>
+            to represent attribute values. Unlike conventional containers, <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value__set.html" title="Class attribute_value_set">attribute_value_set</a></code>
             does not support removing or modifying elements after being inserted.
             This warrants that the attribute values that participated filtering will
             not disappear from the log record in the middle of the processing.
@@ -815,7 +833,7 @@
             sets</a>, which are interpreted as the sets of source-specific, thread-specific
             and global attributes. The constructor adopts attribute values from the
             three attribute sets into a single set of attribute values. After construction,
-            <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a></code>
+            <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value__set.html" title="Class attribute_value_set">attribute_value_set</a></code>
             is considered to be in an unfrozen state. This means that the container
             may keep references to the elements of the attribute sets used as the
             source for the value set construction. While in this state, neither the
@@ -843,7 +861,7 @@
             </p></td></tr>
 </table></div>
 <p>
-            For further details on the container interface please consult the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a></code>
+            For further details on the container interface please consult the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value__set.html" title="Class attribute_value_set">attribute_value_set</a></code>
             reference.
           </p>
 </div>
@@ -862,8 +880,8 @@
 <a name="log.detailed.attributes.related_components.value_processing.visitation"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.value_processing.visitation" title="Value visitation">Value
             visitation</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.value_visitation_fwd_hpp" title="Header &lt;boost/log/attributes/value_visitation_fwd.hpp&gt;">boost/log/attributes/value_visitation_fwd.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.value_visitation_hpp" title="Header &lt;boost/log/attributes/value_visitation.hpp&gt;">boost/log/attributes/value_visitation.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.value__visitation__fwd_8hpp" title="Header &lt;boost/log/attributes/value_visitation_fwd.hpp&gt;">boost/log/attributes/value_visitation_fwd.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.value__visitation_8hpp" title="Header &lt;boost/log/attributes/value_visitation.hpp&gt;">boost/log/attributes/value_visitation.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               Attribute value visitation implements the visitor design pattern, hence
@@ -875,7 +893,7 @@
               matches the expectation.
             </p>
 <p>
-              In order to apply the visitor, one should call the <code class="computeroutput"><a class="link" href="../../boost/log/visit_idm26735.html" title="Function template visit">visit</a></code> function on
+              In order to apply the visitor, one should call the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__visitation_8hpp_1ae00600203d3abcc6ddba8735e420c3f0.html" title="Function template visit">visit</a></code> function on
               the attribute value. Let's see an example:
             </p>
 <p>
@@ -922,7 +940,7 @@
               value to have either <code class="computeroutput"><span class="keyword">int</span></code>
               or <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> stored type; only in this
               case the visitor will be invoked and the visitation result will be
-              positive. In case of failure the <code class="computeroutput"><a class="link" href="../../boost/log/visitation_result.html" title="Class visitation_result">visitation_result</a></code>
+              positive. In case of failure the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1visitation__result.html" title="Class visitation_result">visitation_result</a></code>
               class provides additional information on the failure reason. The class
               has the method named <code class="computeroutput"><span class="identifier">code</span></code>
               which returns visitation error code. The following error codes are
@@ -948,10 +966,10 @@
 </ul></div>
 <p>
               By default the visitor function result is ignored but it is possible
-              to obtain it. To do this one should use a special <code class="computeroutput"><a class="link" href="../../boost/log/save_result.html" title="Function template save_result">save_result</a></code> wrapper
+              to obtain it. To do this one should use a special <code class="computeroutput"><a class="link" href="../../doxygen/utilities/save__result_8hpp_1ac15572ffdf47842429b8b5833e61f712.html" title="Function template save_result">save_result</a></code> wrapper
               for the visitor; the wrapper will save the visitor resulting value
               into an external variable captured by reference. The visitor result
-              is initialized when the returned <code class="computeroutput"><a class="link" href="../../boost/log/visitation_result.html" title="Class visitation_result">visitation_result</a></code>
+              is initialized when the returned <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1visitation__result.html" title="Class visitation_result">visitation_result</a></code>
               is positive. See the following example where we compute the hash value
               on the stored value.
             </p>
@@ -1010,11 +1028,11 @@
 </tr>
 <tr><td align="left" valign="top"><p>
                 When there is no default state for the visitor result it is convenient
-                to use <a href="http://www.boost.org/doc/libs/release/libs/optional/index.html" target="_top">Boost.Optional</a>
+                to use <a href="https://www.boost.org/doc/libs/release/libs/optional/doc/html/index.html" target="_top">Boost.Optional</a>
                 to wrap the returned value. The <code class="computeroutput"><span class="identifier">optional</span></code>
                 will be initialized with the visitor result if visitation succeeded.
                 In case if visitor is polymorphic (i.e. it has different result types
-                depending on its argument type) <a href="http://www.boost.org/doc/libs/release/doc/html/variant.html" target="_top">Boost.Variant</a>
+                depending on its argument type) <a href="https://www.boost.org/doc/libs/release/doc/html/variant.html" target="_top">Boost.Variant</a>
                 can be used to receive the resulting value. It is also worthwhile
                 to use an empty type, such as <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">blank</span></code>,
                 to indicate the uninitialized state of the <code class="computeroutput"><span class="identifier">variant</span></code>.
@@ -1023,7 +1041,7 @@
 <p>
               As it has been mentioned, visitation can also be applied to log records
               and attribute value sets. The syntax is the same, except that the attribute
-              name also has to be specified. The <code class="computeroutput"><a class="link" href="../../boost/log/visit_idm26735.html" title="Function template visit">visit</a></code> algorithm will
+              name also has to be specified. The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__visitation_8hpp_1ae00600203d3abcc6ddba8735e420c3f0.html" title="Function template visit">visit</a></code> algorithm will
               try to find the attribute value by name and then apply the visitor
               to the found element.
             </p>
@@ -1048,7 +1066,7 @@
 <p>
             </p>
 <p>
-              Also, for convenience <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
+              Also, for convenience <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
               has the method named <code class="computeroutput"><span class="identifier">visit</span></code>
               with the same meaning as the free function applied to the attribute
               value.
@@ -1059,8 +1077,8 @@
 <a name="log.detailed.attributes.related_components.value_processing.extraction"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.value_processing.extraction" title="Value extraction">Value
             extraction</a>
 </h6></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.value_extraction_fwd_hpp" title="Header &lt;boost/log/attributes/value_extraction_fwd.hpp&gt;">boost/log/attributes/value_extraction_fwd.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.value_extraction_hpp" title="Header &lt;boost/log/attributes/value_extraction.hpp&gt;">boost/log/attributes/value_extraction.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.value__extraction__fwd_8hpp" title="Header &lt;boost/log/attributes/value_extraction_fwd.hpp&gt;">boost/log/attributes/value_extraction_fwd.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.value__extraction_8hpp" title="Header &lt;boost/log/attributes/value_extraction.hpp&gt;">boost/log/attributes/value_extraction.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
               Attribute value extraction API allows to acquire a reference to the
@@ -1090,7 +1108,7 @@
             </p>
 <p>
               In this example we expect the attribute value to have the stored type
-              <code class="computeroutput"><span class="keyword">int</span></code>. The <code class="computeroutput"><a class="link" href="../../boost/log/extract_idm26040.html" title="Function template extract">extract</a></code>
+              <code class="computeroutput"><span class="keyword">int</span></code>. The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1a6c4825f16d1bb13ea6369f996fd77dc6.html" title="Function template extract">extract</a></code>
               function attempts to extract a reference to the stored value and returns
               the filled <a class="link" href="utilities.html#log.detailed.utilities.value_ref" title="Value reference wrapper"><code class="computeroutput"><span class="identifier">value_ref</span></code></a> object if succeeded.
             </p>
@@ -1210,9 +1228,9 @@
 <p>
             </p>
 <p>
-              In addition the library provides two special variants of the <code class="computeroutput"><a class="link" href="../../boost/log/extract_idm26040.html" title="Function template extract">extract</a></code>
-              function: <code class="computeroutput"><a class="link" href="../../boost/log/extract_or_throw_idm26125.html" title="Function template extract_or_throw">extract_or_throw</a></code> and
-              <code class="computeroutput"><a class="link" href="../../boost/log/extract_or_defaul_idm26222.html" title="Function template extract_or_default">extract_or_default</a></code>.
+              In addition the library provides two special variants of the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1a6c4825f16d1bb13ea6369f996fd77dc6.html" title="Function template extract">extract</a></code>
+              function: <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1a81b929d63a6313f734e4d56e39e18943.html" title="Function template extract_or_throw">extract_or_throw</a></code> and
+              <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1acb9aad8dd6f3803bbcd2f115b41c245d.html" title="Function template extract_or_default">extract_or_default</a></code>.
               As the naming implies, the functions provide different behavior in
               case if the attribute value cannot be extracted. The former one throws
               an exception if the value cannot be extracted and the latter one returns
@@ -1224,18 +1242,18 @@
 <th align="left">Warning</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-                Care must be taken with the <code class="computeroutput"><a class="link" href="../../boost/log/extract_or_defaul_idm26222.html" title="Function template extract_or_default">extract_or_default</a></code>
+                Care must be taken with the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1acb9aad8dd6f3803bbcd2f115b41c245d.html" title="Function template extract_or_default">extract_or_default</a></code>
                 function. The function accepts the default value is accepted by constant
-                reference, and this reference can eventually be returned from <code class="computeroutput"><a class="link" href="../../boost/log/extract_or_defaul_idm26222.html" title="Function template extract_or_default">extract_or_default</a></code>.
+                reference, and this reference can eventually be returned from <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1acb9aad8dd6f3803bbcd2f115b41c245d.html" title="Function template extract_or_default">extract_or_default</a></code>.
                 If a temporary object as used for the default value, user must ensure
-                that the result of <code class="computeroutput"><a class="link" href="../../boost/log/extract_or_defaul_idm26222.html" title="Function template extract_or_default">extract_or_default</a></code>
+                that the result of <code class="computeroutput"><a class="link" href="../../doxygen/attributes/value__extraction_8hpp_1acb9aad8dd6f3803bbcd2f115b41c245d.html" title="Function template extract_or_default">extract_or_default</a></code>
                 is saved by value and not by reference. Otherwise the saved reference
                 may become dangling when the temporary is destroyed.
               </p></td></tr>
 </table></div>
 <p>
               Similarly to <code class="computeroutput"><span class="identifier">visit</span></code>,
-              the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
+              the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
               class has methods named <code class="computeroutput"><span class="identifier">extract</span></code>,
               <code class="computeroutput"><span class="identifier">extract_or_throw</span></code> and
               <code class="computeroutput"><span class="identifier">extract_or_default</span></code>
@@ -1249,7 +1267,7 @@
 <a name="log.detailed.attributes.related_components.scoped_attributes"></a><a class="link" href="attributes.html#log.detailed.attributes.related_components.scoped_attributes" title="Scoped attributes">Scoped
           attributes</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.scoped_attribute_hpp" title="Header &lt;boost/log/attributes/scoped_attribute.hpp&gt;">boost/log/attributes/scoped_attribute.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.scoped__attribute_8hpp" title="Header &lt;boost/log/attributes/scoped_attribute.hpp&gt;">boost/log/attributes/scoped_attribute.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Scoped attributes are a powerful mechanism of tagging log records that
@@ -1257,8 +1275,8 @@
             are registered in the beginning of a scope and unregistered on the end
             of the scope. The mechanism includes the following macros:
           </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25945.html" title="Macro BOOST_LOG_SCOPED_LOGGER_ATTR">BOOST_LOG_SCOPED_LOGGER_ATTR</a></code><span class="special">(</span><span class="identifier">logger</span><span class="special">,</span> <span class="identifier">attr_name</span><span class="special">,</span> <span class="identifier">attr</span><span class="special">);</span>
-<code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25955.html" title="Macro BOOST_LOG_SCOPED_THREAD_ATTR">BOOST_LOG_SCOPED_THREAD_ATTR</a></code><span class="special">(</span><span class="identifier">attr_name</span><span class="special">,</span> <span class="identifier">attr</span><span class="special">);</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1a7ba1cb12c619cb4c1953ee9a4db25fb3.html" title="Macro BOOST_LOG_SCOPED_LOGGER_ATTR">BOOST_LOG_SCOPED_LOGGER_ATTR</a></code><span class="special">(</span><span class="identifier">logger</span><span class="special">,</span> <span class="identifier">attr_name</span><span class="special">,</span> <span class="identifier">attr</span><span class="special">);</span>
+<code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1aeb1515c5d3a0b4a25e249e187d52ade6.html" title="Macro BOOST_LOG_SCOPED_THREAD_ATTR">BOOST_LOG_SCOPED_THREAD_ATTR</a></code><span class="special">(</span><span class="identifier">attr_name</span><span class="special">,</span> <span class="identifier">attr</span><span class="special">);</span>
 </pre>
 <p>
             The first macro registers a source-specific attribute in the <code class="computeroutput"><span class="identifier">logger</span></code> logger object. The attribute
@@ -1339,12 +1357,12 @@
             value in order to be able to filter the records later. The library provides
             two convenience macros just for this purpose:
           </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25950.html" title="Macro BOOST_LOG_SCOPED_LOGGER_TAG">BOOST_LOG_SCOPED_LOGGER_TAG</a></code><span class="special">(</span><span class="identifier">logger</span><span class="special">,</span> <span class="identifier">tag_name</span><span class="special">,</span> <span class="identifier">tag_value</span><span class="special">);</span>
-<code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25959.html" title="Macro BOOST_LOG_SCOPED_THREAD_TAG">BOOST_LOG_SCOPED_THREAD_TAG</a></code><span class="special">(</span><span class="identifier">tag_name</span><span class="special">,</span> <span class="identifier">tag_value</span><span class="special">);</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1af24eb7d3a843b8a3641d0d1e33e46665.html" title="Macro BOOST_LOG_SCOPED_LOGGER_TAG">BOOST_LOG_SCOPED_LOGGER_TAG</a></code><span class="special">(</span><span class="identifier">logger</span><span class="special">,</span> <span class="identifier">tag_name</span><span class="special">,</span> <span class="identifier">tag_value</span><span class="special">);</span>
+<code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1a273dcdec1088b77401736a24eacda764.html" title="Macro BOOST_LOG_SCOPED_THREAD_TAG">BOOST_LOG_SCOPED_THREAD_TAG</a></code><span class="special">(</span><span class="identifier">tag_name</span><span class="special">,</span> <span class="identifier">tag_value</span><span class="special">);</span>
 </pre>
 <p>
-            The macros are effectively wrappers around <code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25945.html" title="Macro BOOST_LOG_SCOPED_LOGGER_ATTR">BOOST_LOG_SCOPED_LOGGER_ATTR</a></code>
-            and <code class="computeroutput"><a class="link" href="../../BOOST_LOG_SCOPED__idm25955.html" title="Macro BOOST_LOG_SCOPED_THREAD_ATTR">BOOST_LOG_SCOPED_THREAD_ATTR</a></code>,
+            The macros are effectively wrappers around <code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1a7ba1cb12c619cb4c1953ee9a4db25fb3.html" title="Macro BOOST_LOG_SCOPED_LOGGER_ATTR">BOOST_LOG_SCOPED_LOGGER_ATTR</a></code>
+            and <code class="computeroutput"><a class="link" href="../../doxygen/attributes/scoped__attribute_8hpp_1aeb1515c5d3a0b4a25e249e187d52ade6.html" title="Macro BOOST_LOG_SCOPED_THREAD_ATTR">BOOST_LOG_SCOPED_THREAD_ATTR</a></code>,
             respectively. For example, the "Tag" scoped attribute from
             the example above can be registered like this:
           </p>
@@ -1403,7 +1421,7 @@
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

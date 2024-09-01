@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.Log v2">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.Log v2">
-<link rel="prev" href="../boost/log/current_scope.html" title="Function current_scope">
+<link rel="prev" href="../doxygen/other_libraries_support_layer/exception_8hpp_1a1ede20832f36da098e33624cc79aee92.html" title="Function current_scope">
 <link rel="next" href="todo.html" title="TODO in future releases">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,7 +14,7 @@
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../boost/log/current_scope.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="todo.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../doxygen/other_libraries_support_layer/exception_8hpp_1a1ede20832f36da098e33624cc79aee92.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="todo.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -22,6 +22,45 @@
 </h2></div></div></div>
 <h4>
 <a name="log.changelog.h0"></a>
+      <span class="phrase"><a name="log.changelog.2_29__boost_1_86"></a></span><a class="link" href="changelog.html#log.changelog.2_29__boost_1_86">2.29,
+      Boost 1.86</a>
+    </h4>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+          Added a workaround for <code class="computeroutput"><span class="identifier">windres</span><span class="special">.</span><span class="identifier">exe</span></code>
+          issue, when it is used in CMake to compile event log resource files on
+          MinGW-w64. (<a href="https://github.com/boostorg/log/pull/231" target="_top">PR#231</a>)
+        </li></ul></div>
+<h4>
+<a name="log.changelog.h1"></a>
+      <span class="phrase"><a name="log.changelog.2_28__boost_1_84"></a></span><a class="link" href="changelog.html#log.changelog.2_28__boost_1_84">2.28,
+      Boost 1.84</a>
+    </h4>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          C++03 is no longer supported. A C++11 or later compiler is required.
+        </li>
+<li class="listitem">
+          When built with C++11 compilers that are conforming enough for Boost.Regex
+          v5 to be used, Boost.Log no longer links with Boost.Regex prebuilt library,
+          since Boost.Regex v5 is header-only.
+        </li>
+<li class="listitem">
+          Support for Windows versions older than Windows 10 is deprecated and will
+          be removed in Boost 1.87.
+        </li>
+</ul></div>
+<h4>
+<a name="log.changelog.h2"></a>
+      <span class="phrase"><a name="log.changelog.2_27__boost_1_83"></a></span><a class="link" href="changelog.html#log.changelog.2_27__boost_1_83">2.27,
+      Boost 1.83</a>
+    </h4>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+          Fixed a possible infinite loop in <a class="link" href="detailed/sink_backends.html#log.detailed.sink_backends.text_file" title="Text file backend"><code class="computeroutput"><span class="identifier">text_file_backend</span></code></a>, when the size
+          of a formatted log record exceeds the <code class="computeroutput"><span class="identifier">rotation_size</span></code>
+          limit. (<a href="https://github.com/boostorg/log/issues/209" target="_top">GH#209</a>)
+        </li></ul></div>
+<h4>
+<a name="log.changelog.h3"></a>
       <span class="phrase"><a name="log.changelog.2_26__boost_1_82"></a></span><a class="link" href="changelog.html#log.changelog.2_26__boost_1_82">2.26,
       Boost 1.82</a>
     </h4>
@@ -30,7 +69,7 @@
           is deprecated. C++11 will become the minimum starting with Boost.Log 1.84.
         </li></ul></div>
 <h4>
-<a name="log.changelog.h1"></a>
+<a name="log.changelog.h4"></a>
       <span class="phrase"><a name="log.changelog.2_25__boost_1_80"></a></span><a class="link" href="changelog.html#log.changelog.2_25__boost_1_80">2.25,
       Boost 1.80</a>
     </h4>
@@ -50,7 +89,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h2"></a>
+<a name="log.changelog.h5"></a>
       <span class="phrase"><a name="log.changelog.2_24__boost_1_79"></a></span><a class="link" href="changelog.html#log.changelog.2_24__boost_1_79">2.24,
       Boost 1.79</a>
     </h4>
@@ -70,7 +109,7 @@
           the last written one.
         </li>
 <li class="listitem">
-          <span class="bold"><strong>Breaking change:</strong></span> The <code class="computeroutput"><a class="link" href="../boost/log/sinks/file/collector.html" title="Struct collector">collector</a></code>
+          <span class="bold"><strong>Breaking change:</strong></span> The <code class="computeroutput"><a class="link" href="../doxygen/sinks/structboost_1_1log_1_1sinks_1_1file_1_1collector.html" title="Struct collector">collector</a></code>
           interface has changed:
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
 <li class="listitem">
@@ -98,7 +137,7 @@
           and the second and the following calls don't find any new files. (<a href="https://github.com/boostorg/log/issues/179" target="_top">GH#179</a>)
         </li></ul></div>
 <h4>
-<a name="log.changelog.h3"></a>
+<a name="log.changelog.h6"></a>
       <span class="phrase"><a name="log.changelog.2_23__boost_1_78"></a></span><a class="link" href="changelog.html#log.changelog.2_23__boost_1_78">2.23,
       Boost 1.78</a>
     </h4>
@@ -154,7 +193,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h4"></a>
+<a name="log.changelog.h7"></a>
       <span class="phrase"><a name="log.changelog.2_22__boost_1_77"></a></span><a class="link" href="changelog.html#log.changelog.2_22__boost_1_77">2.22,
       Boost 1.77</a>
     </h4>
@@ -172,7 +211,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h5"></a>
+<a name="log.changelog.h8"></a>
       <span class="phrase"><a name="log.changelog.2_21__boost_1_76"></a></span><a class="link" href="changelog.html#log.changelog.2_21__boost_1_76">2.21,
       Boost 1.76</a>
     </h4>
@@ -183,7 +222,7 @@
 <li class="listitem">
           Corrected a formal race condition in the thread-safe log record queue implementation
           used in the <code class="computeroutput"><span class="identifier">unbounded_fifo_queue</span></code>
-          policy of the <code class="computeroutput"><a class="link" href="../boost/log/sinks/asynchronous_sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
+          policy of the <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1asynchronous__sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
           frontend. The race could be detected by TSAN, but it was not a real problem
           on most current CPU architectures and compilers. (<a href="https://github.com/boostorg/log/issues/139" target="_top">GH#139</a>)
         </li>
@@ -208,7 +247,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h6"></a>
+<a name="log.changelog.h9"></a>
       <span class="phrase"><a name="log.changelog.2_20__boost_1_75"></a></span><a class="link" href="changelog.html#log.changelog.2_20__boost_1_75">2.20,
       Boost 1.75</a>
     </h4>
@@ -229,7 +268,7 @@
           uses of <code class="computeroutput"><span class="keyword">volatile</span></code>. (<a href="https://github.com/boostorg/log/issues/128" target="_top">GH#128</a>)
         </li>
 <li class="listitem">
-          In the <code class="computeroutput"><a class="link" href="../boost/log/sinks/asynchronous_sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
+          In the <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1asynchronous__sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
           frontend, resolved a possible conflict between <code class="computeroutput"><span class="identifier">flush</span></code>
           and <code class="computeroutput"><span class="identifier">run</span></code> methods, if <code class="computeroutput"><span class="identifier">run</span></code> is called from a user's thread instead
           of the internal dedicated thread spawned by the frontend. <code class="computeroutput"><span class="identifier">run</span></code> and <code class="computeroutput"><span class="identifier">feed_records</span></code>
@@ -240,7 +279,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h7"></a>
+<a name="log.changelog.h10"></a>
       <span class="phrase"><a name="log.changelog.2_19__boost_1_74"></a></span><a class="link" href="changelog.html#log.changelog.2_19__boost_1_74">2.19,
       Boost 1.74</a>
     </h4>
@@ -280,7 +319,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h8"></a>
+<a name="log.changelog.h11"></a>
       <span class="phrase"><a name="log.changelog.2_18__boost_1_73"></a></span><a class="link" href="changelog.html#log.changelog.2_18__boost_1_73">2.18,
       Boost 1.73</a>
     </h4>
@@ -328,7 +367,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h9"></a>
+<a name="log.changelog.h12"></a>
       <span class="phrase"><a name="log.changelog.2_17__boost_1_71"></a></span><a class="link" href="changelog.html#log.changelog.2_17__boost_1_71">2.17,
       Boost 1.71</a>
     </h4>
@@ -338,7 +377,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
           Improved support for C++17 <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span></code>
-          in <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
+          in <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
           The string view can now participate in character code conversion on output.
         </li>
 <li class="listitem">
@@ -353,7 +392,7 @@
           <a class="link" href="detailed/sink_backends.html#log.detailed.sink_backends.text_multifile" title="Text multi-file backend">text multi-file</a>
           sink backends added support for configuring behavior with regard to appending
           a trailing newline to every formatted log record. The user can specify
-          a value of the <code class="computeroutput"><a class="link" href="../sinks.html#boost.log.sinks.auto_newline_mode">auto_newline_mode</a></code> enum either
+          a value of the <code class="computeroutput"><a class="link" href="../sinks.html#doxygen.sinks.auto__newline__mode_8hpp_1a32ab4e8646a4496f00cc981ffe0ad67a">auto_newline_mode</a></code> enum either
           in the <code class="computeroutput"><span class="identifier">auto_newline_mode</span></code>
           named parameter of the backend constructor or by calling the <code class="computeroutput"><span class="identifier">set_auto_newline_mode</span></code> method on the backend
           post-construction. The <code class="computeroutput"><span class="identifier">auto_newline_mode</span></code>
@@ -387,7 +426,7 @@
         </li>
 <li class="listitem">
           Added support for passing arbitrary function objects (as opposed to only
-          <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+          <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
           function objects, which were supported before) in the <code class="computeroutput"><span class="identifier">filter</span></code>
           and <code class="computeroutput"><span class="identifier">format</span></code> named parameters
           to sink constructors and <a class="link" href="detailed/utilities.html#log.detailed.utilities.setup.convenience" title="Convenience functions">convenience
@@ -397,7 +436,7 @@
 <li class="listitem">
           In the default filter and formatter factories used in <a class="link" href="detailed/utilities.html#log.detailed.utilities.setup.filter_formatter" title="Filter and formatter parsers">filter
           and formatter parsers</a>, added support for severity level attribute
-          values of type <code class="computeroutput"><a class="link" href="reference.html#boost.log.trivial.severity_level">boost::log::trivial::severity_level</a></code>. For filters,
+          values of type <code class="computeroutput"><a class="link" href="reference.html#doxygen.top_level_headers.trivial_8hpp_1a44fe714b53f91f01aab7d314d83d723d">boost::log::trivial::severity_level</a></code>. For filters,
           the support is limited to attributes with "Severity" name. This
           relieves the user from having to register filter and formatter factories
           in order to use <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">log</span><span class="special">::</span><span class="identifier">trivial</span><span class="special">::</span><span class="identifier">severity_level</span></code> with filters and formatters
@@ -420,8 +459,8 @@
           to free target storage. (<a href="https://github.com/boostorg/log/issues/78" target="_top">GH#78</a>)
         </li>
 <li class="listitem">
-          Updated <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
-          and <code class="computeroutput"><a class="link" href="../boost/log/basic_record_ostream.html" title="Class template basic_record_ostream">basic_record_ostream</a></code>
+          Updated <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/logging_sources/classboost_1_1log_1_1basic__record__ostream.html" title="Class template basic_record_ostream">basic_record_ostream</a></code>
           to make it possible to overload stream output operators for pointers to
           user-defined types. User-defined <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> overloads taking <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_ostream</span></code> and a pointer argument
           should now be picked up by the compiler when the pointer is being written
@@ -429,7 +468,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h10"></a>
+<a name="log.changelog.h13"></a>
       <span class="phrase"><a name="log.changelog.2_16__boost_1_70"></a></span><a class="link" href="changelog.html#log.changelog.2_16__boost_1_70">2.16,
       Boost 1.70</a>
     </h4>
@@ -453,7 +492,7 @@
           so that different rotated files don't conflict in the target storage.
         </li></ul></div>
 <h4>
-<a name="log.changelog.h11"></a>
+<a name="log.changelog.h14"></a>
       <span class="phrase"><a name="log.changelog.2_15__boost_1_69"></a></span><a class="link" href="changelog.html#log.changelog.2_15__boost_1_69">2.15,
       Boost 1.69</a>
     </h4>
@@ -461,7 +500,7 @@
       <span class="bold"><strong>General changes:</strong></span>
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          Updated syslog sink backend to avoid using deprecated <a href="http://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
+          Updated syslog sink backend to avoid using deprecated <a href="https://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>
           interfaces. (<a href="https://github.com/boostorg/log/issues/59" target="_top">GH#59</a>)
         </li></ul></div>
 <p>
@@ -479,7 +518,7 @@
           to write log files into directories different from the target storage directory.
         </li></ul></div>
 <h4>
-<a name="log.changelog.h12"></a>
+<a name="log.changelog.h15"></a>
       <span class="phrase"><a name="log.changelog.2_14__boost_1_68"></a></span><a class="link" href="changelog.html#log.changelog.2_14__boost_1_68">2.14,
       Boost 1.68</a>
     </h4>
@@ -490,7 +529,7 @@
           Improved support for VxWorks. (<a href="https://github.com/boostorg/log/pull/39" target="_top">PR#39</a>)
         </li></ul></div>
 <h4>
-<a name="log.changelog.h13"></a>
+<a name="log.changelog.h16"></a>
       <span class="phrase"><a name="log.changelog.2_13__boost_1_67"></a></span><a class="link" href="changelog.html#log.changelog.2_13__boost_1_67">2.13,
       Boost 1.67</a>
     </h4>
@@ -510,7 +549,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h14"></a>
+<a name="log.changelog.h17"></a>
       <span class="phrase"><a name="log.changelog.2_12__boost_1_66"></a></span><a class="link" href="changelog.html#log.changelog.2_12__boost_1_66">2.12,
       Boost 1.66</a>
     </h4>
@@ -524,7 +563,7 @@
           named log files in the target directory after the user's application restart.
         </li></ul></div>
 <h4>
-<a name="log.changelog.h15"></a>
+<a name="log.changelog.h18"></a>
       <span class="phrase"><a name="log.changelog.2_11__boost_1_65"></a></span><a class="link" href="changelog.html#log.changelog.2_11__boost_1_65">2.11,
       Boost 1.65</a>
     </h4>
@@ -537,7 +576,7 @@
           Solaris.
         </li></ul></div>
 <h4>
-<a name="log.changelog.h16"></a>
+<a name="log.changelog.h19"></a>
       <span class="phrase"><a name="log.changelog.2_10__boost_1_63"></a></span><a class="link" href="changelog.html#log.changelog.2_10__boost_1_63">2.10,
       Boost 1.63</a>
     </h4>
@@ -546,7 +585,7 @@
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
           Removed the previously deprecated <code class="computeroutput"><span class="identifier">type_info_wrapper</span></code>.
-          As previously suggested, <a href="http://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
+          As previously suggested, <a href="https://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
           is recommended as a replacement.
         </li></ul></div>
 <p>
@@ -590,7 +629,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h17"></a>
+<a name="log.changelog.h20"></a>
       <span class="phrase"><a name="log.changelog.2_9__boost_1_62"></a></span><a class="link" href="changelog.html#log.changelog.2_9__boost_1_62">2.9,
       Boost 1.62</a>
     </h4>
@@ -621,7 +660,7 @@
           log records. (<a href="https://svn.boost.org/trac/boost/ticket/12178" target="_top">#12178</a>)
         </li></ul></div>
 <h4>
-<a name="log.changelog.h18"></a>
+<a name="log.changelog.h21"></a>
       <span class="phrase"><a name="log.changelog.2_8__boost_1_61"></a></span><a class="link" href="changelog.html#log.changelog.2_8__boost_1_61">2.8,
       Boost 1.61</a>
     </h4>
@@ -659,7 +698,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h19"></a>
+<a name="log.changelog.h22"></a>
       <span class="phrase"><a name="log.changelog.2_7__boost_1_60"></a></span><a class="link" href="changelog.html#log.changelog.2_7__boost_1_60">2.7,
       Boost 1.60</a>
     </h4>
@@ -727,7 +766,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h20"></a>
+<a name="log.changelog.h23"></a>
       <span class="phrase"><a name="log.changelog.2_6__boost_1_59"></a></span><a class="link" href="changelog.html#log.changelog.2_6__boost_1_59">2.6,
       Boost 1.59</a>
     </h4>
@@ -743,7 +782,7 @@
         </li>
 <li class="listitem">
           <span class="bold"><strong>Breaking change:</strong></span> The library has been
-          ported to <a href="http://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
+          ported to <a href="https://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
           for its underlying type info management tool. This improved library compatibility
           with hidden symbol visibility mode on some compilers. This affected the
           following public interfaces:
@@ -755,7 +794,7 @@
                 identified by <code class="computeroutput"><span class="identifier">type_info_wrapper</span></code>.
               </li>
 <li class="listitem">
-                <a href="http://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>
+                <a href="https://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html" target="_top">Boost.Exception</a>
                 <code class="computeroutput"><span class="identifier">type_info_info</span></code> error
                 information now contains <code class="computeroutput"><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_index</span></code>
                 instead of <code class="computeroutput"><span class="identifier">type_info_wrapper</span></code>.
@@ -777,7 +816,7 @@
         </li>
 <li class="listitem">
           <code class="computeroutput"><span class="identifier">type_info_wrapper</span></code> component
-          has been deprecated and will be removed in future releases. <a href="http://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
+          has been deprecated and will be removed in future releases. <a href="https://www.boost.org/doc/libs/release/doc/html/boost_typeindex.html" target="_top">Boost.TypeIndex</a>
           is recommended as a replacement.
         </li>
 <li class="listitem">
@@ -789,7 +828,7 @@
         </li>
 <li class="listitem">
           Improved internal implementation of the event synchronization primitive
-          used for asynchronous logging. The updated implementation relies on <a href="http://www.boost.org/doc/libs/release/doc/html/atomic.html" target="_top">Boost.Atomic</a>
+          used for asynchronous logging. The updated implementation relies on <a href="https://www.boost.org/doc/libs/release/libs/atomic/doc/html/index.html" target="_top">Boost.Atomic</a>
           for atomic operations which provides better portability. On Linux the implementation
           uses futexes directly. (<a href="https://svn.boost.org/trac/boost/ticket/11398" target="_top">#11398</a>)
         </li>
@@ -816,7 +855,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h21"></a>
+<a name="log.changelog.h24"></a>
       <span class="phrase"><a name="log.changelog.2_5__boost_1_58"></a></span><a class="link" href="changelog.html#log.changelog.2_5__boost_1_58">2.5,
       Boost 1.58</a>
     </h4>
@@ -852,7 +891,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h22"></a>
+<a name="log.changelog.h25"></a>
       <span class="phrase"><a name="log.changelog.2_4__boost_1_57"></a></span><a class="link" href="changelog.html#log.changelog.2_4__boost_1_57">2.4,
       Boost 1.57</a>
     </h4>
@@ -876,7 +915,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h23"></a>
+<a name="log.changelog.h26"></a>
       <span class="phrase"><a name="log.changelog.2_3__boost_1_56"></a></span><a class="link" href="changelog.html#log.changelog.2_3__boost_1_56">2.3,
       Boost 1.56</a>
     </h4>
@@ -888,15 +927,15 @@
           For Windows targets, the library now compiles for Windows XP by default.
         </li>
 <li class="listitem">
-          Added indexing operators with <code class="computeroutput"><a class="link" href="../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>
-          arguments to <code class="computeroutput"><a class="link" href="../boost/log/record.html" title="Class record">record</a></code> and
-          <code class="computeroutput"><a class="link" href="../boost/log/record_view.html" title="Class record_view">record_view</a></code>. The operators
-          behave the same way as the similar operators of <code class="computeroutput"><a class="link" href="../boost/log/attribute_value_set.html" title="Class attribute_value_set">attribute_value_set</a></code>
-          (i.e. return an <code class="computeroutput"><a class="link" href="../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
+          Added indexing operators with <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>
+          arguments to <code class="computeroutput"><a class="link" href="../doxygen/core_components/classboost_1_1log_1_1record.html" title="Class record">record</a></code> and
+          <code class="computeroutput"><a class="link" href="../doxygen/core_components/classboost_1_1log_1_1record__view.html" title="Class record_view">record_view</a></code>. The operators
+          behave the same way as the similar operators of <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute__value__set.html" title="Class attribute_value_set">attribute_value_set</a></code>
+          (i.e. return an <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
           identified by the name).
         </li>
 <li class="listitem">
-          Added operators for non-const object output to <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
+          Added operators for non-const object output to <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
           (<a href="https://svn.boost.org/trac/boost/ticket/9389" target="_top">#9389</a>)
         </li>
 <li class="listitem">
@@ -923,10 +962,10 @@
           matching filters</a>.
         </li>
 <li class="listitem">
-          By default Boost.Log uses <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
-          internally as the regular expressions backend. <a href="http://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
+          By default Boost.Log uses <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
+          internally as the regular expressions backend. <a href="https://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
           was used in previous releases. This backend is used to implement string
-          matching filters parsed from strings or settings. Using <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
+          matching filters parsed from strings or settings. Using <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
           by default results in smaller executables and also better runtime performance.
         </li>
 <li class="listitem">
@@ -959,7 +998,7 @@
         </li>
 <li class="listitem">
           Fixed a possible infinite block of the logging threads in the asynchronous
-          sink enqueue methods when <code class="computeroutput"><a class="link" href="../boost/log/sinks/block_on_overflow.html" title="Class block_on_overflow">block_on_overflow</a></code>
+          sink enqueue methods when <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1block__on__overflow.html" title="Class block_on_overflow">block_on_overflow</a></code>
           strategy was used.
         </li>
 <li class="listitem">
@@ -971,7 +1010,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h24"></a>
+<a name="log.changelog.h27"></a>
       <span class="phrase"><a name="log.changelog.2_2__boost_1_55"></a></span><a class="link" href="changelog.html#log.changelog.2_2__boost_1_55">2.2,
       Boost 1.55</a>
     </h4>
@@ -992,17 +1031,17 @@
         </li>
 <li class="listitem">
           The header <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">log</span><span class="special">/</span><span class="identifier">utility</span><span class="special">/</span><span class="identifier">intrusive_ref_counter</span><span class="special">.</span><span class="identifier">hpp</span></code> is deprecated and will be removed
-          in future releases. Its contents have been reworked and moved to <a href="http://www.boost.org/doc/libs/release/libs/smart_ptr/smart_ptr.htm" target="_top">Boost.SmartPtr</a>,
+          in future releases. Its contents have been reworked and moved to <a href="https://www.boost.org/doc/libs/release/libs/smart_ptr/doc/html/smart_ptr.html" target="_top">Boost.SmartPtr</a>,
           as <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">intrusive_ref_counter</span><span class="special">.</span><span class="identifier">hpp</span></code>.
         </li>
 <li class="listitem">
           The header <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">log</span><span class="special">/</span><span class="identifier">utility</span><span class="special">/</span><span class="identifier">explicit_operator_bool</span><span class="special">.</span><span class="identifier">hpp</span></code> is deprecated and will be removed
-          in future releases. Its contents have been moved to <a href="http://www.boost.org/doc/libs/release/libs/utility/utility.htm" target="_top">Boost.Utility</a>,
+          in future releases. Its contents have been moved to <a href="https://www.boost.org/doc/libs/release/libs/utility/doc/html/index.html" target="_top">Boost.Utility</a>,
           as <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">utility</span><span class="special">/</span><span class="identifier">explicit_operator_bool</span><span class="special">.</span><span class="identifier">hpp</span></code>.
         </li>
 <li class="listitem">
           The header <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">log</span><span class="special">/</span><span class="identifier">utility</span><span class="special">/</span><span class="identifier">empty_deleter</span><span class="special">.</span><span class="identifier">hpp</span></code> is deprecated and will be removed
-          in future releases. Its contents have been moved to <a href="http://www.boost.org/doc/libs/release/libs/utility/utility.htm" target="_top">Boost.Utility</a>,
+          in future releases. Its contents have been moved to <a href="https://www.boost.org/doc/libs/release/libs/utility/doc/html/index.html" target="_top">Boost.Utility</a>,
           as <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">utility</span><span class="special">/</span><span class="identifier">empty_deleter</span><span class="special">.</span><span class="identifier">hpp</span></code>.
         </li>
 </ul></div>
@@ -1034,7 +1073,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h25"></a>
+<a name="log.changelog.h28"></a>
       <span class="phrase"><a name="log.changelog.2_1__boost_1_54"></a></span><a class="link" href="changelog.html#log.changelog.2_1__boost_1_54">2.1,
       Boost 1.54</a>
     </h4>
@@ -1042,16 +1081,16 @@
       <span class="bold"><strong>Breaking changes:</strong></span>
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
           no longer derives from <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_ostream</span></code>,
           but rather reimplements its and its base classes interface closely. This
-          solves problems with overloading <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> for <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          solves problems with overloading <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> for <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
           and user-defined types. This will break user's code if it relied on the
-          inheritance from the standard stream types (such as passing <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          inheritance from the standard stream types (such as passing <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
           object as an argument to a function receiving <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_ostream</span></code>).
           Please, use the <code class="computeroutput"><span class="identifier">stream</span><span class="special">()</span></code> member function to access the standard
           stream. This change will <span class="bold"><strong>not</strong></span> break the
-          code that outputs user-defined types to a <code class="computeroutput"><a class="link" href="../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          code that outputs user-defined types to a <code class="computeroutput"><a class="link" href="../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
           stream while there are only <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> overloads for the standard stream
           types - the code will compile and use the standard operator overloads,
           as before.
@@ -1061,7 +1100,7 @@
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-          Removed the use of deprecated macros of <a href="http://www.boost.org/doc/libs/release/libs/config/doc/html/index.html" target="_top">Boost.Config</a>.
+          Removed the use of deprecated macros of <a href="https://www.boost.org/doc/libs/release/libs/config/doc/html/index.html" target="_top">Boost.Config</a>.
         </li>
 <li class="listitem">
           Build system improved. On Windows, presence of Message Compiler is now
@@ -1081,7 +1120,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h26"></a>
+<a name="log.changelog.h29"></a>
       <span class="phrase"><a name="log.changelog.2_0__13_april_2013"></a></span><a class="link" href="changelog.html#log.changelog.2_0__13_april_2013">2.0,
       13 April 2013</a>
     </h4>
@@ -1090,7 +1129,7 @@
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-          The library is now compatible with Boost 1.53 or newer. <a href="http://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
+          The library is now compatible with Boost 1.53 or newer. <a href="https://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
           v2 no longer supported.
         </li>
 <li class="listitem">
@@ -1098,7 +1137,7 @@
           character types. A lot of other library components also became character
           type agnostic. The application can now use loggers of different character
           types with the common logging core. The library performs character code
-          conversion as needed. <a href="http://www.boost.org/doc/libs/release/libs/locale/doc/html/index.html" target="_top">Boost.Locale</a>
+          conversion as needed. <a href="https://www.boost.org/doc/libs/release/libs/locale/doc/html/index.html" target="_top">Boost.Locale</a>
           can be used to construct locale objects for proper encoding conversion.
         </li>
 <li class="listitem">
@@ -1117,10 +1156,10 @@
           sink backends.
         </li>
 <li class="listitem">
-          The library now uses <a href="http://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
-          instead of <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
+          The library now uses <a href="https://www.boost.org/doc/libs/release/doc/html/xpressive.html" target="_top">Boost.Xpressive</a>
+          instead of <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
           internally which makes it unnecessary to build the latter in order to use
-          the library. <a href="http://www.boost.org/doc/libs/release/libs/regex/index.html" target="_top">Boost.Regex</a>
+          the library. <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/index.html" target="_top">Boost.Regex</a>
           is still supported on the user's side.
         </li>
 <li class="listitem">
@@ -1151,7 +1190,7 @@
           longer directly accessible from the log record interface.
         </li>
 <li class="listitem">
-          Formatters and sinks no longer operate on log records but rather on <code class="computeroutput"><a class="link" href="../boost/log/record_view.html" title="Class record_view">record_view</a></code>s. Records are now
+          Formatters and sinks no longer operate on log records but rather on <code class="computeroutput"><a class="link" href="../doxygen/core_components/classboost_1_1log_1_1record__view.html" title="Class record_view">record_view</a></code>s. Records are now
           moved from when pushed to the core for further processing. This is done
           in order to eliminate the possibility of unsafe record modification after
           pushing to the core. As a consequence, log records can no longer be copied,
@@ -1175,7 +1214,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
           Changed the interface and the way of handling attribute values. The value
-          is now a pimpl wrapper around the value holder. The <code class="computeroutput"><a class="link" href="../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
+          is now a pimpl wrapper around the value holder. The <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
           class in various components of the library is no longer pointed to with
           <code class="computeroutput"><span class="identifier">shared_ptr</span></code>s but instead
           is handled by value. This allowed to simplify attribute value handling
@@ -1183,13 +1222,13 @@
         </li>
 <li class="listitem">
           Similarly to attribute values, the interface of attributes has been reworked
-          in the pimpl fashion. All attributes now derive from the <code class="computeroutput"><a class="link" href="../boost/log/attribute.html" title="Class attribute">attribute</a></code>
+          in the pimpl fashion. All attributes now derive from the <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
           base class, which holds the reference to the implementation. All attributes
           now have to be created by value rather than wrapped into <code class="computeroutput"><span class="identifier">shared_ptr</span></code> by user, which makes the code
           more concise.
         </li>
 <li class="listitem">
-          Added support for casting attributes from the base class <code class="computeroutput"><a class="link" href="../boost/log/attribute.html" title="Class attribute">attribute</a></code>
+          Added support for casting attributes from the base class <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
           to the actual attribute type. This can be useful when the concrete attribute
           factory provides additional interfaces.
         </li>
@@ -1200,7 +1239,7 @@
         </li>
 <li class="listitem">
           The key type of attribute sets and attribute values set has been changed.
-          The new key type is called <code class="computeroutput"><a class="link" href="../boost/log/attribute_name.html" title="Class attribute_name">attribute_name</a></code>.
+          The new key type is called <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attribute__name.html" title="Class attribute_name">attribute_name</a></code>.
           It is constructible from strings, so in most cases users won't need to
           change the code. See <a class="link" href="detailed/attributes.html#log.detailed.attributes.related_components.attribute_name" title="Attribute names">here</a>
           for more information.
@@ -1226,8 +1265,8 @@
           <code class="computeroutput"><span class="identifier">attributes</span></code> directory. The
           header <code class="computeroutput"><span class="identifier">attribute_value_extractor</span><span class="special">.</span><span class="identifier">hpp</span></code>
           in <code class="computeroutput"><span class="identifier">utility</span></code> has been replaced
-          with headers <code class="computeroutput"><a class="link" href="../attributes.html#header.boost.log.attributes.value_extraction_hpp" title="Header &lt;boost/log/attributes/value_extraction.hpp&gt;">boost/log/attributes/value_extraction.hpp</a></code>
-          and <code class="computeroutput"><a class="link" href="../attributes.html#header.boost.log.attributes.value_visitation_hpp" title="Header &lt;boost/log/attributes/value_visitation.hpp&gt;">boost/log/attributes/value_visitation.hpp</a></code>
+          with headers <code class="computeroutput"><a class="link" href="../attributes.html#doxygen.attributes.value__extraction_8hpp" title="Header &lt;boost/log/attributes/value_extraction.hpp&gt;">boost/log/attributes/value_extraction.hpp</a></code>
+          and <code class="computeroutput"><a class="link" href="../attributes.html#doxygen.attributes.value__visitation_8hpp" title="Header &lt;boost/log/attributes/value_visitation.hpp&gt;">boost/log/attributes/value_visitation.hpp</a></code>
           in the <code class="computeroutput"><span class="identifier">attributes</span></code> directory.
           The two new headers define the revised API of attribute value extraction
           and visitation, respectively. See <a class="link" href="detailed/attributes.html#log.detailed.attributes.related_components.value_processing" title="Attribute value extraction and visitation">here</a>
@@ -1253,7 +1292,7 @@
         </li>
 <li class="listitem">
           The <code class="computeroutput"><span class="identifier">functor</span></code> attribute has
-          been renamed to <code class="computeroutput"><a class="link" href="../boost/log/attributes/function.html" title="Class template function">function</a></code>.
+          been renamed to <code class="computeroutput"><a class="link" href="../doxygen/attributes/classboost_1_1log_1_1attributes_1_1function.html" title="Class template function">function</a></code>.
           The generator function has been renamed from <code class="computeroutput"><span class="identifier">make_functor_attr</span></code>
           to <code class="computeroutput"><span class="identifier">make_function</span></code>. The header
           has been renamed from <code class="computeroutput"><span class="identifier">functor</span><span class="special">.</span><span class="identifier">hpp</span></code>
@@ -1320,10 +1359,10 @@
         </li>
 <li class="listitem">
           Asynchronous sink frontend reworked, ordering asynchronous sink removed.
-          The <code class="computeroutput"><a class="link" href="../boost/log/sinks/asynchronous_sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1asynchronous__sink.html" title="Class template asynchronous_sink">asynchronous_sink</a></code>
           class template now allows to specify record queueing strategy. Several
-          strategies provided, including <code class="computeroutput"><a class="link" href="../boost/log/sinks/unbounded_fifo_queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>
-          (the default) and <code class="computeroutput"><a class="link" href="../boost/log/sinks/unbounded_ordering_queue.html" title="Class template unbounded_ordering_queue">unbounded_ordering_queue</a></code>
+          strategies provided, including <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unbounded__fifo__queue.html" title="Class unbounded_fifo_queue">unbounded_fifo_queue</a></code>
+          (the default) and <code class="computeroutput"><a class="link" href="../doxygen/sinks/classboost_1_1log_1_1sinks_1_1unbounded__ordering__queue.html" title="Class template unbounded_ordering_queue">unbounded_ordering_queue</a></code>
           which cover the functionality of asynchronous sink frontends in 1.x releases.
           See the <a class="link" href="detailed/sink_frontends.html#log.detailed.sink_frontends.async" title="Asynchronous sink frontend">asynchronous
           sink frontend</a> docs for more details.
@@ -1353,16 +1392,16 @@
         </li>
 <li class="listitem">
           Two new types were introduced to dynamically store filters and formatters:
-          <code class="computeroutput"><a class="link" href="../boost/log/filter.html" title="Class filter">filter</a></code> and <code class="computeroutput"><a class="link" href="../boost/log/basic_formatter.html" title="Class template basic_formatter">basic_formatter</a></code>.
+          <code class="computeroutput"><a class="link" href="../doxygen/expressions/classboost_1_1log_1_1filter.html" title="Class filter">filter</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/expressions/classboost_1_1log_1_1basic__formatter.html" title="Class template basic_formatter">basic_formatter</a></code>.
           Both new types implement type erasure and provide function calling operators
           to invoke the stored filter or formatter.
         </li>
 <li class="listitem">
           Filters and formatters were rewritten. The new implementation is based
-          on <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+          on <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
           and resides in the <code class="computeroutput"><span class="identifier">expressions</span></code>
           namespace. Attribute placeholders are now interoperable with other template
-          expressions based on <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>.
+          expressions based on <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>.
           All template expression headers now reside in the <code class="computeroutput"><span class="identifier">expressions</span></code>
           subdirectory.
         </li>
@@ -1382,7 +1421,7 @@
           on the attribute value placeholder in the filtering/formatting expression.
         </li>
 <li class="listitem">
-          Date and time formatter implementation is not based on <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+          Date and time formatter implementation is not based on <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
           IO facets anymore. The new implementation improves formatting performance.
           The formatter has been renamed to <a class="link" href="detailed/expressions.html#log.detailed.expressions.formatters.date_time" title="Date and time formatter"><code class="computeroutput"><span class="identifier">format_date_time</span></code></a>.
         </li>
@@ -1451,12 +1490,12 @@
         </li>
 <li class="listitem">
           The library now uses many features from the latest C++ standard (aka C++11).
-          For instance, many library components now support move semantics. <a href="http://www.boost.org/doc/libs/release/doc/html/move.html" target="_top">Boost.Move</a>
+          For instance, many library components now support move semantics. <a href="https://www.boost.org/doc/libs/release/doc/html/move.html" target="_top">Boost.Move</a>
           is used for move emulation on C++03-compatible compilers.
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h27"></a>
+<a name="log.changelog.h30"></a>
       <span class="phrase"><a name="log.changelog.1_1__02_december_2011"></a></span><a class="link" href="changelog.html#log.changelog.1_1__02_december_2011">1.1,
       02 December 2011</a>
     </h4>
@@ -1465,7 +1504,7 @@
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-          Added support for <a href="http://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
+          Added support for <a href="https://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
           v3.
         </li>
 <li class="listitem">
@@ -1476,7 +1515,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h28"></a>
+<a name="log.changelog.h31"></a>
       <span class="phrase"><a name="log.changelog.1_0__09_may_2010"></a></span><a class="link" href="changelog.html#log.changelog.1_0__09_may_2010">1.0,
       09 May 2010</a>
     </h4>
@@ -1516,7 +1555,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h29"></a>
+<a name="log.changelog.h32"></a>
       <span class="phrase"><a name="log.changelog.release_candidate_4__08_jan_2010"></a></span><a class="link" href="changelog.html#log.changelog.release_candidate_4__08_jan_2010">Release
       Candidate 4, 08 Jan 2010</a>
     </h4>
@@ -1611,7 +1650,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h30"></a>
+<a name="log.changelog.h33"></a>
       <span class="phrase"><a name="log.changelog.release_candidate_3__08_feb_2009"></a></span><a class="link" href="changelog.html#log.changelog.release_candidate_3__08_feb_2009">Release
       Candidate 3, 08 Feb 2009</a>
     </h4>
@@ -1645,7 +1684,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="log.changelog.h31"></a>
+<a name="log.changelog.h34"></a>
       <span class="phrase"><a name="log.changelog.release_candidate_2"></a></span><a class="link" href="changelog.html#log.changelog.release_candidate_2">Release
       Candidate 2</a>
     </h4>
@@ -1653,14 +1692,14 @@
       No one really remembers these dark ages...
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../boost/log/current_scope.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="todo.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../doxygen/other_libraries_support_layer/exception_8hpp_1a1ede20832f36da098e33624cc79aee92.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="todo.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

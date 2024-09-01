@@ -40,7 +40,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.utilities.string_literal"></a><a class="link" href="utilities.html#log.detailed.utilities.string_literal" title="String literals">String literals</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.string_literal_hpp" title="Header &lt;boost/log/utility/string_literal.hpp&gt;">boost/log/utility/string_literal.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.string__literal_8hpp" title="Header &lt;boost/log/utility/string_literal.hpp&gt;">boost/log/utility/string_literal.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           String literals are used in several places throughout the library. However,
@@ -52,14 +52,14 @@
           safety when using string literals instead of regular strings.
         </p>
 <p>
-          The functionality is implemented in the <code class="computeroutput"><a class="link" href="../../boost/log/basic_string_literal.html" title="Class template basic_string_literal">basic_string_literal</a></code>
+          The functionality is implemented in the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__string__literal.html" title="Class template basic_string_literal">basic_string_literal</a></code>
           class template, which is parametrized with the character and character
           traits, similar to <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_string</span></code>.
           There are also two convenience typedefs provided: <code class="computeroutput"><span class="identifier">string_literal</span></code>
           and <code class="computeroutput"><span class="identifier">wstring_literal</span></code>, for
           narrow and wide character types, respectively. In order to ease string
           literal construction in generic code there is also a <code class="computeroutput"><span class="identifier">str_literal</span></code>
-          function template that accepts a string literal and returns a <code class="computeroutput"><a class="link" href="../../boost/log/basic_string_literal.html" title="Class template basic_string_literal">basic_string_literal</a></code>
+          function template that accepts a string literal and returns a <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__string__literal.html" title="Class template basic_string_literal">basic_string_literal</a></code>
           instance for the appropriate character type.
         </p>
 <p>
@@ -73,7 +73,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.utilities.type_dispatch"></a><a class="link" href="utilities.html#log.detailed.utilities.type_dispatch" title="Type dispatchers">Type dispatchers</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.type_dispatch.type_dispatcher_hpp" title="Header &lt;boost/log/utility/type_dispatch/type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/type_dispatcher.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.type__dispatcher_8hpp" title="Header &lt;boost/log/utility/type_dispatch/type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/type_dispatcher.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Type dispatchers are used throughout the library in order to work with
@@ -86,7 +86,7 @@
           wants to understand what's under the hood.
         </p>
 <p>
-          Every type dispatcher supports the <code class="computeroutput"><a class="link" href="../../boost/log/type_dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
+          Every type dispatcher supports the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1type__dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
           interface. When an attribute value needs to be extracted, this interface
           is passed to the attribute value object, which then tries to acquire the
           callback for the actual type of the value. All callbacks are objects of
@@ -99,7 +99,7 @@
         </p>
 <p>
           Happily, there is no need to write type dispatchers from scratch. The library
-          provides two kinds of type dispatchers that implement the <code class="computeroutput"><a class="link" href="../../boost/log/type_dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
+          provides two kinds of type dispatchers that implement the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1type__dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
           and [class_type_dispatcher_callback] interfaces and encapsulate the callback
           lookup.
         </p>
@@ -108,13 +108,13 @@
           <span class="phrase"><a name="log.detailed.utilities.type_dispatch.static_type_dispatcher"></a></span><a class="link" href="utilities.html#log.detailed.utilities.type_dispatch.static_type_dispatcher">Static
           type dispatcher</a>
         </h6>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.type_dispatch.static_type_dispatcher_hpp" title="Header &lt;boost/log/utility/type_dispatch/static_type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/static_type_dispatcher.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.static__type__dispatcher_8hpp" title="Header &lt;boost/log/utility/type_dispatch/static_type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/static_type_dispatcher.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Static type dispatchers are used when the set of types that needs to be
-          supported for extraction is known at compile time. The <code class="computeroutput"><a class="link" href="../../boost/log/static_type_dispatcher.html" title="Class template static_type_dispatcher">static_type_dispatcher</a></code>
+          supported for extraction is known at compile time. The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1static__type__dispatcher.html" title="Class template static_type_dispatcher">static_type_dispatcher</a></code>
           class template is parametrized with an MPL type sequence of types that
-          need to be supported. The dispatcher inherits from the <code class="computeroutput"><a class="link" href="../../boost/log/type_dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
+          need to be supported. The dispatcher inherits from the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1type__dispatcher.html" title="Class type_dispatcher">type_dispatcher</a></code>
           interface which provides the <code class="computeroutput"><span class="identifier">get_callback</span></code>
           method for acquiring the function object to invoke on the stored value.
           All you need to do is provide a visitor function object to the dispatcher
@@ -195,11 +195,11 @@
           <span class="phrase"><a name="log.detailed.utilities.type_dispatch.dynamic_type_dispatcher"></a></span><a class="link" href="utilities.html#log.detailed.utilities.type_dispatch.dynamic_type_dispatcher">Dynamic
           type dispatcher</a>
         </h6>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.type_dispatch.dynamic_type_dispatcher_hpp" title="Header &lt;boost/log/utility/type_dispatch/dynamic_type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/dynamic_type_dispatcher.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.dynamic__type__dispatcher_8hpp" title="Header &lt;boost/log/utility/type_dispatch/dynamic_type_dispatcher.hpp&gt;">boost/log/utility/type_dispatch/dynamic_type_dispatcher.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           If the set of types that have to be supported is not available at compile
-          time, the <code class="computeroutput"><a class="link" href="../../boost/log/dynamic_type_dispatcher.html" title="Class dynamic_type_dispatcher">dynamic_type_dispatcher</a></code>
+          time, the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1dynamic__type__dispatcher.html" title="Class dynamic_type_dispatcher">dynamic_type_dispatcher</a></code>
           class is there to help. One can use its <code class="computeroutput"><span class="identifier">register_type</span></code>
           method to add support for a particular type. The user has to pass a function
           object along with the type, this functor will be called when a visitor
@@ -249,7 +249,7 @@
           the complete code</a>.
         </p>
 <p>
-          Of course, complex function objects, like those provided by <a href="http://www.boost.org/doc/libs/release/libs/bind/bind.html" target="_top">Boost.Bind</a>,
+          Of course, complex function objects, like those provided by <a href="https://www.boost.org/doc/libs/release/libs/bind/doc/html/bind.html" target="_top">Boost.Bind</a>,
           are also supported.
         </p>
 </div>
@@ -258,8 +258,8 @@
 <a name="log.detailed.utilities.predef_types"></a><a class="link" href="utilities.html#log.detailed.utilities.predef_types" title="Predefined type sequences">Predefined type
         sequences</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.type_dispatch.standard_types_hpp" title="Header &lt;boost/log/utility/type_dispatch/standard_types.hpp&gt;">boost/log/utility/type_dispatch/standard_types.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.type_dispatch.date_time_types_hpp" title="Header &lt;boost/log/utility/type_dispatch/date_time_types.hpp&gt;">boost/log/utility/type_dispatch/date_time_types.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.standard__types_8hpp" title="Header &lt;boost/log/utility/type_dispatch/standard_types.hpp&gt;">boost/log/utility/type_dispatch/standard_types.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.date__time__types_8hpp" title="Header &lt;boost/log/utility/type_dispatch/date_time_types.hpp&gt;">boost/log/utility/type_dispatch/date_time_types.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           One may notice that when using type dispatchers and defining filters and
@@ -386,7 +386,7 @@
                 </td>
 <td>
                   <p>
-                    All types defined in <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                    All types defined in <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                     that have both date and time portions
                   </p>
                 </td>
@@ -425,7 +425,7 @@
                 </td>
 <td>
                   <p>
-                    All types defined in <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                    All types defined in <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                     that have date portion
                   </p>
                 </td>
@@ -464,7 +464,7 @@
                 </td>
 <td>
                   <p>
-                    All types defined in <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                    All types defined in <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                     that have time portion. Currently equivalent to <code class="computeroutput"><span class="identifier">boost_date_time_types</span></code>.
                   </p>
                 </td>
@@ -505,7 +505,7 @@
                 </td>
 <td>
                   <p>
-                    All time duration types defined in <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                    All time duration types defined in <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                   </p>
                 </td>
 </tr>
@@ -530,7 +530,7 @@
                 </td>
 <td>
                   <p>
-                    All time period types defined in <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                    All time period types defined in <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                   </p>
                 </td>
 </tr>
@@ -555,25 +555,25 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.utilities.value_ref"></a><a class="link" href="utilities.html#log.detailed.utilities.value_ref" title="Value reference wrapper">Value reference wrapper</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.value_ref_hpp" title="Header &lt;boost/log/utility/value_ref.hpp&gt;">boost/log/utility/value_ref.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.value__ref_8hpp" title="Header &lt;boost/log/utility/value_ref.hpp&gt;">boost/log/utility/value_ref.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/value_ref.html" title="Class template value_ref">value_ref</a></code> class
+          The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1value__ref.html" title="Class template value_ref">value_ref</a></code> class
           template is an optional reference wrapper which is used by the library
           to refer to the stored attribute values. To a certain degree it shares
-          features of <a href="http://www.boost.org/doc/libs/release/libs/optional/index.html" target="_top">Boost.Optional</a>
-          and <a href="http://www.boost.org/doc/libs/release/doc/html/variant.html" target="_top">Boost.Variant</a>
+          features of <a href="https://www.boost.org/doc/libs/release/libs/optional/doc/html/index.html" target="_top">Boost.Optional</a>
+          and <a href="https://www.boost.org/doc/libs/release/doc/html/variant.html" target="_top">Boost.Variant</a>
           components.
         </p>
 <p>
           The template has two type parameters. The first is the referred type. It
-          can also be specified as a <a href="http://www.boost.org/doc/libs/release/libs/mpl/doc/index.html" target="_top">Boost.MPL</a>
-          type sequence, in which case the <code class="computeroutput"><a class="link" href="../../boost/log/value_ref.html" title="Class template value_ref">value_ref</a></code>
+          can also be specified as a <a href="https://www.boost.org/doc/libs/release/libs/mpl/doc/index.html" target="_top">Boost.MPL</a>
+          type sequence, in which case the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1value__ref.html" title="Class template value_ref">value_ref</a></code>
           wrapper may refer to either type in the sequence. In this case, the <code class="computeroutput"><span class="identifier">which</span></code> method will return the index of
           the referred type within the sequence. The second template parameter is
           an optional tag type which can be used to customize formatting behavior.
           This tag is forwarded to the <a class="link" href="utilities.html#log.detailed.utilities.manipulators.to_log" title="Customized logging manipulator"><code class="computeroutput"><span class="identifier">to_log</span></code></a> manipulator when the wrapper
-          is put to a <code class="computeroutput"><a class="link" href="../../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+          is put to a <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
           stream, which is used by the library for record formatting. For an example
           see how attribute value extraction is implemented:
         </p>
@@ -613,7 +613,7 @@
           the complete code</a>.
         </p>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/value_ref.html" title="Class template value_ref">value_ref</a></code> wrapper
+          The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1value__ref.html" title="Class template value_ref">value_ref</a></code> wrapper
           also supports applying a visitor function object to the referred object.
           This can be done by calling one of the following methods:
         </p>
@@ -645,9 +645,9 @@
 <tr><td align="left" valign="top"><p>
             Regardless of the method used, the visitor function object <span class="underline">must</span> define the <code class="computeroutput"><span class="identifier">result_type</span></code>
             typedef. Polymorphic visitors are not supported as this would complicate
-            the <code class="computeroutput"><a class="link" href="../../boost/log/value_ref.html" title="Class template value_ref">value_ref</a></code> interface
+            the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1value__ref.html" title="Class template value_ref">value_ref</a></code> interface
             too much. This requirement also precludes free functions and C++11 lambda
-            functions from being used as visitors. Please, use <a href="http://www.boost.org/doc/libs/release/libs/bind/bind.html" target="_top">Boost.Bind</a>
+            functions from being used as visitors. Please, use <a href="https://www.boost.org/doc/libs/release/libs/bind/doc/html/bind.html" target="_top">Boost.Bind</a>
             or similar wrappers in such cases.
           </p></td></tr>
 </table></div>
@@ -703,7 +703,7 @@
 <a name="log.detailed.utilities.record_ordering"></a><a class="link" href="utilities.html#log.detailed.utilities.record_ordering" title="Log record ordering">Log record
         ordering</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.record_ordering_hpp" title="Header &lt;boost/log/utility/record_ordering.hpp&gt;">boost/log/utility/record_ordering.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.record__ordering_8hpp" title="Header &lt;boost/log/utility/record_ordering.hpp&gt;">boost/log/utility/record_ordering.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           There are cases when log records need to be ordered. One possible use case
@@ -716,11 +716,11 @@
           record ordering</a>
         </h6>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/abstract_ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1abstract__ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>
           class allows application of a quick opaque ordering. The result of this
           ordering is not stable between different runs of the application and in
           general cannot be predicted before the predicate is applied, however it
-          provides the best performance. The <code class="computeroutput"><a class="link" href="../../boost/log/abstract_ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>
+          provides the best performance. The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1abstract__ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>
           class is a template that is specialized with an optional predicate function
           that will be able to compare <code class="computeroutput"><span class="keyword">const</span>
           <span class="keyword">void</span><span class="special">*</span></code>
@@ -740,7 +740,7 @@
           value based ordering</a>
         </h6>
 <p>
-          This kind of ordering is implemented with the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
+          This kind of ordering is implemented with the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1attribute__value__ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
           class and is based on the attribute values attached to the record. The
           predicate will seek for an attribute value with the specified name in both
           records being ordered and attempt to compare the attribute values.
@@ -758,19 +758,19 @@
 <span class="special">&gt;</span> <span class="identifier">m_Records</span><span class="special">(</span><span class="identifier">ordering</span><span class="special">(</span><span class="string">"Severity"</span><span class="special">));</span>
 </pre>
 <p>
-          Like the <code class="computeroutput"><a class="link" href="../../boost/log/abstract_ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>,
-          <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
+          Like the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1abstract__ordering.html" title="Class template abstract_ordering">abstract_ordering</a></code>,
+          <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1attribute__value__ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
           also accepts the second optional template parameter, which should be the
           predicate to compare attribute values (<code class="computeroutput"><span class="keyword">int</span></code>s
           in the example above). By default, an <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">less</span></code>
           equivalent is used.
         </p>
 <p>
-          You can also use the <code class="computeroutput"><a class="link" href="../../boost/log/make_attr_orderin_idm38437.html" title="Function template make_attr_ordering">make_attr_ordering</a></code> generator
-          function to automatically generate the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value_ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
+          You can also use the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/record__ordering_8hpp_1a43e65645f0c5d48831f21de8187bf57a.html" title="Function template make_attr_ordering">make_attr_ordering</a></code> generator
+          function to automatically generate the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1attribute__value__ordering.html" title="Class template attribute_value_ordering">attribute_value_ordering</a></code>
           instance based on the attribute value name and the ordering function. This
           might be useful if the ordering function has a non-trivial type, like the
-          ones <a href="http://www.boost.org/doc/libs/release/libs/bind/bind.html" target="_top">Boost.Bind</a>
+          ones <a href="https://www.boost.org/doc/libs/release/libs/bind/doc/html/bind.html" target="_top">Boost.Bind</a>
           provides.
         </p>
 </div>
@@ -779,7 +779,7 @@
 <a name="log.detailed.utilities.exception_handlers"></a><a class="link" href="utilities.html#log.detailed.utilities.exception_handlers" title="Exception handlers">Exception
         handlers</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.exception_handler_hpp" title="Header &lt;boost/log/utility/exception_handler.hpp&gt;">boost/log/utility/exception_handler.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.exception__handler_8hpp" title="Header &lt;boost/log/utility/exception_handler.hpp&gt;">boost/log/utility/exception_handler.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The library provides exception handling hooks in different places. Tools,
@@ -792,9 +792,9 @@
           <code class="computeroutput"><span class="keyword">void</span></code>. Exception handlers are
           called from within <code class="computeroutput"><span class="keyword">catch</span></code> sections
           by the library, therefore in order to reacquire the exception object it
-          has to rethrow it. The header defines an <code class="computeroutput"><a class="link" href="../../boost/log/exception_handler.html" title="Class template exception_handler">exception_handler</a></code>
+          has to rethrow it. The header defines an <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1exception__handler.html" title="Class template exception_handler">exception_handler</a></code>
           template functor that does just that and then forwards the exception object
-          to a unary user-defined functional object. The <code class="computeroutput"><a class="link" href="../../boost/log/make_exception_ha_idm34799.html" title="Function template make_exception_handler">make_exception_handler</a></code>
+          to a unary user-defined functional object. The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/exception__handler_8hpp_1a0a4a72ade16e555a04d3b168618adceb.html" title="Function template make_exception_handler">make_exception_handler</a></code>
           function can be used to simplify the handler construction. All expected
           exception types should be specified explicitly in the call, in the order
           they would appear in the <code class="computeroutput"><span class="keyword">catch</span></code>
@@ -836,7 +836,7 @@
           case it will propagate further. If it appears that the exception handler
           is invoked for an exception type that cannot be caught by any of the specified
           types, the exception will be propagated without any processing. In order
-          to catch such situations, there exists the <code class="computeroutput"><a class="link" href="../../boost/log/nothrow_exception_handler.html" title="Class template nothrow_exception_handler">nothrow_exception_handler</a></code>
+          to catch such situations, there exists the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1nothrow__exception__handler.html" title="Class template nothrow_exception_handler">nothrow_exception_handler</a></code>
           class. It invokes the user-defined functor with no arguments if it cannot
           determine the exception type.
         </p>
@@ -876,7 +876,7 @@
         </p>
 <p>
           It is sometimes convenient to completely suppress all exceptions at a certain
-          library level. The <code class="computeroutput"><a class="link" href="../../boost/log/make_exception_suppressor.html" title="Function make_exception_suppressor">make_exception_suppressor</a></code>
+          library level. The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/exception__handler_8hpp_1a9b532822f3addbdfeefd22fed7abe122.html" title="Function make_exception_suppressor">make_exception_suppressor</a></code>
           function creates an exception handler that simply does nothing upon exception
           being caught. For example, this way we can disable all exceptions from
           the logging library:
@@ -921,10 +921,10 @@
 <a name="log.detailed.utilities.manipulators.to_log"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.to_log" title="Customized logging manipulator">Customized
           logging manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.to_log_hpp" title="Header &lt;boost/log/utility/manipulators/to_log.hpp&gt;">boost/log/utility/manipulators/to_log.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.to__log_8hpp" title="Header &lt;boost/log/utility/manipulators/to_log.hpp&gt;">boost/log/utility/manipulators/to_log.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/to_log_idm37952.html" title="Function template to_log">to_log</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/to__log_8hpp_1a9ec99b926575131eb7f2c9a15d9cf217.html" title="Function template to_log">to_log</a></code>
             function creates a stream manipulator that simply outputs the adopted
             value to the stream. By default its behavior is equivalent to simply
             putting the value to the stream. However, the user is able to overload
@@ -965,7 +965,7 @@
             value contexts as well. The library uses this feature to allow different
             formatting ruled for different attribute values, even if the stored value
             type is the same. To do so one has to specify an explicit template argument
-            for <code class="computeroutput"><a class="link" href="../../boost/log/to_log_idm37952.html" title="Function template to_log">to_log</a></code>,
+            for <code class="computeroutput"><a class="link" href="../../doxygen/utilities/to__log_8hpp_1a9ec99b926575131eb7f2c9a15d9cf217.html" title="Function template to_log">to_log</a></code>,
             a tag type, which will be embedded into the manipulator type and thus
             will allow to define different insertion operators:
           </p>
@@ -1013,9 +1013,9 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-              The library uses <code class="computeroutput"><a class="link" href="../../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+              The library uses <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
               stream type for record formatting, so when customizing attribute value
-              formatting rules the <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> must use <code class="computeroutput"><a class="link" href="../../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
+              formatting rules the <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></code> must use <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>
               instead of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">ostream</span></code>.
             </p></td></tr>
 </table></div>
@@ -1025,13 +1025,13 @@
 <a name="log.detailed.utilities.manipulators.add_value"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.add_value" title="Attribute value attaching manipulator">Attribute
           value attaching manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.add_value_hpp" title="Header &lt;boost/log/utility/manipulators/add_value.hpp&gt;">boost/log/utility/manipulators/add_value.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.add__value_8hpp" title="Header &lt;boost/log/utility/manipulators/add_value.hpp&gt;">boost/log/utility/manipulators/add_value.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/add_value.html" title="Function add_value">add_value</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/add__value_8hpp_1a871eb938cb52e5e485973671d768a327.html" title="Function template add_value">add_value</a></code>
             function creates a manipulator that attaches an attribute value to a
             log record. This manipulator can only be used in streaming expressions
-            with the <code class="computeroutput"><a class="link" href="../../boost/log/basic_record_ostream.html" title="Class template basic_record_ostream">basic_record_ostream</a></code>
+            with the <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1basic__record__ostream.html" title="Class template basic_record_ostream">basic_record_ostream</a></code>
             stream type (which is the case when log record message is formatted).
             Since the message text is only formatted after filtering, attribute values
             attached with this manipulator do not affect filtering and can only be
@@ -1050,10 +1050,10 @@
 <a name="log.detailed.utilities.manipulators.dump"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.dump" title="Binary dump manipulator">Binary
           dump manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.dump_hpp" title="Header &lt;boost/log/utility/manipulators/dump.hpp&gt;">boost/log/utility/manipulators/dump.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.dump_8hpp" title="Header &lt;boost/log/utility/manipulators/dump.hpp&gt;">boost/log/utility/manipulators/dump.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/dump_idm37366.html" title="Function template dump">dump</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/dump_8hpp_1a421e94ed37b696c8f37d7815e1794485.html" title="Function template dump">dump</a></code>
             function creates a manipulator that outputs binary contents of a contiguous
             memory region. This can be useful for logging some low level binary data,
             such as encoded network packets or entries of a binary file. The use
@@ -1077,12 +1077,12 @@
 <span class="special">}</span>
 </pre>
 <p>
-            There is another manipulator called <code class="computeroutput"><a class="link" href="../../boost/log/dump_elements_idm37384.html" title="Function template dump_elements">dump_elements</a></code> for printing
+            There is another manipulator called <code class="computeroutput"><a class="link" href="../../doxygen/utilities/dump_8hpp_1ac4d58b8546fe288b29b692e2075d287d.html" title="Function template dump_elements">dump_elements</a></code> for printing
             binary representation of non-byte array elements. The special manipulator
             for this case is necessary because the units of the size argument of
-            <code class="computeroutput"><a class="link" href="../../boost/log/dump_idm37366.html" title="Function template dump">dump</a></code>
-            can be confusing (is it in bytes or in elements?). Therefore <code class="computeroutput"><a class="link" href="../../boost/log/dump_idm37366.html" title="Function template dump">dump</a></code>
-            will not compile when used for non-byte input data. <code class="computeroutput"><a class="link" href="../../boost/log/dump_elements_idm37384.html" title="Function template dump_elements">dump_elements</a></code> accepts
+            <code class="computeroutput"><a class="link" href="../../doxygen/utilities/dump_8hpp_1a421e94ed37b696c8f37d7815e1794485.html" title="Function template dump">dump</a></code>
+            can be confusing (is it in bytes or in elements?). Therefore <code class="computeroutput"><a class="link" href="../../doxygen/utilities/dump_8hpp_1a421e94ed37b696c8f37d7815e1794485.html" title="Function template dump">dump</a></code>
+            will not compile when used for non-byte input data. <code class="computeroutput"><a class="link" href="../../doxygen/utilities/dump_8hpp_1ac4d58b8546fe288b29b692e2075d287d.html" title="Function template dump_elements">dump_elements</a></code> accepts
             the same arguments, and its size-related arguments always designate the
             number of elements to process.
           </p>
@@ -1108,7 +1108,7 @@
 <a name="log.detailed.utilities.manipulators.auto_newline"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.auto_newline" title="Automatic newline insertion">Automatic
           newline insertion</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.auto_newline_hpp" title="Header &lt;boost/log/utility/manipulators/auto_newline.hpp&gt;">boost/log/utility/manipulators/auto_newline.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.auto__newline_8hpp" title="Header &lt;boost/log/utility/manipulators/auto_newline.hpp&gt;">boost/log/utility/manipulators/auto_newline.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Sometimes it can be useful to be able to insert a newline character in
@@ -1129,7 +1129,7 @@
 </tr>
 <tr><td align="left" valign="top"><p>
               This manipulator inspects previous output to the stream, and therefore
-              can only be used with Boost.Log streams based on <code class="computeroutput"><a class="link" href="../../boost/log/basic_formatting_ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
+              can only be used with Boost.Log streams based on <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__formatting__ostream.html" title="Class template basic_formatting_ostream">basic_formatting_ostream</a></code>.
             </p></td></tr>
 </table></div>
 </div>
@@ -1138,7 +1138,7 @@
 <a name="log.detailed.utilities.manipulators.range"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.range" title="Range manipulator">Range
           manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.range_hpp" title="Header &lt;boost/log/utility/manipulators/range.hpp&gt;">boost/log/utility/manipulators/range.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.range_8hpp" title="Header &lt;boost/log/utility/manipulators/range.hpp&gt;">boost/log/utility/manipulators/range.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             It can be useful to be able to output elements of a container (or, more
@@ -1162,7 +1162,7 @@
 <p>
             Here, <code class="computeroutput"><span class="identifier">range_manip</span></code> accepts
             two arguments - the range of elements, and, optionally, a delimiter.
-            The range can be any type supported by <a href="http://www.boost.org/doc/libs/release/libs/range/index.html" target="_top">Boost.Range</a>
+            The range can be any type supported by <a href="https://www.boost.org/doc/libs/release/libs/range/doc/html/index.html" target="_top">Boost.Range</a>
             <code class="computeroutput"><span class="identifier">begin</span><span class="special">()</span></code>
             and <code class="computeroutput"><span class="identifier">end</span><span class="special">()</span></code>
             free functions, which includes any standard containers and arrays. Elements
@@ -1177,7 +1177,7 @@
 <a name="log.detailed.utilities.manipulators.tuple"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.tuple" title="Tuple manipulator">Tuple
           manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.tuple_hpp" title="Header &lt;boost/log/utility/manipulators/tuple.hpp&gt;">boost/log/utility/manipulators/tuple.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.tuple_8hpp" title="Header &lt;boost/log/utility/manipulators/tuple.hpp&gt;">boost/log/utility/manipulators/tuple.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Tuple manipulator allows to output elements of a heterogeneous sequence
@@ -1198,8 +1198,8 @@
 <tr><td align="left" valign="top"><p>
               In order to support different types of sequences, users may need to
               <code class="computeroutput"><span class="preprocessor">#include</span></code> additional
-              support headers from <a href="http://www.boost.org/doc/libs/release/libs/fusion/index.html" target="_top">Boost.Fusion</a>,
-              like <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">fusion</span><span class="special">/</span><span class="identifier">include</span><span class="special">/</span><span class="identifier">std_tuple</span><span class="special">.</span><span class="identifier">hpp</span></code> in this example. See <a href="http://www.boost.org/doc/libs/release/libs/fusion/index.html" target="_top">Boost.Fusion</a>
+              support headers from <a href="https://www.boost.org/doc/libs/release/libs/fusion/doc/html/index.html" target="_top">Boost.Fusion</a>,
+              like <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">fusion</span><span class="special">/</span><span class="identifier">include</span><span class="special">/</span><span class="identifier">std_tuple</span><span class="special">.</span><span class="identifier">hpp</span></code> in this example. See <a href="https://www.boost.org/doc/libs/release/libs/fusion/doc/html/index.html" target="_top">Boost.Fusion</a>
               documentation.
             </p></td></tr>
 </table></div>
@@ -1216,7 +1216,7 @@
 <p>
             Here, <code class="computeroutput"><span class="identifier">tuple_manip</span></code> accepts
             two arguments - the sequence of elements, and, optionally, a delimiter.
-            The heterogeneous sequence can be any sequence supported by <a href="http://www.boost.org/doc/libs/release/libs/fusion/index.html" target="_top">Boost.Fusion</a>,
+            The heterogeneous sequence can be any sequence supported by <a href="https://www.boost.org/doc/libs/release/libs/fusion/doc/html/index.html" target="_top">Boost.Fusion</a>,
             for example <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span></code>, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>,
             <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span></code>, <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">fusion</span><span class="special">::</span><span class="identifier">vector</span></code>
             or any structure that has been adapted using one of the <code class="computeroutput"><span class="identifier">BOOST_FUSION_ADAPT</span><span class="special">*</span></code>
@@ -1244,7 +1244,7 @@
 <a name="log.detailed.utilities.manipulators.optional"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.optional" title="Optional manipulator">Optional
           manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.optional_hpp" title="Header &lt;boost/log/utility/manipulators/optional.hpp&gt;">boost/log/utility/manipulators/optional.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.optional_8hpp" title="Header &lt;boost/log/utility/manipulators/optional.hpp&gt;">boost/log/utility/manipulators/optional.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Optional manipulator allows to output an optional value to the output
@@ -1287,7 +1287,7 @@
 </ul></div>
 <p>
             Examples of types that fit these requirements are <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span></code>
-            (see <a href="http://www.boost.org/doc/libs/release/libs/optional/index.html" target="_top">Boost.Optional</a>),
+            (see <a href="https://www.boost.org/doc/libs/release/libs/optional/doc/html/index.html" target="_top">Boost.Optional</a>),
             <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span></code> and pointers to objects.
           </p>
 <p>
@@ -1304,7 +1304,7 @@
 <a name="log.detailed.utilities.manipulators.invoke"></a><a class="link" href="utilities.html#log.detailed.utilities.manipulators.invoke" title="Invoke manipulator">Invoke
           manipulator</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.manipulators.invoke_hpp" title="Header &lt;boost/log/utility/manipulators/invoke.hpp&gt;">boost/log/utility/manipulators/invoke.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.invoke_8hpp" title="Header &lt;boost/log/utility/manipulators/invoke.hpp&gt;">boost/log/utility/manipulators/invoke.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Invoke manipulator allows to inject a user-defined function call into
@@ -1359,7 +1359,7 @@
 </tr>
 <tr><td align="left" valign="top"><p>
               Passing additional arguments to the function requires a C++14 compiler.
-              Use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">bind</span></code>, <a href="http://www.boost.org/doc/libs/release/libs/bind/bind.html" target="_top">Boost.Bind</a>
+              Use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">bind</span></code>, <a href="https://www.boost.org/doc/libs/release/libs/bind/doc/html/bind.html" target="_top">Boost.Bind</a>
               or C++11 lambdas to bind arguments to the function instead of passing
               them separately if lower C++ version is required.
             </p></td></tr>
@@ -1411,14 +1411,14 @@
 <a name="log.detailed.utilities.ipc.object_name"></a><a class="link" href="utilities.html#log.detailed.utilities.ipc.object_name" title="Resource name wrapper">Resource
           name wrapper</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.ipc.object_name_hpp" title="Header &lt;boost/log/utility/ipc/object_name.hpp&gt;">boost/log/utility/ipc/object_name.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.object__name_8hpp" title="Header &lt;boost/log/utility/ipc/object_name.hpp&gt;">boost/log/utility/ipc/object_name.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             In modern operating systems process-shared system resources are typically
             identified with names. Unfortunately, different systems have different
             requirements on the name syntax and allowed character set. Additionally,
             some systems offer support for namespaces in order to avoid name clashes.
-            The <code class="computeroutput"><a class="link" href="../../boost/log/ipc/object_name.html" title="Class object_name">object_name</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1ipc_1_1object__name.html" title="Class object_name">object_name</a></code>
             class is intended to hide these differences.
           </p>
 <p>
@@ -1484,7 +1484,7 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
               Object name scoping should not be considered a security measure. Objects
               may still be accessible by processes outside of their name scopes.
               The main purpose of the scopes is to avoid name clashes between different
-              processes using <code class="computeroutput"><a class="link" href="../../boost/log/ipc/object_name.html" title="Class object_name">object_name</a></code>.
+              processes using <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1ipc_1_1object__name.html" title="Class object_name">object_name</a></code>.
               Use access permissions for security control.
             </p></td></tr>
 </table></div>
@@ -1494,10 +1494,10 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <a name="log.detailed.utilities.ipc.reliable_message_queue"></a><a class="link" href="utilities.html#log.detailed.utilities.ipc.reliable_message_queue" title="Reliable message queue">Reliable
           message queue</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.ipc.reliable_message_queue_hpp" title="Header &lt;boost/log/utility/ipc/reliable_message_queue.hpp&gt;">boost/log/utility/ipc/reliable_message_queue.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.reliable__message__queue_8hpp" title="Header &lt;boost/log/utility/ipc/reliable_message_queue.hpp&gt;">boost/log/utility/ipc/reliable_message_queue.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/ipc/reliable_message_queue.html" title="Class reliable_message_queue">reliable_message_queue</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1ipc_1_1reliable__message__queue.html" title="Class reliable_message_queue">reliable_message_queue</a></code>
             class implements a reliable one-way channel of passing messages from
             one or multiple writers to a single reader. The format of the messages
             is user-defined and must be consistent across all writers and the reader.
@@ -1539,7 +1539,7 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
               </li>
 <li class="listitem">
                 <code class="computeroutput"><span class="identifier">throw_on_overflow</span></code>
-                - Throw an exception from the send operation. The exception is <code class="computeroutput"><a class="link" href="../../boost/log/capacity_limit_reached.html" title="Class capacity_limit_reached">capacity_limit_reached</a></code>.
+                - Throw an exception from the send operation. The exception is <code class="computeroutput"><a class="link" href="../../doxygen/top_level_headers/classboost_1_1log_1_1capacity__limit__reached.html" title="Class capacity_limit_reached">capacity_limit_reached</a></code>.
               </li>
 </ul></div>
 <p>
@@ -1732,9 +1732,9 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <a name="log.detailed.utilities.setup.convenience"></a><a class="link" href="utilities.html#log.detailed.utilities.setup.convenience" title="Convenience functions">Convenience
           functions</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.console_hpp" title="Header &lt;boost/log/utility/setup/console.hpp&gt;">boost/log/utility/setup/console.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.file_hpp" title="Header &lt;boost/log/utility/setup/file.hpp&gt;">boost/log/utility/setup/file.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.common_attributes_hpp" title="Header &lt;boost/log/utility/setup/common_attributes.hpp&gt;">boost/log/utility/setup/common_attributes.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.console_8hpp" title="Header &lt;boost/log/utility/setup/console.hpp&gt;">boost/log/utility/setup/console.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.file_8hpp" title="Header &lt;boost/log/utility/setup/file.hpp&gt;">boost/log/utility/setup/file.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.common__attributes_8hpp" title="Header &lt;boost/log/utility/setup/common_attributes.hpp&gt;">boost/log/utility/setup/common_attributes.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             The library provides a number of functions that simplify some common
@@ -1762,7 +1762,7 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <p>
             Pretty easy, isn't it? There is also the <code class="computeroutput"><span class="identifier">wadd_console_log</span></code>
             function for wide-character console. If you want to put logs to some
-            other standard stream, you can pass the stream to the <code class="computeroutput"><a class="link" href="../../boost/log/add_console_log_idm38495.html" title="Function template add_console_log">add_console_log</a></code> function
+            other standard stream, you can pass the stream to the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/console_8hpp_1afdca648e6eaf2357182095fdf2aec4da.html" title="Function template add_console_log">add_console_log</a></code> function
             as an argument. E.g. enabling logging to <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span></code>
             instead of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">clog</span></code> would look like this:
           </p>
@@ -1808,18 +1808,18 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <span class="special">}</span>
 </pre>
 <p>
-            The <code class="computeroutput"><a class="link" href="../../boost/log/add_console_log_idm38495.html" title="Function template add_console_log">add_console_log</a></code>
-            and <code class="computeroutput"><a class="link" href="../../boost/log/add_file_log.html" title="Function template add_file_log">add_file_log</a></code>
+            The <code class="computeroutput"><a class="link" href="../../doxygen/utilities/console_8hpp_1afdca648e6eaf2357182095fdf2aec4da.html" title="Function template add_console_log">add_console_log</a></code>
+            and <code class="computeroutput"><a class="link" href="../../doxygen/utilities/file_8hpp_1afc3eb3a7e41f72d4ac64647d393756bf.html" title="Function template add_file_log">add_file_log</a></code>
             functions do not conflict and may be combined freely, so it is possible
             to set up logging to the console and a couple of files, including filtering
             and formatting, in about 10 lines of code.
           </p>
 <p>
-            Lastly, there is an <code class="computeroutput"><a class="link" href="../../boost/log/add_common_attributes.html" title="Function add_common_attributes">add_common_attributes</a></code>
+            Lastly, there is an <code class="computeroutput"><a class="link" href="../../doxygen/utilities/common__attributes_8hpp_1af92a587e54f1b77d1fceb21fb829dae0.html" title="Function add_common_attributes">add_common_attributes</a></code>
             function that registers two frequently used attributes: "LineID"
             and "TimeStamp". The former counts log record being made and
             has attribute value <code class="computeroutput"><span class="keyword">unsigned</span> <span class="keyword">int</span></code>. The latter, as its name implies,
-            provides the current time for each log record, in the form of <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">ptime</span></code> (see <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
+            provides the current time for each log record, in the form of <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">ptime</span></code> (see <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>).
             These two attributes are registered globally, so they will remain available
             in all threads and loggers. This makes the final version of our code
             sample look something like this:
@@ -1860,8 +1860,8 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <a name="log.detailed.utilities.setup.filter_formatter"></a><a class="link" href="utilities.html#log.detailed.utilities.setup.filter_formatter" title="Filter and formatter parsers">Filter
           and formatter parsers</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.filter_parser_hpp" title="Header &lt;boost/log/utility/setup/filter_parser.hpp&gt;">boost/log/utility/setup/filter_parser.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.formatter_parser_hpp" title="Header &lt;boost/log/utility/setup/formatter_parser.hpp&gt;">boost/log/utility/setup/formatter_parser.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.filter__parser_8hpp" title="Header &lt;boost/log/utility/setup/filter_parser.hpp&gt;">boost/log/utility/setup/filter_parser.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.formatter__parser_8hpp" title="Header &lt;boost/log/utility/setup/formatter_parser.hpp&gt;">boost/log/utility/setup/formatter_parser.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Filter and formatter parsers allow constructing filters and formatters
@@ -2010,7 +2010,7 @@ relation:
 </div>
 <br class="table-break"><p>
             The formatter string syntax is even simpler and pretty much resembles
-            <a href="http://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>
+            <a href="https://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>
             format string syntax. The string is interpreted as a template which can
             contain attribute names enclosed with percent signs ("%").
             The corresponding attribute values will replace these placeholders when
@@ -2069,13 +2069,13 @@ relation:
 <a name="log.detailed.utilities.setup.settings"></a><a class="link" href="utilities.html#log.detailed.utilities.setup.settings" title="Library initialization from a settings container">Library initialization
           from a settings container</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.settings_hpp" title="Header &lt;boost/log/utility/setup/settings.hpp&gt;">boost/log/utility/setup/settings.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.from_settings_hpp" title="Header &lt;boost/log/utility/setup/from_settings.hpp&gt;">boost/log/utility/setup/from_settings.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.settings_8hpp" title="Header &lt;boost/log/utility/setup/settings.hpp&gt;">boost/log/utility/setup/settings.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.from__settings_8hpp" title="Header &lt;boost/log/utility/setup/from_settings.hpp&gt;">boost/log/utility/setup/from_settings.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             The headers define components for library initialization from a settings
             container. The settings container is basically a set of named parameters
-            divided into sections. The container is implemented with the <code class="computeroutput"><a class="link" href="../../boost/log/basic_settings.html" title="Class template basic_settings">basic_settings</a></code> class template.
+            divided into sections. The container is implemented with the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__settings.html" title="Class template basic_settings">basic_settings</a></code> class template.
             There are several constraints on how parameters are stored in the container:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -2099,7 +2099,7 @@ relation:
 </ul></div>
 <p>
             So basically, settings container is a layered associative container,
-            with string keys and values. In some respect it is similar to <a href="http://www.boost.org/doc/libs/release/doc/html/property_tree.html" target="_top">Boost.PropertyTree</a>,
+            with string keys and values. In some respect it is similar to <a href="https://www.boost.org/doc/libs/release/doc/html/property_tree.html" target="_top">Boost.PropertyTree</a>,
             and in fact it supports construction from <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">ptree</span></code>.
             The supported parameters are described below.
           </p>
@@ -2246,7 +2246,7 @@ relation:
                       <a class="link" href="sink_backends.html#log.detailed.sink_backends.event_log" title="Windows event log backends">SimpleEventLog</a>,
                       <a class="link" href="sink_backends.html#log.detailed.sink_backends.debugger" title="Windows debugger output backend">Debugger</a>.
                       Also, user-defined sink names may also be supported if registered
-                      by calling <code class="computeroutput"><a class="link" href="../../boost/log/register_sink_fac_idm39225.html" title="Function template register_sink_factory">register_sink_factory</a></code>.
+                      by calling <code class="computeroutput"><a class="link" href="../../doxygen/utilities/from__settings_8hpp_1af9d9752ee6712b8f75529913db3d4bec.html" title="Function template register_sink_factory">register_sink_factory</a></code>.
                       See <a class="link" href="../extension/settings.html#log.extension.settings.sinks" title="Adding support for user-defined sinks">this</a>
                       section on how to add support for new sinks.
                     </p>
@@ -2357,7 +2357,7 @@ relation:
 <td>
                     <p>
                       Controls whether the backend should automatically insert a
-                      trailing newline after every log record, see <code class="computeroutput"><a class="link" href="../../sinks.html#boost.log.sinks.auto_newline_mode">auto_newline_mode</a></code>.
+                      trailing newline after every log record, see <code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.auto__newline__mode_8hpp_1a32ab4e8646a4496f00cc981ffe0ad67a">auto_newline_mode</a></code>.
                       If not specified, the default value is "InsertIfMissing".
                     </p>
                   </td>
@@ -2478,7 +2478,7 @@ relation:
 <td>
                     <p>
                       Controls whether the backend should automatically insert a
-                      trailing newline after every log record, see <code class="computeroutput"><a class="link" href="../../sinks.html#boost.log.sinks.auto_newline_mode">auto_newline_mode</a></code>.
+                      trailing newline after every log record, see <code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.auto__newline__mode_8hpp_1a32ab4e8646a4496f00cc981ffe0ad67a">auto_newline_mode</a></code>.
                       If not specified, the default value is "InsertIfMissing".
                     </p>
                   </td>
@@ -2691,7 +2691,7 @@ relation:
 <td>
                     <p>
                       Mode of <a class="link" href="sink_backends.html#log.detailed.sink_backends.text_file.file_scanning" title="Scanning for rotated files">scanning</a>
-                      for old files in the target directory, see <code class="computeroutput"><a class="link" href="../../sinks.html#boost.log.sinks.file.scan_method">scan_method</a></code>. If
+                      for old files in the target directory, see <code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.text__file__backend_8hpp_1a1d74a9445bfea95e8e411e69a9d44447">scan_method</a></code>. If
                       not specified, no scanning will be performed.
                     </p>
                   </td>
@@ -2705,7 +2705,7 @@ relation:
 <th align="left">Warning</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-              The text file sink uses <a href="http://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
+              The text file sink uses <a href="https://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
               internally, which may cause problems on process termination. See <a class="link" href="../rationale/why_crash_on_term.html" title="Why my application crashes on process termination when file sinks are used?">here</a> for more details.
             </p></td></tr>
 </table></div>
@@ -2717,7 +2717,7 @@ relation:
           </p>
 <p>
             The RotationTimePoint parameter should have one of the following formats,
-            according to the <a href="http://www.boost.org/doc/libs/release/doc/html/date_time/date_time_io.html#date_time.format_flags" target="_top">Boost.DateTime</a>
+            according to the <a href="https://www.boost.org/doc/libs/release/doc/html/date_time/date_time_io.html#date_time.format_flags" target="_top">Boost.DateTime</a>
             format notation:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -2912,7 +2912,7 @@ relation:
                   </td>
 <td>
                     <p>
-                      Mode of log source registration in Windows registry, see <code class="computeroutput"><a class="link" href="../../sinks.html#boost.log.sinks.event_log.registration_mode">registration_mode</a></code>.
+                      Mode of log source registration in Windows registry, see <code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.event__log__backend_8hpp_1ab16ac99c8d27acdb8e803871defc5720">registration_mode</a></code>.
                       If not specified, on-demand registration will be performed.
                     </p>
                   </td>
@@ -2976,19 +2976,19 @@ relation:
 <a name="log.detailed.utilities.setup.settings_file"></a><a class="link" href="utilities.html#log.detailed.utilities.setup.settings_file" title="Library initialization from a settings file">Library
           initialization from a settings file</a>
 </h5></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.from_stream_hpp" title="Header &lt;boost/log/utility/setup/from_stream.hpp&gt;">boost/log/utility/setup/from_stream.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.from__stream_8hpp" title="Header &lt;boost/log/utility/setup/from_stream.hpp&gt;">boost/log/utility/setup/from_stream.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
             Support for configuration files is a frequently requested feature of
             the library. And despite the fact there is no ultimately convenient and
             flexible format of the library settings, the library provides preliminary
             support for this feature. The functionality is implemented with a simple
-            function <code class="computeroutput"><a class="link" href="../../boost/log/init_from_stream.html" title="Function template init_from_stream">init_from_stream</a></code>, which
+            function <code class="computeroutput"><a class="link" href="../../doxygen/utilities/from__stream_8hpp_1a3483a67c3684ceee8bb3ebecb638787d.html" title="Function template init_from_stream">init_from_stream</a></code>, which
             accepts a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">istream</span></code> and reads the library settings
-            from it. The function then passes on the read settings to the <code class="computeroutput"><a class="link" href="../../boost/log/init_from_settings.html" title="Function template init_from_settings">init_from_settings</a></code>
+            from it. The function then passes on the read settings to the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/from__settings_8hpp_1a51ea769e19852b75a809d5cebde82f78.html" title="Function template init_from_settings">init_from_settings</a></code>
             function, described <a class="link" href="utilities.html#log.detailed.utilities.setup.settings" title="Library initialization from a settings container">above</a>.
             Therefore the parameter names and their meaning is the same as for the
-            <code class="computeroutput"><a class="link" href="../../boost/log/init_from_settings.html" title="Function template init_from_settings">init_from_settings</a></code>
+            <code class="computeroutput"><a class="link" href="../../doxygen/utilities/from__settings_8hpp_1a51ea769e19852b75a809d5cebde82f78.html" title="Function template init_from_settings">init_from_settings</a></code>
             function.
           </p>
 <p>
@@ -3040,7 +3040,7 @@ AutoFlush=true
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

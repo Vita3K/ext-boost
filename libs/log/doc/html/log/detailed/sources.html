@@ -37,13 +37,13 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.sources.basic_logger"></a><a class="link" href="sources.html#log.detailed.sources.basic_logger" title="Basic loggers">Basic loggers</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.basic_logger_hpp" title="Header &lt;boost/log/sources/basic_logger.hpp&gt;">boost/log/sources/basic_logger.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.basic__logger_8hpp" title="Header &lt;boost/log/sources/basic_logger.hpp&gt;">boost/log/sources/basic_logger.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-          The simplest logging sources provided by the library are loggers <code class="computeroutput"><a class="link" href="../../boost/log/sources/logger.html" title="Class logger">logger</a></code> and its thread-safe
-          version, <code class="computeroutput"><a class="link" href="../../boost/log/sources/logger_mt.html" title="Class logger_mt">logger_mt</a></code>
-          (<code class="computeroutput"><a class="link" href="../../boost/log/sources/wlogger.html" title="Class wlogger">wlogger</a></code> and
-          <code class="computeroutput"><a class="link" href="../../boost/log/sources/wlogger_mt.html" title="Class wlogger_mt">wlogger_mt</a></code>
+          The simplest logging sources provided by the library are loggers <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1logger.html" title="Class logger">logger</a></code> and its thread-safe
+          version, <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1logger__mt.html" title="Class logger_mt">logger_mt</a></code>
+          (<code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wlogger.html" title="Class wlogger">wlogger</a></code> and
+          <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wlogger__mt.html" title="Class wlogger_mt">wlogger_mt</a></code>
           for wide-character logging, accordingly). These loggers only provide the
           ability to store source-specific attributes within themselves and, of course,
           to form log records. This type of logger should probably be used when there
@@ -117,16 +117,16 @@
 <a name="log.detailed.sources.severity_level_logger"></a><a class="link" href="sources.html#log.detailed.sources.severity_level_logger" title="Loggers with severity level support">Loggers
         with severity level support</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.severity_feature_hpp" title="Header &lt;boost/log/sources/severity_feature.hpp&gt;">boost/log/sources/severity_feature.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.severity_logger_hpp" title="Header &lt;boost/log/sources/severity_logger.hpp&gt;">boost/log/sources/severity_logger.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.severity__feature_8hpp" title="Header &lt;boost/log/sources/severity_feature.hpp&gt;">boost/log/sources/severity_feature.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.severity__logger_8hpp" title="Header &lt;boost/log/sources/severity_logger.hpp&gt;">boost/log/sources/severity_logger.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The ability to distinguish some log records from others based on some kind
           of level of severity or importance is one of the most frequently requested
-          features. The class templates <code class="computeroutput"><a class="link" href="../../boost/log/sources/severity_logger.html" title="Class template severity_logger">severity_logger</a></code>
-          and <code class="computeroutput"><a class="link" href="../../boost/log/sources/severity_logger_mt.html" title="Class template severity_logger_mt">severity_logger_mt</a></code>
-          (along with their <code class="computeroutput"><a class="link" href="../../boost/log/sources/wseverity_logger.html" title="Class template wseverity_logger">wseverity_logger</a></code>
-          and <code class="computeroutput"><a class="link" href="../../boost/log/sources/wseverity_logger_mt.html" title="Class template wseverity_logger_mt">wseverity_logger_mt</a></code>
+          features. The class templates <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1severity__logger.html" title="Class template severity_logger">severity_logger</a></code>
+          and <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1severity__logger__mt.html" title="Class template severity_logger_mt">severity_logger_mt</a></code>
+          (along with their <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wseverity__logger.html" title="Class template wseverity_logger">wseverity_logger</a></code>
+          and <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wseverity__logger__mt.html" title="Class template wseverity_logger_mt">wseverity_logger_mt</a></code>
           wide-character counterparts) provide this functionality.
         </p>
 <p>
@@ -224,8 +224,8 @@
 <a name="log.detailed.sources.channel_logger"></a><a class="link" href="sources.html#log.detailed.sources.channel_logger" title="Loggers with channel support">Loggers with channel
         support</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.channel_feature_hpp" title="Header &lt;boost/log/sources/channel_feature.hpp&gt;">boost/log/sources/channel_feature.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.channel_logger_hpp" title="Header &lt;boost/log/sources/channel_logger.hpp&gt;">boost/log/sources/channel_logger.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.channel__feature_8hpp" title="Header &lt;boost/log/sources/channel_feature.hpp&gt;">boost/log/sources/channel_feature.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.channel__logger_8hpp" title="Header &lt;boost/log/sources/channel_logger.hpp&gt;">boost/log/sources/channel_logger.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Sometimes it is important to associate log records with some application
@@ -233,10 +233,10 @@
           information to some specific domain of application functionality (e.g.
           network or file system related messages) or some arbitrary tag that can
           be used later to route these records to a specific sink. This feature is
-          fulfilled with loggers <code class="computeroutput"><a class="link" href="../../boost/log/sources/channel_logger.html" title="Class template channel_logger">channel_logger</a></code>,
-          <code class="computeroutput"><a class="link" href="../../boost/log/sources/channel_logger_mt.html" title="Class template channel_logger_mt">channel_logger_mt</a></code>
-          and their wide-char counterparts <code class="computeroutput"><a class="link" href="../../boost/log/sources/wchannel_logger.html" title="Class template wchannel_logger">wchannel_logger</a></code>,
-          <code class="computeroutput"><a class="link" href="../../boost/log/sources/wchannel_logger_mt.html" title="Class template wchannel_logger_mt">wchannel_logger_mt</a></code>.
+          fulfilled with loggers <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1channel__logger.html" title="Class template channel_logger">channel_logger</a></code>,
+          <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1channel__logger__mt.html" title="Class template channel_logger_mt">channel_logger_mt</a></code>
+          and their wide-char counterparts <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wchannel__logger.html" title="Class template wchannel_logger">wchannel_logger</a></code>,
+          <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wchannel__logger__mt.html" title="Class template wchannel_logger_mt">wchannel_logger_mt</a></code>.
           These loggers automatically register an attribute named "Channel".
           The default channel name can be set in the logger constructor with a named
           argument <code class="computeroutput"><span class="identifier">channel</span></code>. The type
@@ -376,11 +376,11 @@
 <a name="log.detailed.sources.exception_handling"></a><a class="link" href="sources.html#log.detailed.sources.exception_handling" title="Loggers with exception handling support">Loggers with
         exception handling support</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.exception_handler_feature_hpp" title="Header &lt;boost/log/sources/exception_handler_feature.hpp&gt;">boost/log/sources/exception_handler_feature.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.exception__handler__feature_8hpp" title="Header &lt;boost/log/sources/exception_handler_feature.hpp&gt;">boost/log/sources/exception_handler_feature.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The library provides a logger feature that enables the user to handle and/or
-          suppress exceptions at the logger level. The <code class="computeroutput"><a class="link" href="../../boost/log/sources/exception_handler.html" title="Struct exception_handler">exception_handler</a></code>
+          suppress exceptions at the logger level. The <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/structboost_1_1log_1_1sources_1_1exception__handler.html" title="Struct exception_handler">exception_handler</a></code>
           feature adds a <code class="computeroutput"><span class="identifier">set_exception_handler</span></code>
           method to the logger that allows setting a function object to be called
           if an exception is thrown from the logging core during the filtering or
@@ -448,14 +448,14 @@
 <a name="log.detailed.sources.mixed_loggers"></a><a class="link" href="sources.html#log.detailed.sources.mixed_loggers" title="Loggers with mixed features">Loggers with mixed
         features</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.severity_channel_logger_hpp" title="Header &lt;boost/log/sources/severity_channel_logger.hpp&gt;">boost/log/sources/severity_channel_logger.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.severity__channel__logger_8hpp" title="Header &lt;boost/log/sources/severity_channel_logger.hpp&gt;">boost/log/sources/severity_channel_logger.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           If you wonder whether you can use a mixed set of several logger features
-          in one logger, then yes, you certainly can. The library provides <code class="computeroutput"><a class="link" href="../../boost/log/sources/severity_channel_logger.html" title="Class template severity_channel_logger">severity_channel_logger</a></code>
-          and <code class="computeroutput"><a class="link" href="../../boost/log/sources/severity_channel_logger_mt.html" title="Class template severity_channel_logger_mt">severity_channel_logger_mt</a></code>
-          (with their wide-char analogues <code class="computeroutput"><a class="link" href="../../boost/log/sources/wseverity_channel_logger.html" title="Class template wseverity_channel_logger">wseverity_channel_logger</a></code>
-          and <code class="computeroutput"><a class="link" href="../../boost/log/sources/wseverity_channel_idm31400.html" title="Class template wseverity_channel_logger_mt">wseverity_channel_logger_mt</a></code>)
+          in one logger, then yes, you certainly can. The library provides <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1severity__channel__logger.html" title="Class template severity_channel_logger">severity_channel_logger</a></code>
+          and <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1severity__channel__logger__mt.html" title="Class template severity_channel_logger_mt">severity_channel_logger_mt</a></code>
+          (with their wide-char analogues <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wseverity__channel__logger.html" title="Class template wseverity_channel_logger">wseverity_channel_logger</a></code>
+          and <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1wseverity__channel__logger__mt.html" title="Class template wseverity_channel_logger_mt">wseverity_channel_logger_mt</a></code>)
           which combine features of the described loggers with <a class="link" href="sources.html#log.detailed.sources.severity_level_logger" title="Loggers with severity level support">severity
           level</a> and <a class="link" href="sources.html#log.detailed.sources.channel_logger" title="Loggers with channel support">channels</a>
           support. The composite loggers are templates, too, which allows you to
@@ -467,7 +467,7 @@
 <p>
           The usage of the loggers with several features does not conceptually differ
           from the usage of the single-featured loggers. For instance, here is how
-          a <code class="computeroutput"><a class="link" href="../../boost/log/sources/severity_channel_logger_mt.html" title="Class template severity_channel_logger_mt">severity_channel_logger_mt</a></code>
+          a <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/classboost_1_1log_1_1sources_1_1severity__channel__logger__mt.html" title="Class template severity_channel_logger_mt">severity_channel_logger_mt</a></code>
           could be used:
         </p>
 <p>
@@ -508,7 +508,7 @@
 <a name="log.detailed.sources.global_storage"></a><a class="link" href="sources.html#log.detailed.sources.global_storage" title="Global storage for loggers">Global storage
         for loggers</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#header.boost.log.sources.global_logger_storage_hpp" title="Header &lt;boost/log/sources/global_logger_storage.hpp&gt;">boost/log/sources/global_logger_storage.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../logging_sources.html#doxygen.logging_sources.global__logger__storage_8hpp" title="Header &lt;boost/log/sources/global_logger_storage.hpp&gt;">boost/log/sources/global_logger_storage.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Sometimes it is inconvenient to have a logger object to be able to write
@@ -572,7 +572,7 @@
 <p>
           The easiest way to declare a global logger is to use the following macro:
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../BOOST_LOG_INLINE__idm30894.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT">BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT</a></code><span class="special">(</span><span class="identifier">my_logger</span><span class="special">,</span> <span class="identifier">src</span><span class="special">::</span><span class="identifier">severity_logger_mt</span><span class="special">&lt;</span> <span class="special">&gt;)</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1a8ec0a191e0873253f997240e5c3fa9ee.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT">BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT</a></code><span class="special">(</span><span class="identifier">my_logger</span><span class="special">,</span> <span class="identifier">src</span><span class="special">::</span><span class="identifier">severity_logger_mt</span><span class="special">&lt;</span> <span class="special">&gt;)</span>
 </pre>
 <p>
           The <code class="computeroutput"><span class="identifier">my_logger</span></code> argument
@@ -586,13 +586,13 @@
           If passing arguments to the logger constructor is needed, there is another
           macro:
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../BOOST_LOG_INLINE__idm30898.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS</a></code><span class="special">(</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1aba2c2695faac93c42134ce35e7b0c1c2.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS</a></code><span class="special">(</span>
     <span class="identifier">my_logger</span><span class="special">,</span>
     <span class="identifier">src</span><span class="special">::</span><span class="identifier">severity_channel_logger</span><span class="special">&lt;</span> <span class="special">&gt;,</span>
     <span class="special">(</span><span class="identifier">keywords</span><span class="special">::</span><span class="identifier">severity</span> <span class="special">=</span> <span class="identifier">error</span><span class="special">)(</span><span class="identifier">keywords</span><span class="special">::</span><span class="identifier">channel</span> <span class="special">=</span> <span class="string">"my_channel"</span><span class="special">))</span>
 </pre>
 <p>
-          The last macro argument is a <a href="http://www.boost.org/doc/libs/release/libs/preprocessor/doc/index.html" target="_top">Boost.Preprocessor</a>
+          The last macro argument is a <a href="https://www.boost.org/doc/libs/release/libs/preprocessor/doc/index.html" target="_top">Boost.Preprocessor</a>
           sequence of arguments passed to the logger constructor. Be careful, however,
           when using non-constant expressions and references to objects as constructor
           arguments, since the arguments are evaluated only once and it is often
@@ -605,7 +605,7 @@
           The third macro of this section provides maximum initialization flexibility,
           allowing the user to actually define the logic of creating the logger.
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../BOOST_LOG_INLINE__idm30890.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT">BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT</a></code><span class="special">(</span><span class="identifier">my_logger</span><span class="special">,</span> <span class="identifier">src</span><span class="special">::</span><span class="identifier">severity_logger_mt</span><span class="special">)</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1a232634829527b256b222acde0b897134.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT">BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT</a></code><span class="special">(</span><span class="identifier">my_logger</span><span class="special">,</span> <span class="identifier">src</span><span class="special">::</span><span class="identifier">severity_logger_mt</span><span class="special">)</span>
 <span class="special">{</span>
     <span class="comment">// Do something that needs to be done on logger initialization,</span>
     <span class="comment">// e.g. add a stop watch attribute.</span>
@@ -616,7 +616,7 @@
 <span class="special">}</span>
 </pre>
 <p>
-          Like the <code class="computeroutput"><a class="link" href="../../BOOST_LOG_INLINE__idm30898.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS</a></code>
+          Like the <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1aba2c2695faac93c42134ce35e7b0c1c2.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_INLINE_GLOBAL_LOGGER_CTOR_ARGS</a></code>
           macro, the initialization code is called only once, on the first request
           of the logger.
         </p>
@@ -631,7 +631,7 @@
             logger is declared in exactly the same way at all occurrences</span>
             and <span class="underline">all symbol names involved in the declaration
             resolve to the same entities</span>. The latter includes the names
-            used within the initialization routine of the <code class="computeroutput"><a class="link" href="../../BOOST_LOG_INLINE__idm30890.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT">BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT</a></code>
+            used within the initialization routine of the <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1a232634829527b256b222acde0b897134.html" title="Macro BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT">BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT</a></code>
             macro, such as references to external variables, functions and types.
             The library tries to protect itself from ODR violations to a certain
             degree, but in general the behavior is undefined if the rule is violated.
@@ -644,14 +644,14 @@
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../BOOST_LOG_GLOBAL_LOGGER.html" title="Macro BOOST_LOG_GLOBAL_LOGGER">BOOST_LOG_GLOBAL_LOGGER</a></code>
+              <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1aaf4792e83d8810b2182dc40fbb9b0971.html" title="Macro BOOST_LOG_GLOBAL_LOGGER">BOOST_LOG_GLOBAL_LOGGER</a></code>
               provides the logger declaration. It can be used in a header, similarly
               to the <code class="computeroutput"><span class="identifier">BOOST_LOG_INLINE_GLOBAL_LOGGER</span><span class="special">*</span></code> macros described above.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><a class="link" href="../../BOOST_LOG_GLOBAL__idm30877.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_INIT">BOOST_LOG_GLOBAL_LOGGER_INIT</a></code>,
-              <code class="computeroutput"><a class="link" href="../../BOOST_LOG_GLOBAL__idm30881.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_DEFAULT">BOOST_LOG_GLOBAL_LOGGER_DEFAULT</a></code>
-              and <code class="computeroutput"><a class="link" href="../../BOOST_LOG_GLOBAL__idm30885.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_GLOBAL_LOGGER_CTOR_ARGS</a></code>
+              <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1ac3d73b4fb68e12ee0a523c99a3ddaeca.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_INIT">BOOST_LOG_GLOBAL_LOGGER_INIT</a></code>,
+              <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1add4dade7fe622b4bd6608e69e3abed84.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_DEFAULT">BOOST_LOG_GLOBAL_LOGGER_DEFAULT</a></code>
+              and <code class="computeroutput"><a class="link" href="../../doxygen/logging_sources/global__logger__storage_8hpp_1a73d962e61a78c43894b9abd2bdd93c1a.html" title="Macro BOOST_LOG_GLOBAL_LOGGER_CTOR_ARGS">BOOST_LOG_GLOBAL_LOGGER_CTOR_ARGS</a></code>
               define the logger initialization routine. Their semantics and usage
               is similar to the corresponding <code class="computeroutput"><span class="identifier">BOOST_LOG_INLINE_GLOBAL_LOGGER</span><span class="special">*</span></code> macros, for one exception: these macros
               should be used in a single .cpp file.
@@ -704,7 +704,7 @@
 </table></div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

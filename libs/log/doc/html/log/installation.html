@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.Log v2">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.Log v2">
-<link rel="prev" href="how_to_read.html" title="How to read the documentation">
+<link rel="prev" href="../index.html" title="Chapter 1. Boost.Log v2">
 <link rel="next" href="installation/config.html" title="Configuring and building the library">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,7 +14,7 @@
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="how_to_read.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="installation/config.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../index.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="installation/config.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -32,22 +32,22 @@
       and platforms</a>
 </h3></div></div></div>
 <p>
-        The library should build and work with a reasonably compliant compiler. The
-        library was successfully built and tested on the following platforms:
+        The library should build and work with a reasonably compliant C++11 compiler.
+        The library was successfully built and tested on the following platforms:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            Windows XP, Windows Vista, Windows 7. MSVC 8.0 SP1, MSVC 9.0 and newer.
+            Windows 10. MSVC 14.0 and newer. MinGW32 with gcc 5.x and MinGW-w64 with
+            gcc 6.x and newer.
           </li>
 <li class="listitem">
-            Linux. GCC 4.5 and newer. Older versions may work too, but it was not
-            tested.
+            Cygwin and Cygwin64 with gcc 7.x and newer.
           </li>
 <li class="listitem">
-            Linux. Intel C++ 13.1.0.146 Build 20130121.
+            Linux. GCC 5.x and newer.
           </li>
 <li class="listitem">
-            Linux. Clang 3.2 and newer.
+            Linux. Clang 3.5 and newer.
           </li>
 </ul></div>
 <p>
@@ -56,14 +56,17 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
+            Compilers that do not support C++11.
+          </li>
+<li class="listitem">
             C++11 compilers with non-C++11 standard libraries (like Clang with libstdc++
             from GCC 4.2). Please, use a C++11 standard library in C++11 mode.
           </li>
 <li class="listitem">
-            MSVC 8.0 (without SP1) and older.
+            MSVC 12.0 and older.
           </li>
 <li class="listitem">
-            GCC 4.2 and older.
+            GCC 4.4 and older.
           </li>
 <li class="listitem">
             Borland C++ 5.5.1 (free version). Newer versions might or might not work.
@@ -101,7 +104,7 @@
 <p>
         There is a GCC <a href="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=60607" target="_top">bug</a>
         which may cause compilation failures when <code class="computeroutput"><span class="special">-</span><span class="identifier">march</span><span class="special">=</span><span class="identifier">native</span></code> command line argument is used. It
-        is recommended to avoid using <code class="computeroutput"><span class="special">-</span><span class="identifier">march</span><span class="special">=</span><span class="identifier">native</span></code> argument (or <code class="computeroutput"><span class="identifier">instruction</span><span class="special">-</span><span class="identifier">set</span><span class="special">=</span><span class="identifier">native</span></code> bjam property) and instead explicitly
+        is recommended to avoid using <code class="computeroutput"><span class="special">-</span><span class="identifier">march</span><span class="special">=</span><span class="identifier">native</span></code> argument (or <code class="computeroutput"><span class="identifier">instruction</span><span class="special">-</span><span class="identifier">set</span><span class="special">=</span><span class="identifier">native</span></code> b2 property) and instead explicitly
         specify the target CPU (e.g. <code class="computeroutput"><span class="identifier">instruction</span><span class="special">-</span><span class="identifier">set</span><span class="special">=</span><span class="identifier">sandy</span><span class="special">-</span><span class="identifier">bridge</span></code>).
       </p>
 <h5>
@@ -136,7 +139,7 @@
         <code class="computeroutput"><span class="identifier">mc</span><span class="special">.</span><span class="identifier">exe</span></code>. In order to do that you will have
         to patch Boost.Build files (in particular, the <code class="computeroutput"><span class="identifier">tools</span><span class="special">/</span><span class="identifier">build</span><span class="special">/</span><span class="identifier">tools</span><span class="special">/</span><span class="identifier">mc</span><span class="special">.</span><span class="identifier">jam</span></code> file) as described in <a href="https://svn.boost.org/trac/boost/ticket/4111" target="_top">this</a>
         ticket. After that you will be able to specify the <code class="computeroutput"><span class="identifier">mc</span><span class="special">-</span><span class="identifier">compiler</span><span class="special">=</span><span class="identifier">windmc</span></code>
-        option to bjam to build the library.
+        option to b2 to build the library.
       </p>
 <p>
         In case if message compiler detection fails for some reason, you can explicitly
@@ -162,20 +165,20 @@
         Cygwin (4.5.3 as of this writing) is unable to compile the library because
         of compiler errors. You will have to build a newer GCC from sources. Even
         then some Boost.Log functionality is not available. In particular, the socket-based
-        syslog backend is not supported, as it is based on <a href="http://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>,
+        syslog backend is not supported, as it is based on <a href="https://www.boost.org/doc/libs/release/doc/html/boost_asio.html" target="_top">Boost.ASIO</a>,
         which doesn't compile on this platform. However, the native syslog support
         is still in place.
       </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="how_to_read.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="installation/config.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../index.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="installation/config.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

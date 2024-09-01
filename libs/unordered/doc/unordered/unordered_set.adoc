@@ -1,5 +1,5 @@
 [#unordered_set]
-== Class template unordered_set
+== Class Template unordered_set
 
 :idprefix: unordered_set_
 
@@ -24,12 +24,12 @@ namespace boost {
     using hasher               = Hash;
     using key_equal            = Pred;
     using allocator_type       = Allocator;
-    using pointer              = typename boost::allocator_traits<Allocator>::pointer;
-    using const_pointer        = typename boost::allocator_traits<Allocator>::const_pointer;
+    using pointer              = typename std::allocator_traits<Allocator>::pointer;
+    using const_pointer        = typename std::allocator_traits<Allocator>::const_pointer;
     using reference            = value_type&;
     using const_reference      = const value_type&;
-    using size_type            = _implementation-defined_;
-    using difference_type      = _implementation-defined_;
+    using size_type            = std::size_t;
+    using difference_type      = std::ptrdiff_t;
 
     using iterator             = _implementation-defined_;
     using const_iterator       = _implementation-defined_;
@@ -245,9 +245,20 @@ namespace boost {
               unordered_set<Key, Hash, Pred, Alloc>& y)
       noexcept(noexcept(x.swap(y)));
 
+  // Erasure
   template<class K, class H, class P, class A, class Predicate>
     typename unordered_set<K, H, P, A>::size_type
       xref:#unordered_set_erase_if[erase_if](unordered_set<K, H, P, A>& c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template<class Key,
+             class Hash = boost::hash<Key>,
+             class Pred = std::equal_to<Key>>
+    using unordered_set =
+      boost::unordered_set<Key, Hash, Pred,
+        std::pmr::polymorphic_allocator<Key>>;
+  }
 }
 -----
 
@@ -271,6 +282,7 @@ namespace boost {
 
 |_Allocator_
 |An allocator whose value type is the same as the container's value type.
+Allocators using https://en.cppreference.com/w/cpp/named_req/Allocator#Fancy_pointers[fancy pointers] are supported.
 
 |===
 
@@ -278,50 +290,14 @@ The elements are organized into buckets. Keys with the same hash code are stored
 
 The number of buckets can be automatically increased by a call to insert, or as the result of calling rehash.
 
----
+=== Configuration macros
+
+==== `BOOST_UNORDERED_ENABLE_SERIALIZATION_COMPATIBILITY_V0`
+
+Globally define this macro to support loading of ``unordered_set``s saved to
+a Boost.Serialization archive with a version of Boost prior to Boost 1.84.
 
 === Typedefs
-
-[source,c++,subs=+quotes]
-----
-typedef typename allocator_type::pointer pointer;
-----
-
-`value_type*` if `allocator_type::pointer` is not defined.
-
----
-
-[source,c++,subs=+quotes]
-----
-typedef typename allocator_type::const_pointer const_pointer;
-----
-
-`boost::pointer_to_other<pointer, value_type>::type` if `allocator_type::const_pointer` is not defined.
-
-
----
-
-[source,c++,subs=+quotes]
-----
-typedef _implementation-defined_ size_type;
-----
-
-An unsigned integral type.
-
-`size_type` can represent any non-negative value of `difference_type`.
-
----
-
-[source,c++,subs=+quotes]
-----
-typedef _implementation-defined_ difference_type;
-----
-
-A signed integral type.
-
-Is identical to the difference type of `iterator` and `const_iterator`.
-
----
 
 [source,c++,subs=+quotes]
 ----
@@ -374,7 +350,8 @@ A const_local_iterator object can be used to iterate through a single bucket.
 typedef _implementation-defined_ node_type;
 ----
 
-See node_handle_set for details.
+A class for holding extracted container elements, modelling 
+https://en.cppreference.com/w/cpp/container/node_handle[NodeHandle].
 
 ---
 
@@ -383,7 +360,20 @@ See node_handle_set for details.
 typedef _implementation-defined_ insert_return_type;
 ----
 
-Structure returned by inserting node_type.
+A specialization of an internal class template:
+
+[source,c++,subs=+quotes]
+----
+template<class Iterator, class NodeType>
+struct _insert_return_type_ // name is exposition only
+{
+  Iterator position;
+  bool     inserted;
+  NodeType node;
+};
+----
+
+with `Iterator` = `iterator` and `NodeType` = `node_type`.
 
 ---
 
@@ -463,10 +453,7 @@ The move constructor.
 
 [horizontal]
 Notes:;; This is implemented using Boost.Move.
-Requires:;; `value_type` is move-constructible. +
-+
-On compilers without rvalue reference support the emulation does not support moving without calling `boost::move` if `value_type` is not copyable.
-So, for example, you can't return the container from a function.
+Requires:;; `value_type` is move-constructible.
 
 ---
 
@@ -666,7 +653,6 @@ The move assignment operator.
 If `Alloc::propagate_on_container_move_assignment` exists and `Alloc::propagate_on_container_move_assignment::value` is `true`, the allocator is overwritten, if not the moved elements are created using the existing allocator.
 
 [horizontal]
-Notes:;; On compilers without rvalue references, this is emulated using Boost.Move. Note that on some compilers the copy assignment operator may be used in some circumstances.
 Requires:;; `value_type` is move constructible.
 
 ---
@@ -779,11 +765,7 @@ If an insert took place, then the iterator points to the newly inserted element.
 Throws:;; If an exception is thrown by an operation other than a call to `hasher` the function has no effect.
 Notes:;; Can invalidate iterators, but only if the insert causes the load factor to be greater to or equal to the maximum load factor. +
 +
-Pointers and references to elements are never invalidated. +
-+
-If the compiler doesn't support variadic template arguments or rvalue references, this is emulated for up to `10` arguments, with no support for rvalue references or move semantics. +
-+
-Since existing `std::pair` implementations don't support `std::piecewise_construct` this emulates it, but using `boost::unordered::piecewise_construct`.
+Pointers and references to elements are never invalidated.
 
 ---
 
@@ -804,11 +786,7 @@ Notes:;; The standard is fairly vague on the meaning of the hint. But the only p
 +
 Can invalidate iterators, but only if the insert causes the load factor to be greater to or equal to the maximum load factor. +
 +
-Pointers and references to elements are never invalidated. +
-+
-If the compiler doesn't support variadic template arguments or rvalue references, this is emulated for up to 10 arguments, with no support for rvalue references or move semantics. +
-+
-Since existing `std::pair` implementations don't support `std::piecewise_construct` this emulates it, but using `boost::unordered::piecewise_construct`.
+Pointers and references to elements are never invalidated.
 
 ---
 
@@ -959,7 +937,7 @@ void insert(std::initializer_list<value_type>);
 Inserts a range of elements into the container. Elements are inserted if and only if there is no element in the container with an equivalent key.
 
 [horizontal]
-Requires:;; `value_type` is https://en.cppreference.com/w/cpp/named_req/EmplaceConstructible[EmplaceConstructible^] into `X` from `*first`.
+Requires:;; `value_type` is https://en.cppreference.com/w/cpp/named_req/CopyInsertable[CopyInsertable^] into the container.
 Throws:;; When inserting a single element, if an exception is thrown by an operation other than a call to `hasher` the function has no effect.
 Notes:;; Can invalidate iterators, but only if the insert causes the load factor to be greater to or equal to the maximum load factor. +
 +
@@ -1248,7 +1226,7 @@ template<typename CompatibleKey, typename CompatibleHash, typename CompatiblePre
 Returns:;; An iterator pointing to an element with key equivalent to `k`, or `b.end()` if no such element exists.
 Notes:;; The templated overloads containing `CompatibleKey`, `CompatibleHash` and `CompatiblePredicate` are non-standard extensions which allow you to use a compatible hash function and equality predicate for a key of a different type in order to avoid an expensive type cast. In general, its use is not encouraged and instead the `K` member function templates should be used. +
 +
-The `template <typename K>` overloads only participate in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
+The `template<class K>` overloads only participate in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
 
 ---
 
@@ -1261,7 +1239,7 @@ template<class K>
 
 [horizontal]
 Returns:;; The number of elements with key equivalent to `k`.
-Notes:;; The `template <typename K>` overload only participates in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
+Notes:;; The `template<class K>` overload only participates in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
 
 ---
 
@@ -1274,7 +1252,7 @@ template<class K>
 
 [horizontal]
 Returns:;; A boolean indicating whether or not there is an element with key equal to `key` in the container
-Notes:;; The `template <typename K>` overload only participates in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
+Notes:;; The `template<class K>` overload only participates in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
 
 ---
 
@@ -1290,7 +1268,7 @@ template<class K>
 
 [horizontal]
 Returns:;; A range containing all elements with key equivalent to `k`. If the container doesn't contain any such elements, returns `std::make_pair(b.end(), b.end())`.
-Notes:;; The `template <typename K>` overloads only participate in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
+Notes:;; The `template<class K>` overloads only participate in overload resolution if `Hash::is_transparent` and `Pred::is_transparent` are valid member typedefs. The library assumes that `Hash` is callable with both `K` and `Key` and that `Pred` is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the `Key` type.
 
 ---
 
@@ -1483,9 +1461,7 @@ template<class Key, class Hash, class Pred, class Alloc>
 Return `true` if `x.size() == y.size()` and for every element in `x`, there is an element in `y` with the same key, with an equal value (using `operator==` to compare the value types).
 
 [horizontal]
-Notes:;; The behavior of this function was changed to match the C++11 standard in Boost 1.48. +
-+
-Behavior is undefined if the two containers don't have equivalent equality predicates.
+Notes:;; Behavior is undefined if the two containers don't have equivalent equality predicates.
 
 ---
 
@@ -1499,9 +1475,7 @@ template<class Key, class Hash, class Pred, class Alloc>
 Return `false` if `x.size() == y.size()` and for every element in `x`, there is an element in `y` with the same key, with an equal value (using `operator==` to compare the value types).
 
 [horizontal]
-Notes:;; The behavior of this function was changed to match the C++11 standard in Boost 1.48. +
-+
-Behavior is undefined if the two containers don't have equivalent equality predicates.
+Notes:;; Behavior is undefined if the two containers don't have equivalent equality predicates.
 
 ---
 
@@ -1549,4 +1523,58 @@ for (auto i = c.begin(), last = c.end(); i != last; ) {
 return original_size - c.size();
 ```
 
+=== Serialization
+
+``unordered_set``s can be archived/retrieved by means of
+link:../../../serialization/index.html[Boost.Serialization^] using the API provided
+by this library. Both regular and XML archives are supported. 
+
+==== Saving an unordered_set to an archive
+
+Saves all the elements of an `unordered_set` `x` to an archive (XML archive) `ar`.
+
+[horizontal]
+Requires:;; `value_type`
+is serializable (XML serializable), and it supports Boost.Serialization
+`save_construct_data`/`load_construct_data` protocol (automatically suported by
+https://en.cppreference.com/w/cpp/named_req/DefaultConstructible[DefaultConstructible^]
+types).  
+
 ---
+
+==== Loading an unordered_set from an archive
+
+Deletes all preexisting elements of an `unordered_set` `x` and inserts
+from an archive (XML archive) `ar` restored copies of the elements of the
+original `unordered_set` `other` saved to the storage read by `ar`.
+
+[horizontal]
+Requires:;; `value_type` is https://en.cppreference.com/w/cpp/named_req/MoveInsertable[MoveInsertable^].
+`x.key_equal()` is functionally equivalent to `other.key_equal()`.
+Note:;; If the archive was saved using a release of Boost prior to Boost 1.84,
+the configuration macro `BOOST_UNORDERED_ENABLE_SERIALIZATION_COMPATIBILITY_V0`
+has to be globally defined for this operation to succeed; otherwise, an exception is thrown.
+
+---
+
+==== Saving an iterator/const_iterator to an archive
+
+Saves the positional information of an `iterator` (`const_iterator`) `it`
+to an archive (XML archive) `ar`. `it` can be and `end()` iterator.
+
+[horizontal]
+Requires:;; The `unordered_set` `x` pointed to by `it` has been previously saved to `ar`,
+and no modifying operations have been issued on `x` between saving of `x` and
+saving of `it`.
+
+---
+
+==== Loading an iterator/const_iterator from an archive
+
+Makes an `iterator` (`const_iterator`) `it` point to the restored position of
+the original `iterator` (`const_iterator`) saved to the storage read by
+an archive (XML archive) `ar`.
+
+[horizontal]
+Requires:;; If `x` is the `unordered_set` `it` points to, no modifying operations
+have been issued on `x` between loading of `x` and loading of `it`.
