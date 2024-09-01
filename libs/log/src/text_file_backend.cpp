@@ -30,7 +30,6 @@
 #include <algorithm>
 #include <stdexcept>
 #include <boost/core/ref.hpp>
-#include <boost/bind/bind.hpp>
 #include <boost/cstdint.hpp>
 #include <boost/optional/optional.hpp>
 #include <boost/smart_ptr/make_shared_object.hpp>
@@ -44,7 +43,6 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/convenience.hpp>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
 #include <boost/intrusive/options.hpp>
@@ -569,19 +567,40 @@ BOOST_LOG_ANONYMOUS_NAMESPACE {
             if (counter_found)
             {
                 // Both counter and date/time placeholder in the pattern
-                file_name_generator = boost::bind(date_and_time_formatter(),
-                    boost::bind(file_counter_formatter(counter_pos, width), name_pattern, boost::placeholders::_1), boost::placeholders::_1);
+#if !defined(BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES)
+                file_name_generator = [date_and_time_fmt = date_and_time_formatter(), file_counter_fmt = file_counter_formatter(counter_pos, width), name_pattern](unsigned int counter)
+                    { return date_and_time_fmt(file_counter_fmt(name_pattern, counter), counter); };
+#else
+                date_and_time_formatter date_and_time_fmt;
+                file_counter_formatter file_counter_fmt(counter_pos, width);
+                file_name_generator = [date_and_time_fmt, file_counter_fmt, name_pattern](unsigned int counter)
+                    { return date_and_time_fmt(file_counter_fmt(name_pattern, counter), counter); };
+#endif
             }
             else
             {
                 // Only date/time placeholders in the pattern
-                file_name_generator = boost::bind(date_and_time_formatter(), name_pattern, boost::placeholders::_1);
+#if !defined(BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES)
+                file_name_generator = [date_and_time_fmt = date_and_time_formatter(), name_pattern](unsigned int counter)
+                    { return date_and_time_fmt(name_pattern, counter); };
+#else
+                date_and_time_formatter date_and_time_fmt;
+                file_name_generator = [date_and_time_fmt, name_pattern](unsigned int counter)
+                    { return date_and_time_fmt(name_pattern, counter); };
+#endif
             }
         }
         else if (counter_found)
         {
             // Only counter placeholder in the pattern
-            file_name_generator = boost::bind(file_counter_formatter(counter_pos, width), name_pattern, boost::placeholders::_1);
+#if !defined(BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES)
+            file_name_generator = [file_counter_fmt = file_counter_formatter(counter_pos, width), name_pattern](unsigned int counter)
+                { return file_counter_fmt(name_pattern, counter); };
+#else
+            file_counter_formatter file_counter_fmt(counter_pos, width);
+            file_name_generator = [file_counter_fmt, name_pattern](unsigned int counter)
+                { return file_counter_fmt(name_pattern, counter); };
+#endif
         }
         else
         {
@@ -1027,7 +1046,7 @@ BOOST_LOG_ANONYMOUS_NAMESPACE {
         BOOST_LOG_EXPR_IF_MT(lock_guard< mutex > lock(m_Mutex);)
 
         file_collectors::iterator it = std::find_if(m_Collectors.begin(), m_Collectors.end(),
-            boost::bind(&file_collector::is_governed, boost::placeholders::_1, boost::cref(target_dir)));
+            [&target_dir](file_collector const& collector) { return collector.is_governed(target_dir); });
         shared_ptr< file_collector > p;
         if (it != m_Collectors.end()) try
         {
@@ -1422,6 +1441,7 @@ BOOST_LOG_API void text_file_backend::consume(record_view const& rec, string_typ
         rotate_file();
     }
 
+    const unsigned int last_file_counter = m_pImpl->m_FileCounter - 1u;
     while (!m_pImpl->m_File.is_open())
     {
         filesystem::path new_file_name;
@@ -1464,6 +1484,7 @@ BOOST_LOG_API void text_file_backend::consume(record_view const& rec, string_typ
         else
         {
             prev_file_name.swap(new_file_name);
+            use_prev_file_name = false;
         }
 
         filesystem::create_directories(new_file_name.parent_path());
@@ -1479,9 +1500,11 @@ BOOST_LOG_API void text_file_backend::consume(record_view const& rec, string_typ
         m_pImpl->m_FileName.swap(new_file_name);
         m_pImpl->m_IsFirstFile = false;
 
-        // Check the file size before invoking the open handler, as it may write more data to the file
+        // Check the file size before invoking the open handler, as it may write more data to the file.
+        // Only do this check if we haven't exhausted the file counter to avoid looping indefinitely.
         m_pImpl->m_CharactersWritten = static_cast< std::streamoff >(m_pImpl->m_File.tellp());
-        if (m_pImpl->m_CharactersWritten + formatted_message.size() >= m_pImpl->m_FileRotationSize)
+        if (m_pImpl->m_CharactersWritten > 0 && m_pImpl->m_CharactersWritten + formatted_message.size() >= m_pImpl->m_FileRotationSize &&
+            m_pImpl->m_FileCounter != last_file_counter)
         {
             // Avoid running the close handler, as we haven't run the open handler yet
             struct close_handler_backup_guard

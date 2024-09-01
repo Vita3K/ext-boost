@@ -39,12 +39,12 @@
 <a name="log.extension.settings.formatter"></a><a class="link" href="settings.html#log.extension.settings.formatter" title="Adding support for user-defined types to the formatter parser">Adding support for
         user-defined types to the formatter parser</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.formatter_parser_hpp" title="Header &lt;boost/log/utility/setup/formatter_parser.hpp&gt;">boost/log/utility/setup/formatter_parser.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.formatter__parser_8hpp" title="Header &lt;boost/log/utility/setup/formatter_parser.hpp&gt;">boost/log/utility/setup/formatter_parser.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           In order to add support for user-defined types to the formatter parser,
           one has to register a formatter factory. The factory is basically an object
-          that derives from <code class="computeroutput"><a class="link" href="../../boost/log/formatter_factory.html" title="Struct template formatter_factory">formatter_factory</a></code>
+          that derives from <code class="computeroutput"><a class="link" href="../../doxygen/utilities/structboost_1_1log_1_1formatter__factory.html" title="Struct template formatter_factory">formatter_factory</a></code>
           interface. The factory mainly implements the single <code class="computeroutput"><span class="identifier">create_formatter</span></code>
           method which, when called, will construct a formatter for the particular
           attribute value.
@@ -77,7 +77,7 @@
         </p>
 <p>
           Then, in order to register this type with the simple formatter factory,
-          a single call to <code class="computeroutput"><a class="link" href="../../boost/log/register_simple_f_idm39090.html" title="Function template register_simple_formatter_factory">register_simple_formatter_factory</a></code>
+          a single call to <code class="computeroutput"><a class="link" href="../../doxygen/utilities/formatter__parser_8hpp_1ad29d50464e0a8fecd2d5573f11bb9ea9.html" title="Function template register_simple_formatter_factory">register_simple_formatter_factory</a></code>
           will suffice:
         </p>
 <p>
@@ -133,8 +133,8 @@
 <p>
           The simple formatter factory ignores all additional parameters from the
           format string, so we have to implement our own factory instead. Custom
-          factories are registered with the <code class="computeroutput"><a class="link" href="../../boost/log/register_formatte_idm39050.html" title="Function template register_formatter_factory">register_formatter_factory</a></code>
-          function, which is similar to <code class="computeroutput"><a class="link" href="../../boost/log/register_simple_f_idm39090.html" title="Function template register_simple_formatter_factory">register_simple_formatter_factory</a></code>
+          factories are registered with the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/formatter__parser_8hpp_1a2e3498cdf00b77254237285df231f61d.html" title="Function template register_formatter_factory">register_formatter_factory</a></code>
+          function, which is similar to <code class="computeroutput"><a class="link" href="../../doxygen/utilities/formatter__parser_8hpp_1ad29d50464e0a8fecd2d5573f11bb9ea9.html" title="Function template register_simple_formatter_factory">register_simple_formatter_factory</a></code>
           but accepts a pointer to the factory instead of the explicit template parameters.
         </p>
 <p>
@@ -189,14 +189,14 @@
         </p>
 <p>
           Let's walk through this code sample. Our <code class="computeroutput"><span class="identifier">point_formatter_factory</span></code>
-          class derives from the <code class="computeroutput"><a class="link" href="../../boost/log/basic_formatter_factory.html" title="Class template basic_formatter_factory">basic_formatter_factory</a></code>
-          base class provided by the library. This class derives from the base <code class="computeroutput"><a class="link" href="../../boost/log/formatter_factory.html" title="Struct template formatter_factory">formatter_factory</a></code> interface
+          class derives from the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1basic__formatter__factory.html" title="Class template basic_formatter_factory">basic_formatter_factory</a></code>
+          base class provided by the library. This class derives from the base <code class="computeroutput"><a class="link" href="../../doxygen/utilities/structboost_1_1log_1_1formatter__factory.html" title="Struct template formatter_factory">formatter_factory</a></code> interface
           and defines a few useful types, such as <code class="computeroutput"><span class="identifier">formatter_type</span></code>
           and <code class="computeroutput"><span class="identifier">args_map</span></code> that we use.
           The only thing left to do in our factory is to define the <code class="computeroutput"><span class="identifier">create_formatter</span></code> method. The method analyzes
           the parameters from the format string which are passed as the <code class="computeroutput"><span class="identifier">args</span></code> argument, which is basically <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">map</span></code> of string keys (parameter names)
           to string values (the parameter values). We seek for the <code class="computeroutput"><span class="identifier">format</span></code> parameter and expect it to contain
-          a <a href="http://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-compatible
+          a <a href="https://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>-compatible
           format string for our <code class="computeroutput"><span class="identifier">point</span></code>
           objects. If the parameter is found we create a formatter that invokes
           <code class="computeroutput"><span class="identifier">point_formatter</span></code> for the
@@ -208,8 +208,8 @@
         </p>
 <p>
           The <code class="computeroutput"><span class="identifier">point_formatter</span></code> is
-          our custom formatter based on <a href="http://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>.
-          With help of <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+          our custom formatter based on <a href="https://www.boost.org/doc/libs/release/libs/format/index.html" target="_top">Boost.Format</a>.
+          With help of <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
           and <a class="link" href="../detailed/expressions.html#log.detailed.expressions.attr" title="Generic attribute placeholder">expression placeholders</a>
           we can construct a formatter that will extract the attribute value and
           pass it along with the target stream to the <code class="computeroutput"><span class="identifier">point_formatter</span></code>
@@ -218,7 +218,7 @@
           empty if the value is not present.
         </p>
 <p>
-          Lastly, the call to <code class="computeroutput"><a class="link" href="../../boost/log/register_formatte_idm39050.html" title="Function template register_formatter_factory">register_formatter_factory</a></code>
+          Lastly, the call to <code class="computeroutput"><a class="link" href="../../doxygen/utilities/formatter__parser_8hpp_1a2e3498cdf00b77254237285df231f61d.html" title="Function template register_formatter_factory">register_formatter_factory</a></code>
           creates the factory and adds it to the library.
         </p>
 <p>
@@ -230,7 +230,7 @@
 <a name="log.extension.settings.filter"></a><a class="link" href="settings.html#log.extension.settings.filter" title="Adding support for user-defined types to the filter parser">Adding support for user-defined
         types to the filter parser</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.filter_parser_hpp" title="Header &lt;boost/log/utility/setup/filter_parser.hpp&gt;">boost/log/utility/setup/filter_parser.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.filter__parser_8hpp" title="Header &lt;boost/log/utility/setup/filter_parser.hpp&gt;">boost/log/utility/setup/filter_parser.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           You can extend filter parser in the similar way you can extend the formatter
@@ -264,7 +264,7 @@
             </li>
 </ol></div>
 <p>
-          Naturally, all these operators must be visible from the point of the <code class="computeroutput"><a class="link" href="../../boost/log/register_simple_f_idm38860.html" title="Function template register_simple_filter_factory">register_simple_filter_factory</a></code>
+          Naturally, all these operators must be visible from the point of the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/filter__parser_8hpp_1ac51d84558f9ea1a975d28eae4e9b7380.html" title="Function template register_simple_filter_factory">register_simple_filter_factory</a></code>
           call. Note that unlike the simple formatter factory, the filter factory
           requires the user's type to support reading from a stream. This is so because
           the filter factory would have to parse the argument of the filter relation
@@ -274,7 +274,7 @@
           But we won't get away with a simple filter factory, because our <code class="computeroutput"><span class="identifier">point</span></code> class doesn't have a sensible ordering
           semantics and thus we cannot define the complete set of operators. We'll
           have to implement our own filter factory instead. Filter factories derive
-          from the <code class="computeroutput"><a class="link" href="../../boost/log/filter_factory.html" title="Struct template filter_factory">filter_factory</a></code>
+          from the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/structboost_1_1log_1_1filter__factory.html" title="Struct template filter_factory">filter_factory</a></code>
           interface. This base class declares a number of virtual functions that
           will be called in order to create filters, according to the filter expression.
           If some functions are not overridden by the factory, the corresponding
@@ -320,12 +320,23 @@
 
     <span class="identifier">logging</span><span class="special">::</span><span class="identifier">filter</span> <span class="identifier">on_equality_relation</span><span class="special">(</span><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_name</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
     <span class="special">{</span>
-        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">parse_argument</span><span class="special">(</span><span class="identifier">arg</span><span class="special">);</span>
     <span class="special">}</span>
 
     <span class="identifier">logging</span><span class="special">::</span><span class="identifier">filter</span> <span class="identifier">on_inequality_relation</span><span class="special">(</span><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_name</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
     <span class="special">{</span>
-        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">!=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">!=</span> <span class="identifier">parse_argument</span><span class="special">(</span><span class="identifier">arg</span><span class="special">);</span>
+    <span class="special">}</span>
+
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="keyword">static</span> <span class="identifier">point</span> <span class="identifier">parse_argument</span><span class="special">(</span><span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">istringstream</span> <span class="identifier">strm</span><span class="special">(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="identifier">point</span> <span class="identifier">val</span><span class="special">;</span>
+        <span class="identifier">strm</span> <span class="special">&gt;&gt;</span> <span class="identifier">val</span><span class="special">;</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">strm</span><span class="special">.</span><span class="identifier">fail</span><span class="special">()</span> <span class="special">||</span> <span class="identifier">strm</span><span class="special">.</span><span class="identifier">bad</span><span class="special">())</span>
+            <span class="keyword">throw</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">runtime_error</span><span class="special">(</span><span class="string">"Failed to parse point from \""</span> <span class="special">+</span> <span class="identifier">arg</span> <span class="special">+</span> <span class="string">"\""</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">val</span><span class="special">;</span>
     <span class="special">}</span>
 <span class="special">};</span>
 
@@ -337,7 +348,7 @@
 <p>
         </p>
 <p>
-          Having called the <code class="computeroutput"><a class="link" href="../../boost/log/register_filter_f_idm38820.html" title="Function template register_filter_factory">register_filter_factory</a></code>
+          Having called the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/filter__parser_8hpp_1a2ee2fc65f02a4f6d9c08789393f13963.html" title="Function template register_filter_factory">register_filter_factory</a></code>
           function, whenever the <a class="link" href="../detailed/utilities.html#log.detailed.utilities.setup.filter_formatter" title="Filter and formatter parsers">filter
           parser</a> encounters the "Coordinates" attribute mentioned
           in the filter, it will use the <code class="computeroutput"><span class="identifier">point_filter_factory</span></code>
@@ -430,21 +441,33 @@
 
     <span class="identifier">logging</span><span class="special">::</span><span class="identifier">filter</span> <span class="identifier">on_equality_relation</span><span class="special">(</span><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_name</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
     <span class="special">{</span>
-        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">parse_argument</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
     <span class="special">}</span>
 
     <span class="identifier">logging</span><span class="special">::</span><span class="identifier">filter</span> <span class="identifier">on_inequality_relation</span><span class="special">(</span><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_name</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
     <span class="special">{</span>
-        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">!=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">)</span> <span class="special">!=</span> <span class="identifier">parse_argument</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">);</span>
     <span class="special">}</span>
 
     <span class="identifier">logging</span><span class="special">::</span><span class="identifier">filter</span> <span class="identifier">on_custom_relation</span><span class="special">(</span><span class="identifier">logging</span><span class="special">::</span><span class="identifier">attribute_name</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">rel</span><span class="special">,</span> <span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
     <span class="special">{</span>
         <span class="keyword">if</span> <span class="special">(</span><span class="identifier">rel</span> <span class="special">==</span> <span class="string">"is_in_rectangle"</span><span class="special">)</span>
         <span class="special">{</span>
-            <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">phoenix</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(&amp;</span><span class="identifier">is_in_rectangle</span><span class="special">,</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="identifier">rectangle</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">));</span>
+            <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">phoenix</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(&amp;</span><span class="identifier">is_in_rectangle</span><span class="special">,</span> <span class="identifier">expr</span><span class="special">::</span><span class="identifier">attr</span><span class="special">&lt;</span> <span class="identifier">point</span> <span class="special">&gt;(</span><span class="identifier">name</span><span class="special">),</span> <span class="identifier">parse_argument</span><span class="special">&lt;</span> <span class="identifier">rectangle</span> <span class="special">&gt;(</span><span class="identifier">arg</span><span class="special">));</span>
         <span class="special">}</span>
         <span class="keyword">throw</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">runtime_error</span><span class="special">(</span><span class="string">"Unsupported filter relation: "</span> <span class="special">+</span> <span class="identifier">rel</span><span class="special">);</span>
+    <span class="special">}</span>
+
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">ArgumentT</span> <span class="special">&gt;</span>
+    <span class="keyword">static</span> <span class="identifier">ArgumentT</span> <span class="identifier">parse_argument</span><span class="special">(</span><span class="identifier">string_type</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">arg</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">istringstream</span> <span class="identifier">strm</span><span class="special">(</span><span class="identifier">arg</span><span class="special">);</span>
+        <span class="identifier">ArgumentT</span> <span class="identifier">val</span><span class="special">;</span>
+        <span class="identifier">strm</span> <span class="special">&gt;&gt;</span> <span class="identifier">val</span><span class="special">;</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">strm</span><span class="special">.</span><span class="identifier">fail</span><span class="special">()</span> <span class="special">||</span> <span class="identifier">strm</span><span class="special">.</span><span class="identifier">bad</span><span class="special">())</span>
+            <span class="keyword">throw</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">runtime_error</span><span class="special">(</span><span class="string">"Failed to parse argument from \""</span> <span class="special">+</span> <span class="identifier">arg</span> <span class="special">+</span> <span class="string">"\""</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">val</span><span class="special">;</span>
     <span class="special">}</span>
 <span class="special">};</span>
 
@@ -462,7 +485,7 @@
           description). All we have to do is to construct the filter, which is implemented
           by our <code class="computeroutput"><span class="identifier">is_in_rectangle</span></code>
           function. We use <code class="computeroutput"><span class="identifier">bind</span></code> from
-          <a href="http://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
+          <a href="https://www.boost.org/doc/libs/release/libs/phoenix/doc/html/index.html" target="_top">Boost.Phoenix</a>
           to compose the filter from the function and the <a class="link" href="../detailed/expressions.html#log.detailed.expressions.attr" title="Generic attribute placeholder">attribute
           placeholder</a>. You can find the complete code of this example <a href="../../../../../../libs/log/example/doc/extension_filter_parser_custom_rel.cpp" target="_top">here</a>.
         </p>
@@ -472,8 +495,8 @@
 <a name="log.extension.settings.sinks"></a><a class="link" href="settings.html#log.extension.settings.sinks" title="Adding support for user-defined sinks">Adding support for user-defined
         sinks</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.from_settings_hpp" title="Header &lt;boost/log/utility/setup/from_settings.hpp&gt;">boost/log/utility/setup/from_settings.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#header.boost.log.utility.setup.from_stream_hpp" title="Header &lt;boost/log/utility/setup/from_stream.hpp&gt;">boost/log/utility/setup/from_stream.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.from__settings_8hpp" title="Header &lt;boost/log/utility/setup/from_settings.hpp&gt;">boost/log/utility/setup/from_settings.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../utilities.html#doxygen.utilities.from__stream_8hpp" title="Header &lt;boost/log/utility/setup/from_stream.hpp&gt;">boost/log/utility/setup/from_stream.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The library provides mechanism of extending support for sinks similar to
@@ -565,7 +588,7 @@
         <span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">time_duration</span> <span class="identifier">write_interval</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">minutes</span><span class="special">(</span><span class="number">1</span><span class="special">);</span>
         <span class="keyword">if</span> <span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&gt;</span> <span class="identifier">param</span> <span class="special">=</span> <span class="identifier">settings</span><span class="special">[</span><span class="string">"WriteInterval"</span><span class="special">])</span>
         <span class="special">{</span>
-            <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="identifier">sec</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="special">&gt;(</span><span class="identifier">param</span><span class="special">.</span><span class="identifier">get</span><span class="special">());</span>
+            <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="identifier">sec</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">stoul</span><span class="special">(</span><span class="identifier">param</span><span class="special">.</span><span class="identifier">get</span><span class="special">());</span>
             <span class="identifier">write_interval</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">posix_time</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="identifier">sec</span><span class="special">);</span>
         <span class="special">}</span>
 
@@ -601,7 +624,7 @@
           and out custom "StatCollector" sink.
         </p>
 <p>
-          After defining the factory we only have to register it with the <code class="computeroutput"><a class="link" href="../../boost/log/register_sink_fac_idm39225.html" title="Function template register_sink_factory">register_sink_factory</a></code>
+          After defining the factory we only have to register it with the <code class="computeroutput"><a class="link" href="../../doxygen/utilities/from__settings_8hpp_1af9d9752ee6712b8f75529913db3d4bec.html" title="Function template register_sink_factory">register_sink_factory</a></code>
           call. The first argument is the new value of the "Destination"
           parameter in the settings. Whenever the library finds sink description
           with destination "StatCollector", our factory will be invoked
@@ -636,7 +659,7 @@ WriteInterval=30
         </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

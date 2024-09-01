@@ -3,14 +3,14 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or move at http://www.boost.org/LICENSE_1_0.txt)
 
-#include "../helpers/unordered.hpp"
-#include "../helpers/test.hpp"
-#include "../objects/test.hpp"
-#include "../objects/cxx11_allocator.hpp"
-#include "../helpers/random_values.hpp"
-#include "../helpers/tracker.hpp"
 #include "../helpers/equivalent.hpp"
 #include "../helpers/invariants.hpp"
+#include "../helpers/random_values.hpp"
+#include "../helpers/test.hpp"
+#include "../helpers/tracker.hpp"
+#include "../helpers/unordered.hpp"
+#include "../objects/cxx11_allocator.hpp"
+#include "../objects/test.hpp"
 
 #include <boost/core/ignore_unused.hpp>
 #include <iterator>
@@ -21,12 +21,7 @@
 
 namespace move_tests {
   test::seed_t initialize_seed(98624);
-#if defined(BOOST_UNORDERED_USE_MOVE) ||                                       \
-  !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #define BOOST_UNORDERED_TEST_MOVING 1
-#else
-#define BOOST_UNORDERED_TEST_MOVING 0
-#endif
 
   template <class T> T empty(T*) { return T(); }
 
@@ -59,7 +54,8 @@ namespace move_tests {
 
   template <class T> T const& get_value(T const& t) { return t; }
 
-  template <class K, class V> K const& get_value(std::pair<K const, V> const& kv)
+  template <class K, class V>
+  K const& get_value(std::pair<K const, V> const& kv)
   {
     return kv.second;
   }
@@ -321,7 +317,7 @@ namespace move_tests {
   {
     T x(v.begin(), v.end());
     std::size_t const size = x.size();
-    y = boost::move(x);
+    y = std::move(x);
     BOOST_TEST_GE(y.size(), size);
     BOOST_TEST_EQ(y.size(),
       static_cast<typename T::size_type>(std::distance(y.begin(), y.end())));
@@ -392,7 +388,7 @@ namespace move_tests {
   template <class T>
   static void double_move_construct(T& y, test::random_values<T> const&)
   {
-    T x = boost::move(y);
+    T x = std::move(y);
     x.clear();
     BOOST_TEST_EQ(y.size(),
       static_cast<typename T::size_type>(std::distance(y.begin(), y.end())));
@@ -404,7 +400,7 @@ namespace move_tests {
   static void double_move_assign(T& y, test::random_values<T> const&)
   {
     T x;
-    x = boost::move(y);
+    x = std::move(y);
     x.clear();
     BOOST_TEST_EQ(y.size(),
       static_cast<typename T::size_type>(std::distance(y.begin(), y.end())));
@@ -460,12 +456,23 @@ namespace move_tests {
       unsigned num_allocs = test::detail::tracker.count_allocations;
       (void)num_allocs;
 
-      T x(boost::move(y));
+      T x(std::move(y));
 
-#if defined(BOOST_UNORDERED_USE_MOVE) ||                                       \
-  !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
       BOOST_TEST(y.empty());
       BOOST_TEST(y.begin() == y.end());
+
+#ifdef BOOST_UNORDERED_FOA_TESTS
+      {
+        using allocator_type = typename T::allocator_type;
+        using value_type =
+          typename boost::allocator_value_type<allocator_type>::type;
+        using pointer = typename boost::allocator_pointer<allocator_type>::type;
+        if (std::is_same<pointer, value_type*>::value) {
+          BOOST_TEST_EQ(y.bucket_count(), 0u);
+          BOOST_TEST_EQ(test::detail::tracker.count_allocations, num_allocs);
+        }
+      }
+#else
       BOOST_TEST_EQ(y.bucket_count(), 0u);
       BOOST_TEST_EQ(test::detail::tracker.count_allocations, num_allocs);
 #endif
@@ -487,7 +494,7 @@ namespace move_tests {
       test::random_values<T> v(1000, generator);
       test::object_count count;
       T y(v.begin(), v.end(), 0, hf, eq, al1);
-      T x(boost::move(y), al2);
+      T x(std::move(y), al2);
 
 #ifdef BOOST_UNORDERED_FOA_TESTS
       BOOST_TEST(y.empty());
@@ -514,12 +521,23 @@ namespace move_tests {
       (void)num_allocs;
 
       T x(empty(ptr));
-      x = boost::move(y);
+      x = std::move(y);
 
-#if defined(BOOST_UNORDERED_USE_MOVE) ||                                       \
-  !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
       BOOST_TEST(y.empty());
       BOOST_TEST(y.begin() == y.end());
+
+#ifdef BOOST_UNORDERED_FOA_TESTS
+      {
+        using allocator_type = typename T::allocator_type;
+        using value_type =
+          typename boost::allocator_value_type<allocator_type>::type;
+        using pointer = typename boost::allocator_pointer<allocator_type>::type;
+        if (std::is_same<pointer, value_type*>::value) {
+          BOOST_TEST_EQ(y.bucket_count(), 0u);
+          BOOST_TEST_EQ(test::detail::tracker.count_allocations, num_allocs);
+        }
+      }
+#else
       BOOST_TEST_EQ(y.bucket_count(), 0u);
       BOOST_TEST_EQ(test::detail::tracker.count_allocations, num_allocs);
 #endif
@@ -546,22 +564,15 @@ namespace move_tests {
       (void)num_allocs;
 
       T x(al2);
-      x = boost::move(y);
+      x = std::move(y);
 
       bool b = boost::allocator_propagate_on_container_move_assignment<
         typename T::allocator_type>::type::value;
       if (b) {
-#if defined(BOOST_UNORDERED_USE_MOVE) ||                                       \
-  !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
         BOOST_TEST(y.empty());
         BOOST_TEST(y.begin() == y.end());
         BOOST_TEST_EQ(y.bucket_count(), 0u);
         BOOST_TEST_EQ(test::detail::tracker.count_allocations, num_allocs);
-#else
-        BOOST_TEST_NOT(y.empty());
-        BOOST_TEST(y.begin() != y.end());
-
-#endif
       } else {
 #ifdef BOOST_UNORDERED_FOA_TESTS
         BOOST_TEST(y.empty());
@@ -687,7 +698,7 @@ namespace move_tests {
     test::cxx11_allocator<std::pair<test::object const, test::object>,
       test::no_propagate_move> >* test_multimap_no_prop_move;
 
-// clang-format off
+  // clang-format off
   UNORDERED_TEST(post_move_tests,
     ((test_set)(test_multiset)(test_map)(test_multimap)(test_set_prop_move)(
       test_multiset_prop_move)(test_map_prop_move)(test_multimap_prop_move)(
@@ -696,6 +707,6 @@ namespace move_tests {
       (default_generator)(generate_collisions)(limited_range)))
 // clang-format on
 #endif
-}
+} // namespace move_tests
 
 RUN_TESTS()

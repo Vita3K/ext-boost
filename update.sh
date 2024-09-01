@@ -14,6 +14,7 @@ mkdir -p "$SUBSETS_OUTDIR"
 
 ./dist/bin/bcp \
 config ^
+crc ^
 filesystem ^
 icl ^
 log ^

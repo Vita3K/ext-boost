@@ -39,11 +39,11 @@
 <a name="log.detailed.sink_backends.text_ostream"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.text_ostream" title="Text stream backend">Text stream
         backend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.text_ostream_backend_hpp" title="Header &lt;boost/log/sinks/text_ostream_backend.hpp&gt;">boost/log/sinks/text_ostream_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.text__ostream__backend_8hpp" title="Header &lt;boost/log/sinks/text_ostream_backend.hpp&gt;">boost/log/sinks/text_ostream_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The text output stream sink backend is the most generic backend provided
-          by the library out of the box. The backend is implemented in the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_text_ostream_backend.html" title="Class template basic_text_ostream_backend">basic_text_ostream_backend</a></code>
+          by the library out of the box. The backend is implemented in the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__text__ostream__backend.html" title="Class template basic_text_ostream_backend">basic_text_ostream_backend</a></code>
           class template (<code class="computeroutput"><span class="identifier">text_ostream_backend</span></code>
           and <code class="computeroutput"><span class="identifier">wtext_ostream_backend</span></code>
           convenience typedefs provided for narrow and wide character support). It
@@ -103,7 +103,7 @@
 <dt><span class="section"><a href="sink_backends.html#log.detailed.sink_backends.text_file.appending">Appending
           to the previously written files</a></span></dt>
 </dl></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.text_file_backend_hpp" title="Header &lt;boost/log/sinks/text_file_backend.hpp&gt;">boost/log/sinks/text_file_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.text__file__backend_8hpp" title="Header &lt;boost/log/sinks/text_file_backend.hpp&gt;">boost/log/sinks/text_file_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Although it is possible to write logs into files with the <a class="link" href="sink_backends.html#log.detailed.sink_backends.text_ostream" title="Text stream backend">text
@@ -131,7 +131,7 @@
             </li>
 </ul></div>
 <p>
-          The backend is called <code class="computeroutput"><a class="link" href="../../boost/log/sinks/text_file_backend.html" title="Class text_file_backend">text_file_backend</a></code>.
+          The backend is called <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1text__file__backend.html" title="Class text_file_backend">text_file_backend</a></code>.
         </p>
 <div class="warning"><table border="0" summary="Warning">
 <tr>
@@ -139,7 +139,7 @@
 <th align="left">Warning</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            This sink uses <a href="http://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
+            This sink uses <a href="https://www.boost.org/doc/libs/release/libs/filesystem/doc/index.htm" target="_top">Boost.Filesystem</a>
             internally, which may cause problems on process termination. See <a class="link" href="../rationale/why_crash_on_term.html" title="Why my application crashes on process termination when file sinks are used?">here</a> for more details.
           </p></td></tr>
 </table></div>
@@ -205,7 +205,7 @@
 </ul></div>
 <p>
             The file name patterns and rotation conditions can be specified when
-            the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/text_file_backend.html" title="Class text_file_backend">text_file_backend</a></code>
+            the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1text__file__backend.html" title="Class text_file_backend">text_file_backend</a></code>
             backend is constructed.
           </p>
 <p>
@@ -281,7 +281,7 @@
           </p>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-                Time point rotations: <code class="computeroutput"><a class="link" href="../../boost/log/sinks/file/rotation_at_time_point.html" title="Class rotation_at_time_point">rotation_at_time_point</a></code>
+                Time point rotations: <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1file_1_1rotation__at__time__point.html" title="Class rotation_at_time_point">rotation_at_time_point</a></code>
                 class. This kind of rotation takes place whenever the specified time
                 point is reached. The following variants are available:
                 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -314,7 +314,7 @@
 </ul></div>
               </li>
 <li class="listitem">
-                Time interval rotations: <code class="computeroutput"><a class="link" href="../../boost/log/sinks/file/rotation_at_time_interval.html" title="Class rotation_at_time_interval">rotation_at_time_interval</a></code>
+                Time interval rotations: <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1file_1_1rotation__at__time__interval.html" title="Class rotation_at_time_interval">rotation_at_time_interval</a></code>
                 class. With this predicate the rotation is not bound to any time
                 points and happens as soon as the specified time interval since the
                 previous rotation elapses. This is how to make rotations every hour:
@@ -386,7 +386,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
                 Current date and time components. The placeholders conform to the
-                ones specified by <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+                ones specified by <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
                 library.
               </li>
 <li class="listitem">
@@ -476,7 +476,7 @@
 <th align="left">Important</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-              Although all <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+              Although all <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
               format specifiers will work, there are restrictions on some of them,
               if you intend to scan for old log files. This functionality is discussed
               <a class="link" href="sink_backends.html#log.detailed.sink_backends.text_file.file_scanning" title="Scanning for rotated files">here</a>.
@@ -725,7 +725,7 @@
             that assumes that all files in the target directory are log files. The
             former applies certain restrictions on the placeholders that can be used
             within the file name pattern, in particular only file counter placeholder
-            and these placeholders of <a href="http://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
+            and these placeholders of <a href="https://www.boost.org/doc/libs/release/doc/html/date_time.html" target="_top">Boost.DateTime</a>
             are supported: <code class="computeroutput"><span class="special">%</span><span class="identifier">y</span></code>,
             <code class="computeroutput"><span class="special">%</span><span class="identifier">Y</span></code>,
             <code class="computeroutput"><span class="special">%</span><span class="identifier">m</span></code>,
@@ -821,14 +821,14 @@
 <a name="log.detailed.sink_backends.text_multifile"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.text_multifile" title="Text multi-file backend">Text multi-file
         backend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.text_multifile_backend_hpp" title="Header &lt;boost/log/sinks/text_multifile_backend.hpp&gt;">boost/log/sinks/text_multifile_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.text__multifile__backend_8hpp" title="Header &lt;boost/log/sinks/text_multifile_backend.hpp&gt;">boost/log/sinks/text_multifile_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           While the text stream and file backends are aimed to store all log records
           into a single file/stream, this backend serves a different purpose. Assume
           we have a banking request processing application and we want logs related
           to every single request to be placed into a separate file. If we can associate
-          some attribute with the request identity then the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/text_multifile_backend.html" title="Class text_multifile_backend">text_multifile_backend</a></code>
+          some attribute with the request identity then the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1text__multifile__backend.html" title="Class text_multifile_backend">text_multifile_backend</a></code>
           backend is the way to go.
         </p>
 <div class="note"><table border="0" summary="Note">
@@ -918,7 +918,7 @@
 <a name="log.detailed.sink_backends.text_ipc_message_queue"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.text_ipc_message_queue" title="Text IPC message queue backend">Text
         IPC message queue backend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.text_ipc_message_queue_backend_hpp" title="Header &lt;boost/log/sinks/text_ipc_message_queue_backend.hpp&gt;">boost/log/sinks/text_ipc_message_queue_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.text__ipc__message__queue__backend_8hpp" title="Header &lt;boost/log/sinks/text_ipc_message_queue_backend.hpp&gt;">boost/log/sinks/text_ipc_message_queue_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Sometimes, it is convenient to pass log records between different processes
@@ -934,9 +934,9 @@
           displaying.
         </p>
 <p>
-          The backend is implemented by the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/text_ipc_message__idm34222.html" title="Class template text_ipc_message_queue_backend">text_ipc_message_queue_backend</a></code>
+          The backend is implemented by the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1text__ipc__message__queue__backend.html" title="Class template text_ipc_message_queue_backend">text_ipc_message_queue_backend</a></code>
           class template which should be instantiated with an interprocess message
-          queue such as <code class="computeroutput"><a class="link" href="../../boost/log/ipc/reliable_message_queue.html" title="Class reliable_message_queue">reliable_message_queue</a></code>.
+          queue such as <code class="computeroutput"><a class="link" href="../../doxygen/utilities/classboost_1_1log_1_1ipc_1_1reliable__message__queue.html" title="Class reliable_message_queue">reliable_message_queue</a></code>.
           The following example program illustrates a logger process.
         </p>
 <p>
@@ -1051,7 +1051,7 @@
 <div class="titlepage"><div><div><h4 class="title">
 <a name="log.detailed.sink_backends.syslog"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.syslog" title="Syslog backend">Syslog backend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.syslog_backend_hpp" title="Header &lt;boost/log/sinks/syslog_backend.hpp&gt;">boost/log/sinks/syslog_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.syslog__backend_8hpp" title="Header &lt;boost/log/sinks/syslog_backend.hpp&gt;">boost/log/sinks/syslog_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           The syslog backend, as comes from its name, provides support for the syslog
@@ -1065,7 +1065,7 @@
           are supported.
         </p>
 <p>
-          The backend is implemented in the <code class="computeroutput"><a class="link" href="../../boost/log/sinks/syslog_backend.html" title="Class syslog_backend">syslog_backend</a></code>
+          The backend is implemented in the <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1syslog__backend.html" title="Class syslog_backend">syslog_backend</a></code>
           class. The backend supports formatting log records, and therefore requires
           thread synchronization in the frontend. The backend also supports severity
           level translation from the application-specific values to the syslog-defined
@@ -1079,9 +1079,9 @@
 <p>
           Level mappers can be written by library users to translate the application
           log levels to the syslog levels in the best way. However, the library provides
-          two mappers that would fit this need in obvious cases. The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/syslog/direct_severity_mapping.html" title="Class template direct_severity_mapping">direct_severity_mapping</a></code>
+          two mappers that would fit this need in obvious cases. The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1syslog_1_1direct__severity__mapping.html" title="Class template direct_severity_mapping">direct_severity_mapping</a></code>
           class template provides a way to directly map values of some integral attribute
-          to syslog levels, without any value conversion. The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/syslog/custom_severity_mapping.html" title="Class template custom_severity_mapping">custom_severity_mapping</a></code>
+          to syslog levels, without any value conversion. The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1syslog_1_1custom__severity__mapping.html" title="Class template custom_severity_mapping">custom_severity_mapping</a></code>
           class template adds some flexibility and allows to map arbitrary values
           of some attribute to syslog levels.
         </p>
@@ -1193,13 +1193,13 @@
 <a name="log.detailed.sink_backends.debugger"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.debugger" title="Windows debugger output backend">Windows debugger
         output backend</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.debug_output_backend_hpp" title="Header &lt;boost/log/sinks/debug_output_backend.hpp&gt;">boost/log/sinks/debug_output_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.debug__output__backend_8hpp" title="Header &lt;boost/log/sinks/debug_output_backend.hpp&gt;">boost/log/sinks/debug_output_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Windows API has an interesting feature: a process, being run under a debugger,
           is able to emit messages that will be intercepted and displayed in the
           debugger window. For example, if an application is run under the Visual
-          Studio IDE it is able to write debug messages to the IDE window. The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_debug_output_backend.html" title="Class template basic_debug_output_backend">basic_debug_output_backend</a></code>
+          Studio IDE it is able to write debug messages to the IDE window. The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__debug__output__backend.html" title="Class template basic_debug_output_backend">basic_debug_output_backend</a></code>
           backend provides a simple way of emitting such messages. Additionally,
           in order to optimize application performance, a <a class="link" href="expressions.html#log.detailed.expressions.predicates.is_debugger_present" title="Debugger presence filter">special
           filter</a> is available that checks whether the application is being
@@ -1241,7 +1241,7 @@
 <a name="log.detailed.sink_backends.event_log"></a><a class="link" href="sink_backends.html#log.detailed.sink_backends.event_log" title="Windows event log backends">Windows event
         log backends</a>
 </h4></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#header.boost.log.sinks.event_log_backend_hpp" title="Header &lt;boost/log/sinks/event_log_backend.hpp&gt;">boost/log/sinks/event_log_backend.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../sinks.html#doxygen.sinks.event__log__backend_8hpp" title="Header &lt;boost/log/sinks/event_log_backend.hpp&gt;">boost/log/sinks/event_log_backend.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
           Windows operating system provides a special API for publishing events related
@@ -1278,7 +1278,7 @@
           event log backend</a>
         </h6>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_simple_even_idm32878.html" title="Class template basic_simple_event_log_backend">basic_simple_event_log_backend</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__simple__event__log__backend.html" title="Class template basic_simple_event_log_backend">basic_simple_event_log_backend</a></code>
           backend is intended to encapsulate as much of the event log API as possible,
           leaving interface and usage model very similar to other sink backends.
           It contains all resources that are needed for the Event Viewer to function
@@ -1353,7 +1353,7 @@
           event log backend</a>
         </h6>
 <p>
-          The <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_event_log_backend.html" title="Class template basic_event_log_backend">basic_event_log_backend</a></code>
+          The <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__event__log__backend.html" title="Class template basic_event_log_backend">basic_event_log_backend</a></code>
           allows more detailed control over the logging API, but requires considerably
           more scaffolding during initialization and usage.
         </p>
@@ -1443,7 +1443,7 @@ Operation finished successfully in %1 seconds.
 <p>
         </p>
 <p>
-          Like the simple backend, <code class="computeroutput"><a class="link" href="../../boost/log/sinks/basic_event_log_backend.html" title="Class template basic_event_log_backend">basic_event_log_backend</a></code>
+          Like the simple backend, <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1basic__event__log__backend.html" title="Class template basic_event_log_backend">basic_event_log_backend</a></code>
           will register itself in the Windows registry, which will enable the Event
           Viewer to display the emitted events.
         </p>
@@ -1451,7 +1451,7 @@ Operation finished successfully in %1 seconds.
           Next, the user will have to provide the mapping between the application
           logging attributes and event identifiers. These identifiers were provided
           in the message compiler output as a result of compiling the message file.
-          One can use <code class="computeroutput"><a class="link" href="../../boost/log/sinks/event_log/basic_event_composer.html" title="Class template basic_event_composer">basic_event_composer</a></code>
+          One can use <code class="computeroutput"><a class="link" href="../../doxygen/sinks/classboost_1_1log_1_1sinks_1_1event__log_1_1basic__event__composer.html" title="Class template basic_event_composer">basic_event_composer</a></code>
           and one of the event ID mappings, like in the following example:
         </p>
 <p>
@@ -1608,7 +1608,7 @@ Operation finished successfully in %1 seconds.
         </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

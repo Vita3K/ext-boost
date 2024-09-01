@@ -24,23 +24,23 @@ template <typename T> struct A
 
   A() : i(++count) {}
 
-  template <class U> A(const A<U>& a) BOOST_NOEXCEPT : i(a.i) {}
+  template <class U> A(const A<U>& a) noexcept : i(a.i) {}
 
   T* allocate(std::size_t n)
   {
     total_allocation += n * sizeof(T);
     ++num_allocations;
-    return (T*)std::calloc(n, sizeof(T));
+    return (T*)(::operator new(n * sizeof(T)));
   }
 
-  void deallocate(T* p, std::size_t n) BOOST_NOEXCEPT
+  void deallocate(T* p, std::size_t n) noexcept
   {
     total_allocation -= n * sizeof(T);
-    std::free(p);
+    ::operator delete(p);
   }
 
-  bool operator==(A const& a) const { return i == a.i; };
-  bool operator!=(A const& a) const { return i != a.i; };
+  bool operator==(A const& a) const { return i == a.i; }
+  bool operator!=(A const& a) const { return i != a.i; }
 };
 
 template <class T> int A<T>::count = 0;
@@ -213,8 +213,8 @@ UNORDERED_AUTO_TEST (allocator_check) {
   typedef boost::allocator_rebind<A<int>, float>::type alloc_rebound;
   alloc_rebound b;
   A<int> a(b);
-  BOOST_ASSERT(alloc_rebound(a) == b);
-  BOOST_ASSERT(A<int>(b) == a);
+  BOOST_TEST(alloc_rebound(a) == b);
+  BOOST_TEST(A<int>(b) == a);
 }
 
 #ifdef BOOST_UNORDERED_FOA_TESTS

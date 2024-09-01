@@ -75,13 +75,13 @@
 
 [template boost_log_attributes_fallback_policy_hpp[][headerref boost/log/attributes/fallback_policy.hpp]]
 
+[template class_log_fallback_to_default[][classref boost::log::fallback_to_default fallback_to_default]]
+
 [template class_log_fallback_to_none[][classref boost::log::fallback_to_none fallback_to_none]]
 
 [template class_log_fallback_to_throw[][classref boost::log::fallback_to_throw fallback_to_throw]]
 
 [template boost_log_attributes_fallback_policy_fwd_hpp[][headerref boost/log/attributes/fallback_policy_fwd.hpp]]
-
-[template class_log_fallback_to_default[][classref boost::log::fallback_to_default fallback_to_default]]
 
 [template boost_log_attributes_function_hpp[][headerref boost/log/attributes/function.hpp]]
 
@@ -125,8 +125,6 @@
 
 [template boost_log_attributes_value_extraction_hpp[][headerref boost/log/attributes/value_extraction.hpp]]
 
-[template boost_log_attributes_value_extraction_fwd_hpp[][headerref boost/log/attributes/value_extraction_fwd.hpp]]
-
 [template class_log_value_extractor[][classref boost::log::value_extractor value_extractor]]
 
 [template class_result_of_extract[][classref boost::log::result_of::extract extract]]
@@ -135,10 +133,12 @@
 
 [template class_result_of_extract_or_throw[][classref boost::log::result_of::extract_or_throw extract_or_throw]]
 
+[template boost_log_attributes_value_extraction_fwd_hpp[][headerref boost/log/attributes/value_extraction_fwd.hpp]]
+
 [template boost_log_attributes_value_visitation_hpp[][headerref boost/log/attributes/value_visitation.hpp]]
+
+[template class_log_value_visitor_invoker[][classref boost::log::value_visitor_invoker value_visitor_invoker]]
 
 [template class_log_visitation_result[][classref boost::log::visitation_result visitation_result]]
 
 [template boost_log_attributes_value_visitation_fwd_hpp[][headerref boost/log/attributes/value_visitation_fwd.hpp]]
-
-[template class_log_value_visitor_invoker[][classref boost::log::value_visitor_invoker value_visitor_invoker]]

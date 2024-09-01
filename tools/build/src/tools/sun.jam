@@ -66,12 +66,10 @@ import toolset : flags ;
 import feature ;
 import type ;
 import common ;
+import regex ;
 
 feature.extend toolset : sun ;
 toolset.inherit  sun : unix ;
-generators.override sun.prebuilt : builtin.lib-generator ;
-generators.override sun.prebuilt : builtin.prebuilt ;
-generators.override sun.searched-lib-generator : searched-lib-generator ;
 
 
 rule init ( version ? : command * : options * )
@@ -164,6 +162,22 @@ flags sun.compile OPTIONS <cflags> ;
 flags sun.compile.c++ OPTIONS <cxxflags> ;
 flags sun.compile DEFINES <define> ;
 flags sun.compile INCLUDES <include> ;
+
+rule compile.c ( targets * : sources * : properties * )
+{
+    local config_command = [ regex.escape
+        [ on $(targets[1]) return $(CONFIG_C_COMMAND:E="") ]
+        : "()[]\\+.*^$\"" : "\\" ] ;
+    COMMAND_DATABASE on $(targets) = "(\"$(config_command)\"[^\n]*)" ;
+}
+
+rule compile.c++ ( targets * : sources * : properties * )
+{
+    local config_command = [ regex.escape
+        [ on $(targets[1]) return $(CONFIG_COMMAND:E="") ]
+        : "()[]\\+.*^$\"" : "\\" ] ;
+    COMMAND_DATABASE on $(targets) = "(\"$(config_command)\"[^\n]*)" ;
+}
 
 actions compile.c
 {

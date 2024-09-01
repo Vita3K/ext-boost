@@ -10,6 +10,7 @@ boost_optional/tutorial/design_overview/the_semantics.html
 boost_optional/tutorial/design_overview/the_interface.html
 boost_optional/tutorial/when_to_use_optional.html
 boost_optional/tutorial/relational_operators.html
+boost_optional/tutorial/monadic_interface.html
 boost_optional/tutorial/io_operators.html
 boost_optional/tutorial/optional_references.html
 boost_optional/tutorial/optional_references/rebinding_semantics_for_assignment_of_optional_references.html

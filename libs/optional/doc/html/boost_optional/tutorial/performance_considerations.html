@@ -61,9 +61,9 @@
         defaulted move assignment and constructor). On compilers without defaulted
         functions we still use the direct storage, but <code class="computeroutput"><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
         is no longer recognized as trivially-copyable. Apart from scalar types, we
-        leave the programmer a way of customizing her type, so that it is reconized
+        leave the programmer a way of customizing her type, so that it is recognized
         by <code class="computeroutput"><span class="identifier">optional</span></code> as candidate
-        for optimized storage, by specializing type trait <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">opitonal_config</span><span class="special">::</span><span class="identifier">optional_uses_direct_storage_for</span></code>:
+        for optimized storage, by specializing type trait <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional_config</span><span class="special">::</span><span class="identifier">optional_uses_direct_storage_for</span></code>:
       </p>
 <pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">X</span> <span class="comment">// not trivial</span>
 <span class="special">{</span>
@@ -166,7 +166,7 @@
         Sometimes it requires detailed consideration what data we make optional.
         In our case above, if we determine that both minimum and maximum value can
         be provided or not provided together, but one is never provided without the
-        other, we can make only one optional memebr:
+        other, we can make only one optional member:
       </p>
 <pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">Limits</span>
 <span class="special">{</span>
@@ -250,8 +250,7 @@
 <span class="special">}</span>
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2003-2007 Fernando Luis Cacciola Carballal<br>Copyright © 2014-2022 Andrzej
-      Krzemieński<p>
+<div class="copyright-footer">Copyright © 2003-2007 Fernando Luis Cacciola Carballal<br>Copyright © 2014-2023 Andrzej Krzemieński<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -20,9 +20,9 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="log.extension.attributes"></a><a class="link" href="attributes.html" title="Writing your own attributes">Writing your own attributes</a>
 </h3></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_hpp" title="Header &lt;boost/log/attributes/attribute.hpp&gt;">boost/log/attributes/attribute.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_value_hpp" title="Header &lt;boost/log/attributes/attribute_value.hpp&gt;">boost/log/attributes/attribute_value.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#header.boost.log.attributes.attribute_value_impl_hpp" title="Header &lt;boost/log/attributes/attribute_value_impl.hpp&gt;">boost/log/attributes/attribute_value_impl.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute_8hpp" title="Header &lt;boost/log/attributes/attribute.hpp&gt;">boost/log/attributes/attribute.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__value_8hpp" title="Header &lt;boost/log/attributes/attribute_value.hpp&gt;">boost/log/attributes/attribute_value.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../../attributes.html#doxygen.attributes.attribute__value__impl_8hpp" title="Header &lt;boost/log/attributes/attribute_value_impl.hpp&gt;">boost/log/attributes/attribute_value_impl.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
         Developing your own attributes is quite simple. Generally, you need to do
@@ -32,32 +32,32 @@
 <li class="listitem">
             Define what will be the attribute value. Most likely, it will be a piece
             of constant data that you want to participate in filtering and formatting.
-            Envelop this data into a class that derives from the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value/impl.html" title="Struct impl">impl</a></code>
+            Envelop this data into a class that derives from the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/structboost_1_1log_1_1attribute__value_1_1impl.html" title="Struct impl">impl</a></code>
             interface; this is the attribute value implementation class. This object
             will have to implement the <code class="computeroutput"><span class="identifier">dispatch</span></code>
             method that will extract the stored data (or, in other words, the stored
-            value) to a type dispatcher. In most cases the class <code class="computeroutput"><a class="link" href="../../boost/log/attributes/attribute_value_impl.html" title="Class template attribute_value_impl">attribute_value_impl</a></code>
+            value) to a type dispatcher. In most cases the class <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1attribute__value__impl.html" title="Class template attribute_value_impl">attribute_value_impl</a></code>
             provided by the library can be used for this.
           </li>
 <li class="listitem">
-            Use the <code class="computeroutput"><a class="link" href="../../boost/log/attribute_value.html" title="Class attribute_value">attribute_value</a></code>
+            Use the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute__value.html" title="Class attribute_value">attribute_value</a></code>
             class as the interface class that holds a reference to the attribute
             value implementation.
           </li>
 <li class="listitem">
             Define how attribute values are going to be produced. In a corner case
-            the values do not need to be produced (like in the case of the <code class="computeroutput"><a class="link" href="../../boost/log/attributes/constant.html" title="Class template constant">constant</a></code> attribute
+            the values do not need to be produced (like in the case of the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1constant.html" title="Class template constant">constant</a></code> attribute
             provided by the library), but often there is some logic that needs to
             be invoked to acquire the attribute value. This logic has to be concentrated
-            in a class derived from the <code class="computeroutput"><a class="link" href="../../boost/log/attribute/impl.html" title="Struct impl">impl</a></code>
+            in a class derived from the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/structboost_1_1log_1_1attribute_1_1impl.html" title="Struct impl">impl</a></code>
             interface, more precisely - in the <code class="computeroutput"><span class="identifier">get_value</span></code>
             method. This class is the attribute implementation class. You can think
             of it as an attribute value factory.
           </li>
 <li class="listitem">
-            Define the attribute interface class that derives from <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code>.
+            Define the attribute interface class that derives from <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>.
             By convention, the interface class should create the corresponding implementation
-            on construction and pass the pointer to it to the <code class="computeroutput"><a class="link" href="../../boost/log/attribute.html" title="Class attribute">attribute</a></code>
+            on construction and pass the pointer to it to the <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attribute.html" title="Class attribute">attribute</a></code>
             class constructor. The interface class may have interface methods but
             it typically should not contain any data members as the data will be
             lost when the attribute is added to the library. All relevant data should
@@ -82,7 +82,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
             The attribute value never changes, so it's possible to store it in the
-            attribute itself. The <code class="computeroutput"><a class="link" href="../../boost/log/attributes/constant.html" title="Class template constant">constant</a></code>
+            attribute itself. The <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1constant.html" title="Class template constant">constant</a></code>
             attribute is an example.
           </li>
 <li class="listitem">
@@ -109,8 +109,8 @@
         But in the vast majority of cases attribute values must be self-contained
         objects with no dependencies on other entities. In fact, this case is so
         common that the library provides a ready to use attribute value implementation
-        class template <code class="computeroutput"><a class="link" href="../../boost/log/attributes/attribute_value_impl.html" title="Class template attribute_value_impl">attribute_value_impl</a></code>
-        and <code class="computeroutput"><a class="link" href="../../boost/log/attributes/make_attribute_value.html" title="Function template make_attribute_value">make_attribute_value</a></code>
+        class template <code class="computeroutput"><a class="link" href="../../doxygen/attributes/classboost_1_1log_1_1attributes_1_1attribute__value__impl.html" title="Class template attribute_value_impl">attribute_value_impl</a></code>
+        and <code class="computeroutput"><a class="link" href="../../doxygen/attributes/attribute__value__impl_8hpp_1a4d58e54ae1e872e745d79d4da79b0e82.html" title="Function template make_attribute_value">make_attribute_value</a></code>
         generator function. The class template has to be instantiated on the stored
         value type, and the stored value has to be provided to the class constructor.
         For example, let's implement an attribute that returns system uptime in seconds.
@@ -137,7 +137,7 @@
       </p>
 <p>
         Since there is no need for special attribute value classes we can use the
-        <code class="computeroutput"><a class="link" href="../../boost/log/attributes/make_attribute_value.html" title="Function template make_attribute_value">make_attribute_value</a></code>
+        <code class="computeroutput"><a class="link" href="../../doxygen/attributes/attribute__value__impl_8hpp_1a4d58e54ae1e872e745d79d4da79b0e82.html" title="Function template make_attribute_value">make_attribute_value</a></code>
         function to create the value envelop.
       </p>
 <div class="tip"><table border="0" summary="Tip">
@@ -208,7 +208,7 @@
         the complete code</a>.
       </p>
 </div>
-<div class="copyright-footer">Copyright © 2007-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2007-2024 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>).
       </p>

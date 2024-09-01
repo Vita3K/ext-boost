@@ -116,7 +116,7 @@ test_compiler ()
     CMD="${EXE} $@ ${B2_CXXFLAGS_OPT:-}"
     SETUP=${B2_SETUP:-true}
     if test_true ${B2_VERBOSE_OPT} ; then
-        echo "> ${CMD} check_cxx11.cpp"
+        echo "> ${CMD} check_clib.cpp check_cxx11.cpp"
         ( ${SETUP} ; ${CMD} check_clib.cpp check_cxx11.cpp )
     else
         ( ${SETUP} ; ${CMD} check_clib.cpp check_cxx11.cpp ) 1>/dev/null 2>/dev/null
@@ -125,7 +125,7 @@ test_compiler ()
     if test_true ${CHECK_RESULT} ; then
         B2_CXX=${CMD}
     fi
-    rm -rf check_cxx11.o* a.out a.exe 1>/dev/null 2>/dev/null
+    rm -rf check_clib.o* check_cxx11.o* a.out a.exe 1>/dev/null 2>/dev/null
     return ${CHECK_RESULT}
 }
 
@@ -156,11 +156,13 @@ check_toolset ()
 
     # Prefer Clang (clang) on macOS..
     if test_toolset clang && test_uname Darwin && test_compiler clang++$TOOLSET_SUFFIX -x c++ -std=c++11 ; then B2_TOOLSET=clang$TOOLSET_SUFFIX ; return ${TRUE} ; fi
+    # GCC (gcc) with -pthread arg (for AIX and others)..
+    if test_toolset gcc && test_compiler g++$TOOLSET_SUFFIX -x c++ -std=c++11 -pthread ; then B2_TOOLSET=gcc$TOOLSET_SUFFIX ; return ${TRUE} ; fi
     # GCC (gcc)..
     if test_toolset gcc && test_compiler g++$TOOLSET_SUFFIX -x c++ -std=c++11 ; then B2_TOOLSET=gcc$TOOLSET_SUFFIX ; return ${TRUE} ; fi
     if test_toolset gcc && test_compiler g++$TOOLSET_SUFFIX -x c++ -std=c++11 -D_GNU_SOURCE ; then B2_TOOLSET=gcc$TOOLSET_SUFFIX ; return ${TRUE} ; fi
-    # GCC (gcc) with -pthread arg (for AIX)..
-    if test_toolset gcc && test_compiler g++$TOOLSET_SUFFIX -x c++ -std=c++11 -pthread ; then B2_TOOLSET=gcc$TOOLSET_SUFFIX ; return ${TRUE} ; fi
+    # Clang (clang) with -pthread arg (for FreeBSD and others)..
+    if test_toolset clang && test_compiler clang++$TOOLSET_SUFFIX -x c++ -std=c++11 -pthread ; then B2_TOOLSET=clang$TOOLSET_SUFFIX ; return ${TRUE} ; fi
     # Clang (clang)..
     if test_toolset clang && test_compiler clang++$TOOLSET_SUFFIX -x c++ -std=c++11 ; then B2_TOOLSET=clang$TOOLSET_SUFFIX ; return ${TRUE} ; fi
     # Intel macOS (intel-darwin)
@@ -249,7 +251,7 @@ check_toolset ()
     if test_toolset sunpro && test_compiler /opt/SUNWspro/bin/CC -std=c++11 ; then B2_TOOLSET=sunpro ; return ${TRUE} ; fi
     # Generic (cxx)
     if test_toolset cxx && test_compiler cxx ; then B2_TOOLSET=cxx ; return ${TRUE} ; fi
-    if test_toolset cxx && test_compiler cpp ; then B2_TOOLSET=cxx ; return ${TRUE} ; fi
+    if test_toolset cxx && test_compiler c++ ; then B2_TOOLSET=cxx ; return ${TRUE} ; fi
     if test_toolset cxx && test_compiler CC ; then B2_TOOLSET=cxx ; return ${TRUE} ; fi
 
     # Nothing found.
@@ -389,8 +391,8 @@ case "${B2_TOOLSET}" in
 
     clang|clang-*)
         CXX_VERSION_OPT=${CXX_VERSION_OPT:---version}
-        B2_CXXFLAGS_RELEASE="-O3 -s"
-        B2_CXXFLAGS_DEBUG="-O0 -fno-inline -g"
+        B2_CXXFLAGS_RELEASE="-O3 -s -Wno-deprecated-declarations"
+        B2_CXXFLAGS_DEBUG="-O0 -fno-inline -g -Wno-deprecated-declarations"
     ;;
 
     tru64cxx)
@@ -436,7 +438,8 @@ echo "
 ###
 ###
 "
-    B2_SOURCES="\
+B2_SOURCES="\
+bindjam.cpp \
 builtins.cpp \
 class.cpp \
 command.cpp \
@@ -445,11 +448,12 @@ constants.cpp \
 cwd.cpp \
 debug.cpp \
 debugger.cpp \
+events.cpp \
 execcmd.cpp \
 execnt.cpp \
 execunix.cpp \
-filesys.cpp \
 filent.cpp \
+filesys.cpp \
 fileunix.cpp \
 frames.cpp \
 function.cpp \
@@ -468,7 +472,6 @@ md5.cpp \
 mem.cpp \
 modules.cpp \
 native.cpp \
-object.cpp \
 option.cpp \
 output.cpp \
 parse.cpp \
@@ -480,21 +483,42 @@ rules.cpp \
 scan.cpp \
 search.cpp \
 startup.cpp \
-subst.cpp \
-sysinfo.cpp \
+tasks.cpp \
 timestamp.cpp \
+value.cpp \
 variable.cpp \
 w32_getreg.cpp \
-modules/order.cpp \
-modules/path.cpp \
-modules/property-set.cpp \
-modules/regex.cpp \
-modules/sequence.cpp \
-modules/set.cpp \
-"
+mod_command_db.cpp \
+mod_db.cpp \
+mod_jam_builtin.cpp \
+mod_jam_class.cpp \
+mod_jam_errors.cpp \
+mod_jam_modules.cpp \
+mod_order.cpp \
+mod_path.cpp \
+mod_property_set.cpp \
+mod_regex.cpp \
+mod_sequence.cpp \
+mod_set.cpp \
+mod_string.cpp \
+mod_summary.cpp \
+mod_sysinfo.cpp \
+mod_version.cpp \
+ "
 
     if test_true ${B2_DEBUG_OPT} ; then B2_CXXFLAGS="${B2_CXXFLAGS_DEBUG}"
     else B2_CXXFLAGS="${B2_CXXFLAGS_RELEASE} -DNDEBUG"
+    fi
+    if [ -z "$B2_DONT_EMBED_MANIFEST" ] ; then
+        case "$(${B2_CXX} ${B2_CXXFLAGS} -dumpmachine 2>/dev/null)" in
+            *-windows*|*-mingw*|*-msys*|*-cygnus*|*-cygwin*)
+                WINDRES="$(${B2_CXX} ${B2_CXXFLAGS} -print-prog-name=windres 2>/dev/null)"
+            ;;
+        esac
+        if [ -n "${WINDRES}" ] ; then
+            B2_CXXFLAGS="${B2_CXXFLAGS} -Wl,res.o"
+            ( B2_VERBOSE_OPT=${TRUE} echo_run ${WINDRES} --input res.rc --output res.o )
+        fi
     fi
     ( B2_VERBOSE_OPT=${TRUE} echo_run ${B2_CXX} ${B2_CXXFLAGS} ${B2_SOURCES} -o b2 )
 }
